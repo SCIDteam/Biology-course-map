@@ -37,6 +37,7 @@ d3.json('data_extract/data/all_courses_py.json').then(coursesData => {
     let selectedSubjects = [];
     let selectedThemes = [];
     let selectedLevel = [];
+    let coreqEdgeIds = new Set(); // tracks corequisite edge IDs for correct mouseout reset
 
     // Create initial message text in the SVG
     const svg = d3.select("svg");
@@ -269,7 +270,10 @@ d3.json('data_extract/data/all_courses_py.json').then(coursesData => {
             return "<p class='name'>" + name + "</p><p class='description'>" + description + "</p>";
         };
 
-        // Mouseover: make edges of prerequisites and corequisites higher opacity, others lower
+        // Build downstream map once per render so hover can find dependents efficiently
+        const downstreamMap = buildDownstreamMap(coursesData);
+
+        // Mouseover: highlight full upstream chain (prereqs) and full downstream chain (dependents)
         inner.selectAll("g.node").on("mouseover", function(event, d) {
             const course = coursesData.find(course => course.course_code === d);
             console.log(course.course_code)
@@ -292,36 +296,32 @@ d3.json('data_extract/data/all_courses_py.json').then(coursesData => {
             inner.selectAll("g.node").filter(n => n !== d).style("opacity", 0.2);
             inner.selectAll("g.edgePath").style("opacity", 0.2);
 
-            // Highlight prerequisites and corequisites
-            if (course && course.prerequisites.length > 0) {
-                course.prerequisites.forEach(function(prereq) {
-                    // Highlight node
-                    inner.select(`g.node[id="${prereq}"]`).select("rect").style("fill", "cyan");
-                    inner.select(`g.node[id="${prereq}"]`).select("text").style("font-weight", "bold");
-                    inner.select(`g.node[id="${prereq}"]`).style("opacity", 1);
+            // Recursively highlight all upstream courses (prerequisites and corequisites)
+            collectUpstreamEdges(d, coursesData).forEach(function({ from, to, type }) {
+                const nodeColor = type === 'corequisite' ? 'coral' : 'cyan';
+                inner.select(`g.node[id="${from}"]`).select("rect").style("fill", nodeColor);
+                inner.select(`g.node[id="${from}"]`).select("text").style("font-weight", "bold");
+                inner.select(`g.node[id="${from}"]`).style("opacity", 1);
 
-                    // Make edge to prerequisite higher opacity
-                    inner.select(`g.edgePath[id*="${prereq}-${d}"]`).style("opacity", 1)
-                        .select("path")
-                        .style("stroke-width", "3px")
-                        .style("stroke", "black");
-                });
-            }
+                inner.select(`g.edgePath[id*="${from}-${to}"]`).style("opacity", 1)
+                    .select("path")
+                    .style("stroke-width", "3px")
+                    .style("stroke", type === 'corequisite' ? 'coral' : 'black')
+                    .style("stroke-dasharray", type === 'corequisite' ? "5, 5" : null);
+            });
 
-            if (course && course.corequisites.length > 0) {
-                course.corequisites.forEach(function(coreq) {
-                    // Highlight node
-                    inner.select(`g.node[id="${coreq}"]`).select("rect").style("fill", "coral");
-                    inner.select(`g.node[id="${coreq}"]`).select("text").style("font-weight", "bold");
-                    inner.select(`g.node[id="${coreq}"]`).style("opacity", 1);
+            // Recursively highlight all downstream courses (courses that depend on this one)
+            collectDownstreamEdges(d, downstreamMap).forEach(function({ from, to, type }) {
+                inner.select(`g.node[id="${to}"]`).select("rect").style("fill", "#90EE90");
+                inner.select(`g.node[id="${to}"]`).select("text").style("font-weight", "bold");
+                inner.select(`g.node[id="${to}"]`).style("opacity", 1);
 
-                    inner.select(`g.edgePath[id*="${coreq}-${d}"]`).style("opacity", 1)
-                        .select("path")
-                        .style("stroke-width", "3px")
-                        .style("stroke", "coral")
-                        .style("stroke-dasharray", "5, 5");
-                });
-            }
+                inner.select(`g.edgePath[id*="${from}-${to}"]`).style("opacity", 1)
+                    .select("path")
+                    .style("stroke-width", "3px")
+                    .style("stroke", "#228B22")
+                    .style("stroke-dasharray", type === 'corequisite' ? "5, 5" : null);
+            });
         })
         .on("mousemove", function (event) {
             // Position the tooltip relative to the viewport
@@ -338,49 +338,27 @@ d3.json('data_extract/data/all_courses_py.json').then(coursesData => {
             tooltip.style("left", xPos + "px").style("top", yPos + "px");
         });
 
-        // Mouseout: reset styles for all nodes and edges
-        inner.selectAll("g.node").on("mouseout", function(event, d) {
-            const course = coursesData.find(course => course.course_code === d);
-
+        // Mouseout: reset all nodes and edges to their base styles
+        inner.selectAll("g.node").on("mouseout", function() {
             tooltip.transition().duration(10).style("opacity", 0); // Hide the tooltip
 
-            // Reset hovered node style
-            d3.select(this).select("rect").style("fill", function() {
-                return filteredCourseIds.includes(d) ? "#EEDFCC" : null;
+            // Reset every node: restore filtered fill and remove bold
+            inner.selectAll("g.node").each(function(nodeId) {
+                d3.select(this).select("rect").style("fill", filteredCourseIds.includes(nodeId) ? "#EEDFCC" : null);
+                d3.select(this).select("text").style("font-weight", null);
+                d3.select(this).style("opacity", 1);
             });
-            d3.select(this).select("text").style("font-weight", null);
-            d3.select(this).style("opacity", 1);
 
-            // Reset opacity for all nodes and edges
-            inner.selectAll("g.node").style("opacity", 1);
-            inner.selectAll("g.edgePath").style("opacity", 1);
-
-            if (course) {
-                // Reset styles for prerequisites
-                course.prerequisites.forEach(function(prereq) {
-                    inner.select(`g.node[id="${prereq}"]`).select("rect").style("fill", function() {
-                        return filteredCourseIds.includes(prereq) ? "#EEDFCC" : null;
-                    });
-                    inner.select(`g.node[id="${prereq}"]`).select("text").style("font-weight", null);
-                    inner.select(`g.edgePath[id*="${prereq}-${d}"]`).style("opacity", 1)
-                        .select("path")
-                        .style("stroke-width", "1.5px")
-                        .style("stroke", "black");
-                });
-
-                // Reset styles for corequisites
-                course.corequisites.forEach(function(coreq) {
-                    inner.select(`g.node[id="${coreq}"]`).select("rect").style("fill", function() {
-                        return filteredCourseIds.includes(coreq) ? "#EEDFCC" : null;
-                    });
-                    inner.select(`g.node[id="${coreq}"]`).select("text").style("font-weight", null);
-                    inner.select(`g.edgePath[id*="${coreq}-${d}"]`).style("opacity", 1)
-                        .select("path")
-                        .style("stroke-width", "1.5px")
-                        .style("stroke", "coral")
-                        .style("stroke-dasharray", "5, 5");
-                });
-            }
+            // Reset every edge: coreq edges get coral dashed, prereq edges get black solid
+            inner.selectAll("g.edgePath").each(function() {
+                const svgId = d3.select(this).attr("id") || "";
+                const isCoreq = [...coreqEdgeIds].some(edgeId => svgId.includes(edgeId));
+                d3.select(this).style("opacity", 1)
+                    .select("path")
+                    .style("stroke-width", "1.5px")
+                    .style("stroke", isCoreq ? "coral" : "black")
+                    .style("stroke-dasharray", isCoreq ? "5, 5" : null);
+            });
         });
     }
 
@@ -419,6 +397,7 @@ d3.json('data_extract/data/all_courses_py.json').then(coursesData => {
     function clearGraph() {
         g.nodes().forEach(node => g.removeNode(node));
         g.edges().forEach(edge => g.removeEdge(edge.v, edge.w));
+        coreqEdgeIds.clear();
         d3.select("svg g").remove();
     }
     
@@ -460,16 +439,66 @@ d3.json('data_extract/data/all_courses_py.json').then(coursesData => {
     }
     
     function addEdge(source, target, type) {
-        const edgeStyle = type === 'corequisite' 
+        if (type === 'corequisite') coreqEdgeIds.add(`${source}-${target}`);
+
+        const edgeStyle = type === 'corequisite'
             ? { style: "stroke: coral; stroke-dasharray: 5, 5;", arrowheadStyle: "fill: coral" }
             : { arrowheadStyle: "fill: #000" };
-    
+
         g.setEdge(source, target, {
             label: "",
             id: `${source}-${target}`,
             curve: d3.curveBasis,
             ...edgeStyle
         });
+    }
+
+    // Build a reverse map: courseCode -> [{code, type}] so each course can find its dependents.
+    function buildDownstreamMap(courses) {
+        const map = {};
+        courses.forEach(course => {
+            course.prerequisites.forEach(prereq => {
+                if (!map[prereq]) map[prereq] = [];
+                map[prereq].push({ code: course.course_code, type: 'prerequisite' });
+            });
+            course.corequisites.forEach(coreq => {
+                if (!map[coreq]) map[coreq] = [];
+                map[coreq].push({ code: course.course_code, type: 'corequisite' });
+            });
+        });
+        return map;
+    }
+
+    // Recursively collect every upstream edge (prereqs of prereqs, etc.).
+    // Returns [{from, to, type}] for the full ancestor chain.
+    function collectUpstreamEdges(courseCode, courses, visited = new Set()) {
+        if (visited.has(courseCode)) return [];
+        visited.add(courseCode);
+        const course = courses.find(c => c.course_code === courseCode);
+        if (!course) return [];
+        const edges = [];
+        course.prerequisites.forEach(prereq => {
+            edges.push({ from: prereq, to: courseCode, type: 'prerequisite' });
+            collectUpstreamEdges(prereq, courses, visited).forEach(e => edges.push(e));
+        });
+        course.corequisites.forEach(coreq => {
+            edges.push({ from: coreq, to: courseCode, type: 'corequisite' });
+            collectUpstreamEdges(coreq, courses, visited).forEach(e => edges.push(e));
+        });
+        return edges;
+    }
+
+    // Recursively collect every downstream edge (courses that need this one, and their dependents).
+    // Returns [{from, to, type}] for the full descendant chain.
+    function collectDownstreamEdges(courseCode, downstreamMap, visited = new Set()) {
+        if (visited.has(courseCode)) return [];
+        visited.add(courseCode);
+        const edges = [];
+        (downstreamMap[courseCode] || []).forEach(({ code, type }) => {
+            edges.push({ from: courseCode, to: code, type });
+            collectDownstreamEdges(code, downstreamMap, visited).forEach(e => edges.push(e));
+        });
+        return edges;
     }
 
     // Function to filter courses based on keywords in the description

@@ -42,6 +42,8 @@ d3.json('data_extract/data/all_courses_py.json').then(coursesData => {
     let frozenCourseId = null;
     // Assigned by renderGraph so the sidebar X button can call resetHighlight across scopes
     let _unfreezeSelection = null;
+    // Assigned by renderGraph so sidebar course-card buttons can trigger node selection
+    let _selectCourse = null;
 
     // Create initial message text in the SVG
     const svg = d3.select("svg");
@@ -373,6 +375,15 @@ d3.json('data_extract/data/all_courses_py.json').then(coursesData => {
                 clearCourseInfoSidebar();
             }
         };
+
+        // Expose course selection so sidebar card buttons trigger the same flow as node clicks
+        _selectCourse = function(courseCode) {
+            const course = coursesData.find(c => c.course_code === courseCode);
+            if (!course) return;
+            frozenCourseId = courseCode;
+            applyHighlight(courseCode);
+            showCourseInfoInSidebar(course, downstreamMap, filteredCourseIds);
+        };
     }
 
     // Function to update the graph based on selected subjects and themes
@@ -414,6 +425,7 @@ d3.json('data_extract/data/all_courses_py.json').then(coursesData => {
         d3.select("svg g").remove();
         // Reset frozen selection whenever the graph is rebuilt
         frozenCourseId = null;
+        _selectCourse = null;
         clearCourseInfoSidebar();
     }
     
@@ -544,10 +556,10 @@ d3.json('data_extract/data/all_courses_py.json').then(coursesData => {
             return codeList.map(code => {
                 const rel     = coursesData.find(c => c.course_code === code);
                 const relName = rel ? (rel.course_title || rel.title || rel.name || '') : '';
-                return `<div class="ci-course-card ${cardClass}">
+                return `<button class="ci-course-card ${cardClass}" data-course-code="${code}">
                     <div class="ci-card-code">${code}</div>
                     ${relName ? `<div class="ci-card-name">${relName}</div>` : ''}
-                </div>`;
+                </button>`;
             }).join('');
         }
 
@@ -595,6 +607,13 @@ d3.json('data_extract/data/all_courses_py.json').then(coursesData => {
         // Wire the X button — calls back into renderGraph scope via _unfreezeSelection
         document.getElementById("course-info-close").addEventListener("click", function() {
             if (_unfreezeSelection) _unfreezeSelection();
+        });
+
+        // Wire each course card button to trigger the same selection as a graph node click
+        panel.querySelectorAll('.ci-course-card[data-course-code]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (_selectCourse) _selectCourse(this.dataset.courseCode);
+            });
         });
     }
 

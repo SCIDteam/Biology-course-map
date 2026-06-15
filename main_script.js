@@ -44,6 +44,8 @@ d3.json('data_extract/data/all_courses_py.json').then(coursesData => {
     let _unfreezeSelection = null;
     // Assigned by renderGraph so sidebar course-card buttons can trigger node selection
     let _selectCourse = null;
+    // Assigned by renderGraph so the zoom slider can programmatically drive D3 zoom
+    let _zoom = null;
 
     // Create initial message text in the SVG
     const svg = d3.select("svg");
@@ -226,10 +228,17 @@ d3.json('data_extract/data/all_courses_py.json').then(coursesData => {
         });
 
         var inner = svg.append("g");
-        var zoom = d3.zoom().on("zoom", function(event) {
-            inner.attr("transform", event.transform);
-        });
+        var zoom = d3.zoom()
+            .scaleExtent([0.1, 3])
+            .on("zoom", function(event) {
+                inner.attr("transform", event.transform);
+                const slider = document.getElementById("zoomSlider");
+                const display = document.getElementById("zoomValue");
+                if (slider) slider.value = event.transform.k;
+                if (display) display.textContent = Math.round(event.transform.k * 100) + '%';
+            });
         svg.call(zoom);
+        _zoom = zoom;
 
         var render = new dagreD3.render();
         render(inner, g);
@@ -426,6 +435,7 @@ d3.json('data_extract/data/all_courses_py.json').then(coursesData => {
         // Reset frozen selection whenever the graph is rebuilt
         frozenCourseId = null;
         _selectCourse = null;
+        _zoom = null;
         clearCourseInfoSidebar();
     }
     
@@ -741,5 +751,13 @@ d3.json('data_extract/data/all_courses_py.json').then(coursesData => {
     document.getElementById("close-dialog").onclick = function() {
         document.getElementById("dialog").style.display = "none";
     };
+
+    // Zoom slider: update D3 zoom transform while preserving current pan position
+    document.getElementById("zoomSlider").addEventListener("input", function() {
+        if (!_zoom) return;
+        const k = +this.value;
+        const current = d3.zoomTransform(svg.node());
+        svg.call(_zoom.transform, d3.zoomIdentity.translate(current.x, current.y).scale(k));
+    });
 
 }).catch(error => console.error('Error loading the JSON:', error));

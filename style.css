@@ -553,3 +553,31 @@ body {
   font-style: italic;
   margin: 0;
 }
+
+/* Zoom slider control */
+.zoom-control {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.zoom-control label {
+  font-size: 0.85em;
+  color: #555;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+#zoomValue {
+  font-weight: 700;
+  color: #333;
+}
+
+#zoomSlider {
+  width: 100%;
+  accent-color: #4a90d9;
+  cursor: pointer;
+  height: 4px;
+  border-radius: 2px;
+}

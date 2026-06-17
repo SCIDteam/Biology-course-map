@@ -1,0 +1,2605 @@
+[
+    {
+        "id": "BIOL 111",
+        "code": "BIOL 111",
+        "title": "Introduction to Modern Biology",
+        "description": "Concepts fundamental to biological issues, such as the genetic basis of biological variation, evolution, infectious diseases, causes of cancer, population growth, and human effects on ecosystems.  Not open to students who have credit for Biology 12 (including AP, IB). [3-0-0]",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Pre-Introductory"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Biological",
+            "Concepts Fundamental",
+            "Variation Evolution"
+        ],
+        "level": "111 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 112",
+        "code": "BIOL 112",
+        "title": "Biology of the Cell",
+        "description": "The principles of cellular and molecular biology using bacterial and eukaryotic examples. [3-0-0] Prerequisite: One of CHEM 12, CHEM 100, CHEM 110, CHEM 111 and one of BIOL 11, BIOL 12, BIOL 111.",
+        "prerequisites": [
+            "BIOL 111"
+        ],
+        "corequisites": [],
+        "category": [
+            "Introductory"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Chem",
+            "Chem Chem",
+            "Using Bacterial"
+        ],
+        "level": "112 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 121",
+        "code": "BIOL 121",
+        "title": "Genetics, Evolution and Ecology",
+        "description": "Principles of storage and transmission of genetic variation; origin and evolution of species and their ecological interactions. Credit will be granted for only one of BIOL 121 or BIOL 344. [3-0-0] Prerequisite: One of BIOL 11, BIOL 12, BIOL 111.",
+        "prerequisites": [
+            "BIOL 111"
+        ],
+        "corequisites": [],
+        "category": [
+            "Introductory"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Evolution",
+            "Principles Storage",
+            "Variation Origin"
+        ],
+        "level": "121 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 180",
+        "code": "BIOL 180",
+        "title": "Thinking Like a Life Scientist",
+        "description": "Science as a process, the skills of scientists, and the exploration of a current biological challenge with a practicing UBC scientist. [2-0-1] Prerequisite: One of BIOL 11, BIOL 12, BIOL 111.",
+        "prerequisites": [
+            "BIOL 111"
+        ],
+        "corequisites": [],
+        "category": [
+            "Introductory"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Scientist",
+            "Scientists Exploration",
+            "Scientists"
+        ],
+        "level": "180 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 200",
+        "code": "BIOL 200",
+        "title": "Fundamentals of Cell Biology",
+        "description": "Structure and function of plant and animal cells; membrane models, cytoplasmic organelles, biological information from gene to protein, the endomembrane system, secretion, intracellular digestion, endocytosis, transport processes, cytoskeleton and cell motility. [3-0-1] Prerequisite: Either (a) BIOL 112 and one of CHEM 123, CHEM 130;  or (b) SCIE 001. or (c) 8 transfer credits of first-year BIOL and 6 credits of first-year CHEM or (d) one of BIOL 112 or BIOL 121 and a corequisite of one of CHEM 203 or CHEM 223.",
+        "prerequisites": [
+            "BIOL 112"
+        ],
+        "corequisites": [],
+        "category": [
+            "Fundamentals"
+        ],
+        "components": [
+            "Lecture",
+            "Tutorials"
+        ],
+        "theme": [
+            "Chem",
+            "Chem Chem",
+            "Credits Year"
+        ],
+        "level": "200 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 201",
+        "code": "BIOL 201",
+        "title": "Introduction to Biochemistry",
+        "description": "Biological molecules, protein structure and enzyme action, energy transfer, central metabolic pathways and their regulation. Examples drawn from plants, animals and microorganisms. (Consult the Credit Exclusion list within the Faculty of Science section of the Calendar.) Credit will be granted for only one of BIOL 201, BIOC 202, or BIOC 203. [3-0-1] Prerequisite: BIOL 200 and one of CHEM 233, CHEM 260. ; or BIOL 200 and a corequisite of CHEM 213; or a corequisite of either CHEM 313 or CHEM 330.",
+        "prerequisites": [
+            "BIOL 200"
+        ],
+        "corequisites": [],
+        "category": [],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Chem",
+            "Chem Chem",
+            "Bioc"
+        ],
+        "level": "201 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 204",
+        "code": "BIOL 204",
+        "title": "Vertebrate Structure and Function",
+        "description": "Introduction to the vertebrate phyla and their evolution; a comparative study of vertebrate structure and function, with dissection of representative forms. [3-3-0] Prerequisite: One of BIOL 121, SCIE 001. Or 8 transfer credits of first-year biology.",
+        "prerequisites": [
+            "BIOL 121"
+        ],
+        "corequisites": [],
+        "category": [
+            "Organismal"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Vertebrate",
+            "Vertebrate Structure",
+            "Structure Function"
+        ],
+        "level": "204 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 210",
+        "code": "BIOL 210",
+        "title": "Vascular Plants",
+        "description": "A comparative study of pteridophytes, gymnosperms and angiosperms, integrating form, function and ecology. [3-3-0] Prerequisite: One of BIOL 121, SCIE 001. or  8 transfer credits of first-year biology. Equivalency: APBI 210",
+        "prerequisites": [
+            "BIOL 121"
+        ],
+        "corequisites": [],
+        "category": [
+            "Organismal"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Function Ecology",
+            "Pteridophytes Gymnosperms",
+            "Angiosperms"
+        ],
+        "level": "210 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 230",
+        "code": "BIOL 230",
+        "title": "Fundamentals of Ecology",
+        "description": "Dynamics of plant and animal populations, structure of ecological communities and functioning of ecosystems. Interpretation of research results and application to environmental issues. Labs meet once a month. Please consult the Faculty of Science Credit Exclusion Lists: https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-science/bachelor-science/credit-exclusion-lists. [3-3*-0] Prerequisite: One of BIOL 121, SCIE 001 or 8 transfer credits of first-year BIOL.",
+        "prerequisites": [
+            "BIOL 121"
+        ],
+        "corequisites": [],
+        "category": [
+            "Fundamentals"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Lists",
+            "Exclusion Lists",
+            "Exclusion"
+        ],
+        "level": "230 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 234",
+        "code": "BIOL 234",
+        "title": "Fundamentals of Genetics",
+        "description": "Genotype and phenotype, mechanisms of inheritance, genetic analysis. Please consult the Faculty of Science Credit Exclusion Lists: https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-science/bachelor-science/credit-exclusion-lists. [3-0-2] Prerequisite: Either (a) all of BIOL 112, BIOL 121 or (b) SCIE 001 ; (c) a corequisite of one of CHEM 203 or CHEM 223 and one of BIOL 112 or BIOL 121; or (d) 8 transfer credits of first-year BIOL.",
+        "prerequisites": [
+            "BIOL 112",
+            "BIOL 121",
+            "BIOL 112",
+            "BIOL 121"
+        ],
+        "corequisites": [],
+        "category": [
+            "Fundamentals"
+        ],
+        "components": [
+            "Lecture",
+            "Tutorials"
+        ],
+        "theme": [
+            "Chem",
+            "Lists",
+            "Exclusion Lists"
+        ],
+        "level": "234 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 260",
+        "code": "BIOL 260",
+        "title": "Fundamentals of Physiology",
+        "description": "Principles of cellular and organismal physiology illustrated with examples from unicellular organisms, plants and animals, focusing on transport processes, water balance, nutrient acquisition and communication. [3-0-0] Prerequisite: Either (a) all of BIOL 112, BIOL 121 or (b) SCIE 001. or (c) 8 transfer credits of 1st year BIOL and 6 credits of 1st year chemistry.",
+        "prerequisites": [
+            "BIOL 112",
+            "BIOL 121"
+        ],
+        "corequisites": [],
+        "category": [
+            "Fundamentals"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "St Year",
+            "Credits St",
+            "St"
+        ],
+        "level": "260 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 300",
+        "code": "BIOL 300",
+        "title": "Fundamentals of Biostatistics",
+        "description": "Statistical procedures for biological research; estimation, hypothesis testing, goodness of fit, analysis of variance and regression; use of computers for statistical analysis. Please consult the Faculty of Science Credit Exclusion Lists: https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-science/bachelor-science/credit-exclusion-lists [3-2-0] Prerequisite: One of BIOL_V 121, SCIE_V 001. Corequisite: One of MATH_V 100, MATH_V 110, MATH_V 180, SCIE_V 001.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Fundamentals"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Mathv",
+            "Mathv Mathv",
+            "Statistical"
+        ],
+        "level": "300 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 301",
+        "code": "BIOL 301",
+        "title": "Biomathematics",
+        "description": "Introduction to uses of mathematics in the biological sciences; experimental design and modelling of biological processes. Please consult the Faculty of Science Credit Exclusion Lists: https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-science/bachelor-science/credit-exclusion-lists. Recommended co-requisites: one of BIOL 300, STAT 200. [3-0-2]",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Tutorials"
+        ],
+        "theme": [
+            "Lists",
+            "Exclusion Lists",
+            "Exclusion"
+        ],
+        "level": "301 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 303",
+        "code": "BIOL 303",
+        "title": "Green Planet: Biology and History of Plants that Changed Civilizations",
+        "description": "Biological, cultural, and societal significance of staple crops selected as foods, medicines or raw materials by different societies, and their pivotal role in the rise and fall of past and present civilizations. [3-0-1] Prerequisite: 3rd-year class standing or higher.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Civilizations",
+            "Societal Significance",
+            "Crops Selected"
+        ],
+        "level": "303 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 307",
+        "code": "BIOL 307",
+        "title": "Natural History Collections and Biodiversity Science",
+        "description": "An introduction to biodiversity and specimen-based science, including theory and best practices for creating, curating and preserving natural history collections, working ethically with collections, and the historical, contemporary and future role of these collections to science and society. [2-3-0] Pre-requisites: A minimum of 3rd-year class standing or higher.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Collections",
+            "History Collections",
+            "Natural History"
+        ],
+        "level": "307 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 310",
+        "code": "BIOL 310",
+        "title": "Introduction to Animal Behaviour",
+        "description": "Animal behavior from an ecological and evolutionary perspective; the methods used to study behaviour and test its adaptive significance. [3-0-2] Prerequisite: BIOL_V 121 or SCIE_V 001; and 3rd-year class standing or higher.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Behaviour",
+            "Animal",
+            "Methods Used"
+        ],
+        "level": "310 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 314",
+        "code": "BIOL 314",
+        "title": "Elements of Biodiversity",
+        "description": "The units of biodiversity, from genes to ecosystems, how they are structured in space, and their importance to human well-being and ecosystem health. [3-0-0] Prerequisite: One of APBI 260, BIOL 230, FRST 201, GEOB 207, GEOS 207. Equivalency: CONS 314",
+        "prerequisites": [
+            "BIOL 230"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Biodiversity",
+            "Space",
+            "Space Importance"
+        ],
+        "level": "314 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 320",
+        "code": "BIOL 320",
+        "title": "Survey of Algae",
+        "description": "A survey of the algae, considering their morphology, life history, classification, and ecology. [3-3-0] Prerequisite: BIOL_V 121 or SCIE_V 001.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Survey Algae",
+            "Survey",
+            "Algae"
+        ],
+        "level": "320 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 326",
+        "code": "BIOL 326",
+        "title": "Experimental Biology of Invertebrates",
+        "description": "Behaviour and ecology of invertebrates as revealed by hands-on experiments in the laboratory and field. Marine emphasis. [1-4-0] Prerequisite: BIOL 205. Corequisite: Either (a) STAT 200 or (b) BIOL 300.",
+        "prerequisites": [
+            "BIOL 205"
+        ],
+        "corequisites": [
+            "BIOL 300"
+        ],
+        "category": [
+            "Life Sciences Selections",
+            "Lab Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Invertebrates",
+            "Revealed Hands",
+            "Revealed"
+        ],
+        "level": "326 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 328",
+        "code": "BIOL 328",
+        "title": "Ecology and Evolution of Parasites",
+        "description": "Morphology, life histories, ecology and evolution of parasites (and infectious agents more broadly) infecting humans and animals. [2-3-0] Prerequisite: BIOL_V 121 or SCIE_V 001",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Parasites",
+            "Evolution Parasites",
+            "Ecology Evolution"
+        ],
+        "level": "328 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 331",
+        "code": "BIOL 331",
+        "title": "Developmental Biology",
+        "description": "Animal development and its underlying causal principles; introductory embryology. [3-5-0] Prerequisite: Either (a) BIOL 201 or (b) all of BIOL 200, BIOL 260 and one of BIOL 233, BIOL 234.",
+        "prerequisites": [
+            "BIOL 201",
+            "BIOL 200",
+            "BIOL 260",
+            "BIOL 234"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections",
+            "Lab Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Introductory Embryology",
+            "Principles Introductory",
+            "Underlying Causal"
+        ],
+        "level": "331 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 332",
+        "code": "BIOL 332",
+        "title": "Protistology",
+        "description": "Cell biology, ecology, and evolution of protists; origins of multicellularity; the role of protists in micropaleontology, parasitology, and oceanography. [3-3-0] Prerequisite: BIOL 200",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Protists",
+            "Micropaleontology",
+            "Parasitology Oceanography"
+        ],
+        "level": "332 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 335",
+        "code": "BIOL 335",
+        "title": "Molecular Genetics",
+        "description": "Isolation and identification of genes, analysis of gene structure; gene expression and its regulation in prokaryotes and in eukaryotes; developmental genetics. [3-0-2] Prerequisite: One of BIOL 233, BIOL 234, MICB 322, FRST 302.",
+        "prerequisites": [
+            "BIOL 234"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Tutorials"
+        ],
+        "theme": [
+            "Gene",
+            "Genetics",
+            "Isolation Identification"
+        ],
+        "level": "335 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 336",
+        "code": "BIOL 336",
+        "title": "Fundamentals of Evolutionary Biology",
+        "description": "Natural selection; population genetics, quantitative genetics and systematics; classical and molecular approaches to the study of evolution. [3-0-2] Prerequisite: One of BIOL 233, BIOL 234.",
+        "prerequisites": [
+            "BIOL 234"
+        ],
+        "corequisites": [],
+        "category": [
+            "Fundamentals"
+        ],
+        "components": [
+            "Lecture",
+            "Tutorials"
+        ],
+        "theme": [
+            "Genetics",
+            "Selection Population",
+            "Systematics Classical"
+        ],
+        "level": "336 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 337",
+        "code": "BIOL 337",
+        "title": "Introductory Genetics Laboratory",
+        "description": "A laboratory course demonstrating the fundamental principles of inheritance: Mendel's Laws, sex-linkage, mapping, mutagenesis, chromosome structure, developmental biology, biochemical and population genetics. [1-4-0] Prerequisite: BIOL 200. Corequisite: One of BIOL 233, BIOL 234.",
+        "prerequisites": [
+            "BIOL 200"
+        ],
+        "corequisites": [
+            "BIOL 234"
+        ],
+        "category": [
+            "Life Sciences Selections",
+            "Lab Selections"
+        ],
+        "components": [
+            "Labs"
+        ],
+        "theme": [
+            "Laboratory",
+            "Genetics",
+            "Linkage Mapping"
+        ],
+        "level": "337 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 340",
+        "code": "BIOL 340",
+        "title": "Introductory Cell Biology Laboratory",
+        "description": "Designing and conducting cell biology experiments using unicellular eukaryotes or prokaryotes with emphasis on techniques in microscopy and cell biology. [1-6-0] Prerequisite: BIOL_V 200 and 3rd-year class standing or higher in Science and one of (a) BIOL_V 180 (or BIOL_V 140), or (b) SCIE_V 001, or (c) 3rd-year class standing in Combined Honours Biophysics.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections",
+            "Lab Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs",
+            "Tutorials"
+        ],
+        "theme": [
+            "Cell Biology",
+            "Cell",
+            "Rd"
+        ],
+        "level": "340 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 345",
+        "code": "BIOL 345",
+        "title": "Human Ecology",
+        "description": "Basics of ecology are introduced, focussing on observations of the natural world. Assignments, including a group project, consider connections between research, awareness and practical uses of ecology. Not for credit in the Life Sciences. [3-0-2]",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Non-Life Sciences"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Ecology",
+            "Introduced Focussing",
+            "Natural World"
+        ],
+        "level": "345 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 346",
+        "code": "BIOL 346",
+        "title": "Microbes and Society",
+        "description": "An elementary course in molecular biology primarily for Arts students. The historical development of recent discoveries in molecular biology with emphasis on bacteria and viruses and their interaction with humans. (Consult the Credit Exclusion list within the Faculty of Science section of the Calendar.) Not for credit in Life Sciences. [3-0-0]",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Non-Life Sciences"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Molecular Biology",
+            "Molecular",
+            "Credit"
+        ],
+        "level": "346 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 348",
+        "code": "BIOL 348",
+        "title": "Biology of Cannabis",
+        "description": "Biological aspects of cannabis, including structure and function, photosynthesis, plant growth, specialized metabolites, neuroscience and the human endocannabinoid system, and applications for human use in medicine, consumer products and textiles. [3-0-0] Prerequisite: 3rd-year class standing or higher.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Cannabis",
+            "Human",
+            "Products"
+        ],
+        "level": "348 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 350",
+        "code": "BIOL 350",
+        "title": "Darwinian Medicine",
+        "description": "Using the Darwinian theory of natural selection to explore explanations of infectious diseases, allergies, cancer, mental illness, and other human diseases. Please consult the Faculty of Science Credit Exclusion Lists: www.vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-science/bachelor-science/credit-exclusion-lists [2-0-2] Prerequisite: Third-year standing. Equivalency: ISCI 350",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Darwinian",
+            "Diseases",
+            "Exclusion Lists"
+        ],
+        "level": "350 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 352",
+        "code": "BIOL 352",
+        "title": "Plant Physiology II: Plant Development",
+        "description": "Introduction to the processes involved in growth and development: cell division, tissue culture, meristems, differentiation, and the action of major growth regulators, and photomorphogenesis. Emphasis on experimental approaches. [2-3-1] Prerequisite: Either (a) BIOL 200 and one of BIOL 233, BIOL 234;  or (b) FRST 302. CHEM 233 is recommended.",
+        "prerequisites": [
+            "BIOL 200",
+            "BIOL 234"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections",
+            "Lab Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Growth",
+            "Development",
+            "Plant"
+        ],
+        "level": "352 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 362",
+        "code": "BIOL 362",
+        "title": "Cellular Dynamics",
+        "description": "The cytoskeleton, cell dynamics, and regulation of cellular activities. Preference will be given to Majors or Honours students in Biology and Combined Honours Biophysics. [3-0-0] Prerequisite: BIOL 200 and one of APBI 312, APBI 351, BIOL 260, BIOL 351, BIOL 352, BIOL 361, FRST 311.",
+        "prerequisites": [
+            "BIOL 200",
+            "BIOL 260",
+            "BIOL 351",
+            "BIOL 352"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Dynamics",
+            "Cellular",
+            "Honours"
+        ],
+        "level": "362 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 363",
+        "code": "BIOL 363",
+        "title": "Laboratory in Animal Physiology",
+        "description": "Experimental studies in animal physiology. [1-3-1] Prerequisite: BIOL_V 204 or BIOL_V 260.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections",
+            "Lab Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Animal Physiology",
+            "Physiology",
+            "Animal"
+        ],
+        "level": "363 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 364",
+        "code": "BIOL 364",
+        "title": "Comparative Cardiovascular, Respiratory and Osmoregulatory Physiology",
+        "description": "Cardiovascular, respiratory, and osmoregulatory physiology. Preference will be given to students who are in Biology, Nutritional Sciences, and Combined Honours Biophysics. [3-0-0] Prerequisite: BIOL 204 and one of BIOL 260, BIOL 361. Equivalency: APBI 311",
+        "prerequisites": [
+            "BIOL 204",
+            "BIOL 260"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Osmoregulatory Physiology",
+            "Respiratory Osmoregulatory",
+            "Respiratory"
+        ],
+        "level": "364 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 371",
+        "code": "BIOL 371",
+        "title": "Principles of Neurobiology I",
+        "description": "Introduction to the structure and function of the nervous system, excitable membranes, and synaptic signaling using representative vertebrate and invertebrate species. Please consult the Faculty of Science Credit Exclusion Lists: https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-science/bachelor-science/credit-exclusion-lists [3-0-0] Prerequisite: BIOL 200 and one of BIOL 260, NSCI 200, PSYC 270, PSYC 271, PSYC 304, CAPS 301.",
+        "prerequisites": [
+            "BIOL 200",
+            "BIOL 260"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Psyc",
+            "Psyc Psyc",
+            "Lists"
+        ],
+        "level": "371 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 372",
+        "code": "BIOL 372",
+        "title": "Principles of Neurobiology II",
+        "description": "Examination of the neural systems underlying sensation, action, and complex behaviours using representative vertebrate and invertebrate species. Please consult the Faculty of Science Credit Exclusion Lists: https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-science/bachelor-science/credit-exclusion-lists [3-0-0] Prerequisite: BIOL 371.",
+        "prerequisites": [
+            "BIOL 371"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Lists",
+            "Exclusion Lists",
+            "Exclusion"
+        ],
+        "level": "372 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 398",
+        "code": "BIOL 398",
+        "title": "Co-operative Work Placement I",
+        "description": "Work experience in an industrial setting, taken during Winter Session (Term 2) of third-year. Restricted to students admitted to the Co-operative Education Program in Biology.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Experiential"
+        ],
+        "theme": [
+            "Operative",
+            "Work",
+            "Industrial Setting"
+        ],
+        "level": "398 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 399",
+        "code": "BIOL 399",
+        "title": "Co-operative Work Placement II",
+        "description": "Work experience in an industrial research setting, taken during Summer Session (Terms 1 and 2) following third-year. Restricted to students admitted to the Co-operative Education Program in Biology. Prerequisite: BIOL_V 398",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Experiential"
+        ],
+        "theme": [
+            "Operative",
+            "Work",
+            "Placement Ii"
+        ],
+        "level": "399 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 403",
+        "code": "BIOL 403",
+        "title": "Microbial Ecology",
+        "description": "Theoretical and applied ecology of microbes. Focus on microbial symbionts of animals, plants and seaweeds. Research project development through critical analysis of microbial ecological literature and computational analysis of ecological data. [2-3-0]  Prerequisite: One of BIOL_V 121, SCIE_V 001, BIOL_V 230 and one of BIOL_V 300, FRST_V 231, STAT_V 200. 4th-year class standing.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections",
+            "Lab Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Microbial",
+            "Biolv",
+            "Ecological"
+        ],
+        "level": "403 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 404",
+        "code": "BIOL 404",
+        "title": "Ecological Methodology",
+        "description": "Design, execution, and analysis of ecological surveys and experiments. Practical field methods for estimating population metrics and describing community structure. Computer techniques for the statistical analysis of ecological data. [2-4-0] Prerequisite: BIOL 230 and one of BIOL 300, STAT 200.",
+        "prerequisites": [
+            "BIOL 230",
+            "BIOL 300"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections",
+            "Lab Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Analysis Ecological",
+            "Ecological",
+            "Analysis"
+        ],
+        "level": "404 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 406",
+        "code": "BIOL 406",
+        "title": "Plant Ecology I",
+        "description": "Plant community ecology including a consideration of the major approaches to sampling, analyzing and interpreting vegetation patterns. Instruction given in field work and computer analysis of field data. [3-3-0] Prerequisite: BIOL 230. BIOL 324 is recommended.",
+        "prerequisites": [
+            "BIOL 230"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Field",
+            "Plant",
+            "Ecology"
+        ],
+        "level": "406 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 411",
+        "code": "BIOL 411",
+        "title": "Insect Ecology",
+        "description": "Behavioural, population and community ecology of insects. Interactions between insects and plants and the application of the principles of insect ecology to biological control of insects and weeds. [3-0-0] Prerequisite: One of BIOL 205, BIOL 327, APBI 327. Equivalency: APBI 427",
+        "prerequisites": [
+            "BIOL 205",
+            "BIOL 327"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Insects",
+            "Insect Ecology",
+            "Insect"
+        ],
+        "level": "411 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 416",
+        "code": "BIOL 416",
+        "title": "Principles of Conservation Biology",
+        "description": "Ecological basis of conserving biological diversity and ecosystem services; application of ecological theory to global and local conservation problems in the context of economic, legal, political, and social perspectives. Please consult the Faculty of Science Credit Exclusion List: https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-science/bachelor-science/credit-exclusion-lists. [2-0-2] Prerequisite: One of BIOL 230, FRST 201.",
+        "prerequisites": [
+            "BIOL 230"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Tutorials"
+        ],
+        "theme": [
+            "Conservation",
+            "Ecological",
+            "Exclusion"
+        ],
+        "level": "416 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 420",
+        "code": "BIOL 420",
+        "title": "Ocean Conservation and Sustainability",
+        "description": "An interdisciplinary conservation course with a solutions-oriented approach to marine issues, drawing from natural sciences, social sciences, business, law, and communication. [2-0-3]. Prerequisite: Fourth-year standing.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Tutorials"
+        ],
+        "theme": [
+            "Conservation",
+            "Sciences",
+            "Interdisciplinary Conservation"
+        ],
+        "level": "420 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 424",
+        "code": "BIOL 424",
+        "title": "Tropical Ecology and Conservation",
+        "description": "Ecology, function, history and conservation of tropical systems. Focus on ecological and evolutionary principles using tropical landscapes as a geographic template. Assessment of factors that make tropical systems vulnerable to degradation. Research project development using analysis of tropical ecology literature. [2-0-2] Prerequisite: BIOL_V 121 or SCIE_V 001 and one of BIOL_V 230, FRST_V 201, GEOS_V 207, GEOB_V 207.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Tropical",
+            "Tropical Ecology",
+            "Tropical Systems"
+        ],
+        "level": "424 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 430",
+        "code": "BIOL 430",
+        "title": "Genome Evolution",
+        "description": "Integration of molecular genetics and genomics with evolutionary biology. Emphasis on the evolutionary dynamics of genomes and the evolutionary implications of recent discoveries in molecular genetics and genomics. [3-0-0] Prerequisite: One of BIOL_V 335, BIOL_V 336, BIOL_V 338, BIOT_V 380.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Genetics Genomics",
+            "Molecular Genetics",
+            "Evolutionary"
+        ],
+        "level": "430 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 432",
+        "code": "BIOL 432",
+        "title": "Research Strategies and Techniques in Cell Biology",
+        "description": "Major physiological mechanisms that define eukaryotic cells, explored through student visits to UBC research laboratories and discussion of recent scientific literature, with emphasis on the techniques and strategies that enable researchers to test hypotheses and advance new concepts. [3-0-0] Prerequisite:  BIOL_V 200 and one of BIOL_V 233, BIOL_V 234 and 4th-year class standing.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Strategies",
+            "Techniques",
+            "Biolv"
+        ],
+        "level": "432 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 433",
+        "code": "BIOL 433",
+        "title": "Plant Genetics",
+        "description": "Emphasis on molecular aspects. Systems and techniques for genetic analysis in plants; isolation and regulation of plant genes; genetic dissection of plant-specific processes; transposable elements; gene transfer in plants; cytoplasmic inheritance; genetic engineering. Please consult the Faculty of Science Credit Exclusion Lists: https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-science/bachelor-science/credit-exclusion-lists [3-0-0] Prerequisite: BIOL 335",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Genetic",
+            "Plant",
+            "Plants"
+        ],
+        "level": "433 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 434",
+        "code": "BIOL 434",
+        "title": "Population Genetics",
+        "description": "Theoretical and experimental aspects of population and quantitative genetics. Please consult the Faculty of Science Credit Exclusion Lists: https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-science/bachelor-science/credit-exclusion-lists [3-0-2] Prerequisite: BIOL 336 and either (a) BIOL 200 and one of BIOL 233, BIOL 234;  or (b) FRST 302.",
+        "prerequisites": [
+            "BIOL 336",
+            "BIOL 200",
+            "BIOL 234"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Population",
+            "Genetics",
+            "Exclusion Lists"
+        ],
+        "level": "434 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 438",
+        "code": "BIOL 438",
+        "title": "Zoological Physics",
+        "description": "Animal systems viewed from a physicist's perspective. Topics include sensory systems, energy budgets, locomotion, internal flows, physical advantages of grouping. [3-0-0] Prerequisite: One of PHYS 101, PHYS 106, PHYS 107, PHYS 117, PHYS 131, PHYS 157, SCIE 001. BIOL 325 is recommended. Equivalency: PHYS 438",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Phys",
+            "Phys Phys",
+            "Systems"
+        ],
+        "level": "438 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 445",
+        "code": "BIOL 445",
+        "title": "Darwin's Fishes",
+        "description": "A series of computer-assisted lectures using ichthyology and the work of Charles Darwin to illustrate basic principles of biology, and their practical implementation, i.e., how biologists select research programs, generate and test hypotheses, and present their case to peers and the public. [2-0-2] Prerequisite: 3rd-year class standing or higher in Science is required.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Tutorials"
+        ],
+        "theme": [
+            "Darwins Fishes",
+            "Darwins",
+            "Present Case"
+        ],
+        "level": "445 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 448",
+        "code": "BIOL 448",
+        "title": "Directed Studies in Biology",
+        "description": "A course designed to allow students to undertake an investigation on a specific topic as agreed upon by the faculty member and the student. Permission of the supervisor required. No more than six credits of BIOL_V 448 may be taken with the same supervisor.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Independent Study"
+        ],
+        "theme": [
+            "Supervisor",
+            "Agreed",
+            "Undertake Investigation"
+        ],
+        "level": "448 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 450",
+        "code": "BIOL 450",
+        "title": "Molecular Adaptation of Animals to the Environment",
+        "description": "Physiological, biochemical, and molecular strategies of adaptation of animals to environmental challenges.  The evolution of genetic and biochemical systems, and their impact on animal structure and function. [3-0-0] Prerequisite: One of APBI 311, BIOL 361, BIOL 362, BIOL 364, BIOL 370, BIOL 371 and one of BIOL 201, BIOC 202, BIOC 203. BIOL 457 is recommended.",
+        "prerequisites": [
+            "BIOL 362",
+            "BIOL 364",
+            "BIOL 370",
+            "BIOL 371",
+            "BIOL 201"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Adaptation Animals",
+            "Adaptation",
+            "Biochemical"
+        ],
+        "level": "450 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 451",
+        "code": "BIOL 451",
+        "title": "Comparative Neurobiology",
+        "description": "Advanced investigations of the evolution of animal nervous systems, integrating studies of diverse species to understand fundamental neurobiology. [3-0-0] Prerequisite: One of BIOL 371, BIOL 372, CAPS 301, PSYC 304, PSYC 367, PSYC 370.",
+        "prerequisites": [
+            "BIOL 371",
+            "BIOL 372"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Psyc",
+            "Psyc Psyc",
+            "Neurobiology"
+        ],
+        "level": "451 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 453",
+        "code": "BIOL 453",
+        "title": "Insect Physiology",
+        "description": "Physiological adaptations used by insects, including adaptations used to survive in extreme environments. Homeostatic mechanisms, neurophysiology, and experimental techniques. [3-3-0] Prerequisite: One of BIOL_V 204, BIOL_V 205, BIOL_V 327, APBI_V 327 and one of BIOL_V 361, BIOL_V 364, BIOL_V 370, BIOL_V 371, APBI_V 311.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Biolv Biolv",
+            "Biolv",
+            "Adaptations Used"
+        ],
+        "level": "453 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 454",
+        "code": "BIOL 454",
+        "title": "Comparative Animal Physiology",
+        "description": "Selected topics in physiology emphasizing comparisons between diverse phylogenetic groups of animals. [3-0-0] Prerequisite: One of APBI 311, BIOL 362, BIOL 364.",
+        "prerequisites": [
+            "BIOL 362",
+            "BIOL 364"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Physiology",
+            "Phylogenetic Groups",
+            "Physiology Emphasizing"
+        ],
+        "level": "454 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 458",
+        "code": "BIOL 458",
+        "title": "Developmental Neurobiology",
+        "description": "Cellular, molecular and physiological aspects of nervous system development with applications to understanding adult nervous system function and neurological disorders. [3-0-0]",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Nervous",
+            "Neurological Disorders",
+            "Neurological"
+        ],
+        "level": "458 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 459",
+        "code": "BIOL 459",
+        "title": "Neurobiology of Sensory and Motor Systems",
+        "description": "Analysis of the mechanisms of sensory processing and motor orchestration using vertebrate and invertebrate model systems.  Neural circuit structure, specialization, information coding, integration, and behaviour. [3-0-0] Prerequisite: One of BIOL 372, CAPS 301, PSYC 304, PSYC 367, PSYC 370.",
+        "prerequisites": [
+            "BIOL 372"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Psyc",
+            "Motor",
+            "Sensory"
+        ],
+        "level": "459 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 462",
+        "code": "BIOL 462",
+        "title": "Ecological Plant Biochemistry",
+        "description": "The structure, biosynthesis, distribution and biological function of secondary plant metabolites. [3-0-0] Prerequisite: Either a) BIOL_V 200 and one of either BIOL_V 201 or BIOC_V 202, or b) BIOT_V 380. Equivalency: FRST_V 413.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Plant",
+            "Structure Biosynthesis",
+            "Plant Biochemistry"
+        ],
+        "level": "462 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 464",
+        "code": "BIOL 464",
+        "title": "Animal Developmental Genetics",
+        "description": "Role of genes in embryonic development. Emphasis on tissue specific expression patterns and the role of genetic networks in establishing cell types. [3-0-0] Prerequisite: BIOL 463",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Role",
+            "Specific Expression",
+            "Patterns Role"
+        ],
+        "level": "464 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 488",
+        "code": "BIOL 488",
+        "title": "Topics in Biology",
+        "description": "Selected topics in a specific area within Biology. May be taken more than once for credit with permission of the Department. Prerequisite: Third-year standing in a Life Science specialization.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Topics",
+            "Topics Biology",
+            "Specific Area"
+        ],
+        "level": "488 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 498",
+        "code": "BIOL 498",
+        "title": "Co-operative Work Placement III",
+        "description": "Work experience in an industrial research setting, taken during the Summer Session (Terms 1 and 2) following fourth-year. Restricted to students admitted to the Co-operative Education Program in Biology.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Experiential"
+        ],
+        "theme": [
+            "Operative",
+            "Work",
+            "Placement Iii"
+        ],
+        "level": "498 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 499",
+        "code": "BIOL 499",
+        "title": "Co-operative Work Placement IV",
+        "description": "Work experience in an industrial research setting, taken during the Winter Session (Terms 1 and 2) following fourth-year. Restricted to students admitted to the Co-operative Education Program in Biology. Prerequisite: One of BIOL_V 399, BIOL_V 498.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Experiential"
+        ],
+        "theme": [
+            "Operative",
+            "Work",
+            "Placement Iv"
+        ],
+        "level": "499 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 155",
+        "code": "BIOL 155",
+        "title": "Human Biology: Physiology and Introductory Anatomy",
+        "description": "The principles of biology with particular reference to the human body (anatomy and physiology).  (physiology and introductory anatomy). Please consult the Faculty of Science Credit Exclusion Lists: https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-science/bachelor-science/credit-exclusion-lists [3-0-0; 3-0-0] Prerequisite: One of CHEM 12, CHEM 100, CHEM 110, CHEM 111 and one of BIOL 11, BIOL 12, BIOL 111.",
+        "prerequisites": [
+            "BIOL 111"
+        ],
+        "corequisites": [],
+        "category": [
+            "Science Elective"
+        ],
+        "components": [
+            "Lecture",
+            "Tutorials"
+        ],
+        "theme": [
+            "Chem",
+            "Anatomy",
+            "Chem Chem"
+        ],
+        "level": "155 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 203",
+        "code": "BIOL 203",
+        "title": "Eukaryotic Microbiology",
+        "description": "Introduction to the origin and diversity of protists (protozoa and algae) at both cellular and genomic levels, including the role of endosymbiosis in evolution. [3-3-0] Prerequisite: One of BIOL 121, SCIE 001. Or 8 transfer credits of first-year biology.",
+        "prerequisites": [
+            "BIOL 121"
+        ],
+        "corequisites": [],
+        "category": [
+            "Organismal"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Including Role",
+            "Protozoa",
+            "Protists Protozoa"
+        ],
+        "level": "203 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 205",
+        "code": "BIOL 205",
+        "title": "Comparative Invertebrate Zoology",
+        "description": "An introduction to the unity, diversity and evolutionary history of invertebrates. [3-3-0] Prerequisite: One of BIOL 121, SCIE 001. Or 8 transfer credits of first-year biology.",
+        "prerequisites": [
+            "BIOL 121"
+        ],
+        "corequisites": [],
+        "category": [
+            "Organismal"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Unity",
+            "Invertebrate Zoology",
+            "Invertebrates Scie"
+        ],
+        "level": "205 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 209",
+        "code": "BIOL 209",
+        "title": "Biodiversity of Algae, Fungi and Bryophytes",
+        "description": "Diversity, ecology, cell biology and evolutionary origins of multicellular eukaryotes, illustrated through mosses and liverworts; fungi and slime molds; and fresh water and marine algae. [3-3-0] Prerequisite: One of BIOL 121, SCIE 001. Or 8 transfer credits of first-year biology.",
+        "prerequisites": [
+            "BIOL 121"
+        ],
+        "corequisites": [],
+        "category": [
+            "Organismal"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Fungi",
+            "Algae",
+            "Multicellular"
+        ],
+        "level": "209 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 302",
+        "code": "BIOL 302",
+        "title": "Biodiversity, Human & Planetary Health",
+        "description": "Effects of biodiversity on human health, from human microbiome to ecosystem. Strategies for protecting, restoring and managing for biodiversity, human and planetary health. [3-0-1]  Prerequisite: One of BIOL 111, BIOL 121, GEOS 207, SCIE 001 and third-year class standing.",
+        "prerequisites": [
+            "BIOL 111",
+            "BIOL 121"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Tutorials"
+        ],
+        "theme": [
+            "Biodiversity Human",
+            "Human",
+            "Health"
+        ],
+        "level": "302 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 306",
+        "code": "BIOL 306",
+        "title": "Advanced Ecology",
+        "description": "Ecology of populations, communities and ecosystems. Tests of ecological theory with experiments and application to environmental issues. Labs meet once a month. Please consult the Faculty of Science Credit Exclusion Lists: https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-science/bachelor-science/credit-exclusion-lists. [3-3*-0] Prerequisite: BIOL 230.",
+        "prerequisites": [
+            "BIOL 230"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections",
+            "Lab Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Exclusion Lists",
+            "Lists",
+            "Exclusion"
+        ],
+        "level": "306 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 311",
+        "code": "BIOL 311",
+        "title": "Experimental Methods in Animal Behaviour",
+        "description": "Designing, conducting, and analyzing studies of animal behaviour, with an emphasis on field-based methods. Students conduct capstone research projects. Please consult the Faculty of Science Credit Exclusion Lists: https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-science/bachelor-science/credit-exclusion-lists. [1-4-0] Prerequisite: One of BIOL 300, STAT 200. Corequisite: BIOL 310.",
+        "prerequisites": [
+            "BIOL 300"
+        ],
+        "corequisites": [
+            "BIOL 310"
+        ],
+        "category": [
+            "Life Sciences Selections",
+            "Lab Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Animal Behaviour",
+            "Methods",
+            "Behaviour"
+        ],
+        "level": "311 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 323",
+        "code": "BIOL 323",
+        "title": "Structure and Reproduction of Fungi",
+        "description": "The evolutionary diversity of the fungi as shown by their morphology and reproductive biology. [2-3-0] Prerequisite: BIOL_V 121 or SCIE_V 001.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs",
+            "Tutorials"
+        ],
+        "theme": [
+            "Fungi",
+            "Reproduction",
+            "Morphology Reproductive"
+        ],
+        "level": "323 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 324",
+        "code": "BIOL 324",
+        "title": "Introduction to Seed Plant Taxonomy",
+        "description": "Introduction to seed plant taxonomy emphasizing descriptive morphology and identification. Each student will be required to submit a plant collection. [2-3-0] Prerequisite: BIOL_V 121 or SCIE_V 001.  Equivalency: APBI_V 324",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Plant Taxonomy",
+            "Seed Plant",
+            "Seed"
+        ],
+        "level": "324 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 325",
+        "code": "BIOL 325",
+        "title": "Introduction to Animal Mechanics and Locomotion",
+        "description": "Comparative aspects of the functional design of skeletal systems and the mechanics of swimming, flying and terrestrial locomotion, with particular reference to the vertebrates. [3-0-0] Prerequisite: BIOL_V 121 or SCIE_V 001.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Mechanics",
+            "Locomotion",
+            "Flying Terrestrial"
+        ],
+        "level": "325 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 327",
+        "code": "BIOL 327",
+        "title": "Introduction to Entomology",
+        "description": "A survey of the structure, classification and biology of insects; ecology, life-histories and insect-plant relations. Prerequisite: BIOL_V 121 or SCIE_V 001. Equivalency: APBI_V 327",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Insect Plant",
+            "Relations Biolv",
+            "Relations"
+        ],
+        "level": "327 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 329",
+        "code": "BIOL 329",
+        "title": "Cell Receptor Signaling, Communication and Regulation",
+        "description": "How cells react to external signals, and how these responses are regulated. Experimental approaches and common themes will be examined using a variety of cell receptors as models. [3-0-0]. Prerequisite: BIOL_V 200.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Cell",
+            "Models Biolv",
+            "Receptors Models"
+        ],
+        "level": "329 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 338",
+        "code": "BIOL 338",
+        "title": "Introduction to Genomics",
+        "description": "An introduction to genome biology and applications of genomics. [3-0-1.5] Prerequisite: One of BIOL 234, BIOL 233, FRST 302.",
+        "prerequisites": [
+            "BIOL 234"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Tutorials"
+        ],
+        "theme": [
+            "Genomics",
+            "Introduction Genomics",
+            "Genomics Genome"
+        ],
+        "level": "338 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 341",
+        "code": "BIOL 341",
+        "title": "Introductory Molecular Biology Laboratory",
+        "description": "Designing and conducting molecular biology experiments using bioinformatics recombinant DNA techniques. [1-5-0] Prerequisite: BIOL_V 200 and 3rd-year class standing or higher in Science.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections",
+            "Lab Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs",
+            "Tutorials"
+        ],
+        "theme": [
+            "Molecular Biology",
+            "Molecular",
+            "Using Bioinformatics"
+        ],
+        "level": "341 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 342",
+        "code": "BIOL 342",
+        "title": "Integrative Biology Laboratory",
+        "description": "Field-based and laboratory-based investigation of organisms. [1-3-0] Prerequisite: Third-year standing or higher in Combined Major in Science, and one of (a) BIOL 121 and BIOL 180 (or BIOL 140), or (b) SCIE 001, or (c) 8 transfer credits of first-year biology.",
+        "prerequisites": [
+            "BIOL 121",
+            "BIOL 180"
+        ],
+        "corequisites": [],
+        "category": [
+            "Non-Life Sciences"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Based",
+            "Laboratory",
+            "Science Scie"
+        ],
+        "level": "342 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 344",
+        "code": "BIOL 344",
+        "title": "Human Heredity and Evolution",
+        "description": "Relates genetic and evolutionary concepts to humans. Primarily for upper-level students in the Faculty of Arts. Credit will be granted for only one of BIOL 121 or BIOL 344. Not open to students in the Life Sciences. [3-0-2]",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Non-Life Sciences"
+        ],
+        "components": [
+            "Lecture",
+            "Tutorials"
+        ],
+        "theme": [
+            "Heredity Evolution",
+            "Evolutionary Concepts",
+            "Level Faculty"
+        ],
+        "level": "344 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 347",
+        "code": "BIOL 347",
+        "title": "Principles and Methodology in Biological Research",
+        "description": "Contemporary research in the Botany and Zoology Departments; history and methodology of scientific discovery; seminars on current problems. Restricted to Honours students in Biology. Not to be taken concurrently with BIOL 449. [2-3-0]",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Seminar"
+        ],
+        "theme": [
+            "Methodology",
+            "Research",
+            "Methodology Scientific"
+        ],
+        "level": "347 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 351",
+        "code": "BIOL 351",
+        "title": "Plant Physiology I",
+        "description": "Mechanisms and regulation of functional processes contributing to the assimilation, transport and utilization of water, mineral nutrients and carbon by plants. Restricted to Majors and Honours students in Biology. [3-3-0] Prerequisite: Either (a) BIOL 121 and one of CHEM 123, CHEM 130;  or (b) SCIE 001. CHEM 233 is recommended. Equivalency: APBI351, FRST311",
+        "prerequisites": [
+            "BIOL 121"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections",
+            "Lab Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Chem",
+            "Restricted Majors",
+            "Assimilation Transport"
+        ],
+        "level": "351 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 370",
+        "code": "BIOL 370",
+        "title": "Principles of Muscle Physiology and Energetics",
+        "description": "Introduction to the structure and function of the muscular system, metabolism and energetics from a comparative perspective across vertebrates and invertebrates. [3-0-0] Prerequisite: BIOL 260 and one of BIOL 200, BIOL 201, BIOC 202, BIOC 203.",
+        "prerequisites": [
+            "BIOL 260",
+            "BIOL 200",
+            "BIOL 201"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Energetics",
+            "Bioc",
+            "Muscular"
+        ],
+        "level": "370 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 402",
+        "code": "BIOL 402",
+        "title": "Aquatic Ecology",
+        "description": "Theoretical and applied limnology; ecology of inland water organisms in relation to physical, chemical and biological factors. One weekend field trip required. [2-4-0] Prerequisite: BIOL 230 and one of BIOL 300, STAT 200.",
+        "prerequisites": [
+            "BIOL 230",
+            "BIOL 300"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections",
+            "Lab Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Ecology",
+            "Water Organisms",
+            "Relation"
+        ],
+        "level": "402 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 412",
+        "code": "BIOL 412",
+        "title": "Plant Biogeography",
+        "description": "Description and interpretation of present and past floristic vegetational patterns; integration of evolutionary, ecological, and plant biogeographical concepts. Terrestrial and aquatic plants are considered. Restricted to students of third and fourth years. [3-0-0] Prerequisite: BIOL_V 121 or SCIE_V 001.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Plant",
+            "Interpretation Present",
+            "Considered Restricted"
+        ],
+        "level": "412 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 415",
+        "code": "BIOL 415",
+        "title": "Evolutionary Processes in Plants",
+        "description": "Experimental and comparative analysis of evolutionary processes, speciation, and phylogenetic patterns in plants. [2-0-0] Prerequisite: BIOL 336.",
+        "prerequisites": [
+            "BIOL 336"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Tutorials"
+        ],
+        "theme": [
+            "Evolutionary Processes",
+            "Processes",
+            "Plants"
+        ],
+        "level": "415 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 417",
+        "code": "BIOL 417",
+        "title": "Phylogenetic Biology",
+        "description": "Biodiversity from an evolutionary perspective. The evolutionary (phylogenetic) tree of genetic descent that links all organisms: its reconstruction, interpretation, and implications for fields from ecology to molecular biology. [2-0-2] Prerequisite: BIOL 200 and one of BIOL 233, BIOL 234. BIOL 336 is recommended",
+        "prerequisites": [
+            "BIOL 200",
+            "BIOL 234"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Tutorials"
+        ],
+        "theme": [
+            "Phylogenetic",
+            "Evolutionary",
+            "Links"
+        ],
+        "level": "417 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 421",
+        "code": "BIOL 421",
+        "title": "Plant-Microbe Interactions",
+        "description": "Biology and physiology of selected plant-microbe relationships. Impacts of plant-microbe relationships on society. [3-0-2] Prerequisite: BIOL 200 and one of BIOC 202, BIOC 203, BIOL 201, BIOL 233, BIOL 234, BIOL 260. Equivalency: APBI 426",
+        "prerequisites": [
+            "BIOL 200",
+            "BIOL 201",
+            "BIOL 234",
+            "BIOL 260"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Tutorials"
+        ],
+        "theme": [
+            "Plant Microbe",
+            "Microbe",
+            "Microbe Relationships"
+        ],
+        "level": "421 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 427",
+        "code": "BIOL 427",
+        "title": "Ornithology and Herpetology",
+        "description": "Ecology, evolution, behavior, and conservation of birds, amphibians, and reptiles. Laboratories and field projects will focus on identification, systematics, and natural history, with particular attention to species from British Columbia. [2-3-0] Prerequisite: BIOL_V 121 or SCIE_V 001.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture",
+            "Labs"
+        ],
+        "theme": [
+            "Reptiles",
+            "Columbia",
+            "Reptiles Laboratories"
+        ],
+        "level": "427 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 428",
+        "code": "BIOL 428",
+        "title": "Evolutionary Morphology of Marine Invertebrates",
+        "description": "Comparative analysis of marine invertebrate morphology from a macroevolutionary perspective. Origin and evolution of reoccurring adaptations in meiofaunal, benthic, pelagic, and deep-sea invertebrates, including their larval stages. [3-0-0] Prerequisite: BIOL_V 205 and 3rd-year class standing or higher.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Marine",
+            "Invertebrates",
+            "Morphology"
+        ],
+        "level": "428 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 431",
+        "code": "BIOL 431",
+        "title": "Evolutionary Cell Biology",
+        "description": "Ultrastructure, biogenesis, and evolution of eukaryotic cells and cell organelles, including their macromolecular basis. [3-0-0] Prerequisite: BIOL200 And fourth-year standing.",
+        "prerequisites": [
+            "BIOL 200"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Cell",
+            "Macromolecular Basis",
+            "Organelles Including"
+        ],
+        "level": "431 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 436",
+        "code": "BIOL 436",
+        "title": "Integrated Functional Genomics",
+        "description": "Global transcript, protein, and metabolite profiling technologies and their integration; applications focus on plant functions and plant interactions with pathogens and pests. [3-0-0] One of BIOL_V 335, BIOL_V 338, BIOT_V 380. Equivalency: FNH_V 436.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Plant",
+            "Plant Functions",
+            "Pathogens Pests"
+        ],
+        "level": "436 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 437",
+        "code": "BIOL 437",
+        "title": "Laboratory in Animal Cell Molecular Biology",
+        "description": "The use of recombinant DNA techniques to explore problems in animal developmental biology. [2-4-0] Prerequisite: All of BIOL 331, BIOL 335 and one of BIOL 201, BIOC 202, BIOC 203.",
+        "prerequisites": [
+            "BIOL 331",
+            "BIOL 335",
+            "BIOL 201"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections",
+            "Lab Selections"
+        ],
+        "components": [
+            "Labs"
+        ],
+        "theme": [
+            "Bioc",
+            "Animal",
+            "Use Recombinant"
+        ],
+        "level": "437 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 440",
+        "code": "BIOL 440",
+        "title": "Plant Genomics",
+        "description": "Concepts, principles, applications, and recent discoveries in genome structure, genetics, and comparative genomics in plants with a focus on economically important plants. [3-0-0] Corequisite: One of BIOL_V 335, BIOL_V 338, BIOT_V 380. Equivalency: APBI_V 440.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Genomics",
+            "Plants",
+            "Plants Economically"
+        ],
+        "level": "440 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 441",
+        "code": "BIOL 441",
+        "title": "Advanced Topics in Cell Biology",
+        "description": "Analysis of cellular organelles and the intracellular traffic between them, concentrating on mammalian cell systems. [3-0-0] Prerequisite: One of BIOL 340, BIOL 341 and one of BIOL 361, BIOL 362, BIOL 370, BIOL 371.",
+        "prerequisites": [
+            "BIOL 340",
+            "BIOL 341",
+            "BIOL 362",
+            "BIOL 370",
+            "BIOL 371"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Cell",
+            "Organelles Intracellular",
+            "Mammalian"
+        ],
+        "level": "441 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 447",
+        "code": "BIOL 447",
+        "title": "Principles and Methodology in Biological Research",
+        "description": "Seminars, debates, workshops and tutorials designed to produce competence in specific areas of Biology. Restricted to Honours students in Biology. [2-3-0] Corequisite: BIOL 449",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Seminars Debates",
+            "Workshops Tutorials",
+            "Workshops"
+        ],
+        "level": "447 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 449",
+        "code": "BIOL 449",
+        "title": "Directed Biological Research",
+        "description": "A course designed to allow students to undertake a research project in selected fields. Open only to Honours students in Biology, with permission of the supervisor. Presentation of a thesis and an oral examination are required. Corequisite: BIOL 447",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Thesis"
+        ],
+        "theme": [
+            "Research",
+            "Undertake Research",
+            "Oral Examination"
+        ],
+        "level": "449 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 457",
+        "code": "BIOL 457",
+        "title": "Comparative Environmental Physiology",
+        "description": "A survey of physiological adaptions of animals to different environments. [3-0-0] Prerequisite: One of APBI 311, BIOL 364.",
+        "prerequisites": [
+            "BIOL 364"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Physiological Adaptions",
+            "Survey Physiological",
+            "Physiology Survey"
+        ],
+        "level": "457 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 460",
+        "code": "BIOL 460",
+        "title": "Neurobiology of Vision",
+        "description": "Advanced investigation of animal vision; critical analysis of recent literature and research project development in visual neurobiology. [3-0-0] Prerequisite: One of BIOL 372, CAPS 301, PSYC 304, PSYC 367, PSYC 370.",
+        "prerequisites": [
+            "BIOL 372"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Psyc",
+            "Vision",
+            "Psyc Psyc"
+        ],
+        "level": "460 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 463",
+        "code": "BIOL 463",
+        "title": "Gene Regulation in Development",
+        "description": "Control of gene expression in development; the genetic and physiological basis of epigenetic determination; inductive interactions. [3-0-0] Prerequisite:  Either (a) BIOL 335 and one of BIOL 201, BIOC 202, BIOC 203;  or (b) BIOT 380.",
+        "prerequisites": [
+            "BIOL 335",
+            "BIOL 201"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Gene",
+            "Bioc",
+            "Development"
+        ],
+        "level": "463 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 321",
+        "code": "BIOL 321",
+        "title": "Morphology and Evolution of Bryophytes",
+        "description": "A study of evolution, taxonomy and morphology of mosses, liverworts and hornworts with emphasis on living plants in their environment. [2-4-0] Prerequisite: BIOL 121",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Morphology",
+            "Evolution",
+            "Liverworts Hornworts"
+        ],
+        "level": "321 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 418",
+        "code": "BIOL 418",
+        "title": "Evolutionary Ecology",
+        "description": "Ecological adaptation and evolutionary processes in contemporary populations; natural selection, variation, optimization, foraging theory, coevolution, arms races; life history theory, evolution of sex, sexual selection, evolution in managed populations. [2-2-0] Prerequisite: BIOL 336 and BIOL 230.",
+        "prerequisites": [
+            "BIOL 336",
+            "BIOL 230"
+        ],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Populations",
+            "Selection",
+            "Theory"
+        ],
+        "level": "418 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 465",
+        "code": "BIOL 465",
+        "title": "Diversity and Evolution of Fishes",
+        "description": "Introduction to fish diversity, with a focus on their phylogenetic interrelationships and the evolutionary, ecological, and biogeographic processes involved in generating patterns of fish biodiversity. [2-3-0] Prerequisite: BIOL 204",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Fish",
+            "Diversity",
+            "Interrelationships Evolutionary"
+        ],
+        "level": "465 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 322",
+        "code": "BIOL 322",
+        "title": "Structure and Evolution of Ferns and Fern-allies",
+        "description": "Anatomy, morphology and relationships of the ferns and fern-allies, with assessment of both fossil and extant taxa. [2-4-0] Prerequisite: BIOL_V 121 or SCIE_V 001.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Ferns Fern",
+            "Ferns",
+            "Fern Allies"
+        ],
+        "level": "322 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    },
+    {
+        "id": "BIOL 413",
+        "code": "BIOL 413",
+        "title": "Zoogeography",
+        "description": "The role of physical, ecological, and evolutionary processes in determining the geographic distribution of animals including humans, with implications for speciation and conservation. Restricted to students in third and fourth year. [3-0-0] Prerequisite: BIOL_V 121 or SCIE_V 001.",
+        "prerequisites": [],
+        "corequisites": [],
+        "category": [
+            "Life Sciences Selections"
+        ],
+        "components": [
+            "Lecture"
+        ],
+        "theme": [
+            "Zoogeography",
+            "Physical Ecological",
+            "Humans Implications"
+        ],
+        "level": "413 level",
+        "credits": "Not available",
+        "term": "Not available",
+        "calendar_url": ""
+    }
+]

@@ -25,6 +25,7 @@ def load_excel_files():
     
 def clean_data(df1, df2):
     combined_df = pd.concat([df1, df2], ignore_index=True)
+    combined_df = combined_df[combined_df['Course Subject']=='BIOL']
     combined_df = combined_df[combined_df['Course Number'] < 500]
     combined_df.loc[:, 'Course Code'] = combined_df['Course Subject'] + " " + combined_df['Course Number'].astype(str)
     cleaned_df = combined_df.drop_duplicates(subset=['Course Code'], keep='first')

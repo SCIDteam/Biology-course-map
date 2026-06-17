@@ -12,8 +12,8 @@
             "Lecture"
         ],
         "theme": [
-            "Ecology",
-            "Biological"
+            "Physiology",
+            "Human"
         ],
         "level": 1,
         "credits": 3,
@@ -37,8 +37,8 @@
             "Lecture"
         ],
         "theme": [
-            "Physiology",
-            "Morphology"
+            "Genomics",
+            "History"
         ],
         "level": 1,
         "credits": 3,
@@ -62,8 +62,8 @@
             "Lecture"
         ],
         "theme": [
-            "Restricted",
-            "Taken"
+            "Evolution",
+            "Genetics"
         ],
         "level": 1,
         "credits": 3,
@@ -87,8 +87,8 @@
             "Lecture"
         ],
         "theme": [
-            "Plants",
-            "Ecology"
+            "Ecology",
+            "Evolution"
         ],
         "level": 1,
         "credits": 2,
@@ -113,8 +113,8 @@
             "Tutorials"
         ],
         "theme": [
-            "Fundamentals",
-            "Cell Biology"
+            "Ecology",
+            "Evolution"
         ],
         "level": 2,
         "credits": 3,
@@ -136,8 +136,8 @@
             "Lecture"
         ],
         "theme": [
-            "Regulation",
-            "Eukaryotic"
+            "Ecology",
+            "Microbial"
         ],
         "level": 2,
         "credits": 3,
@@ -161,8 +161,8 @@
             "Lecture"
         ],
         "theme": [
-            "Plants",
-            "Vertebrate"
+            "Behaviour",
+            "Methods"
         ],
         "level": 2,
         "credits": 4,
@@ -187,8 +187,8 @@
             "Labs"
         ],
         "theme": [
-            "Plants",
-            "Vertebrate"
+            "Ecology",
+            "Evolution"
         ],
         "level": 2,
         "credits": 4,
@@ -213,8 +213,8 @@
             "Labs"
         ],
         "theme": [
-            "Ecology",
-            "Biological"
+            "Physiology",
+            "Research"
         ],
         "level": 2,
         "credits": 3,
@@ -242,8 +242,8 @@
             "Tutorials"
         ],
         "theme": [
-            "Ecology",
-            "History"
+            "Analysis",
+            "Ecology"
         ],
         "level": 2,
         "credits": 3,
@@ -269,7 +269,7 @@
         ],
         "theme": [
             "Physiology",
-            "Morphology"
+            "Research"
         ],
         "level": 2,
         "credits": 3,
@@ -292,8 +292,8 @@
             "Labs"
         ],
         "theme": [
-            "Physiology",
-            "Ecology"
+            "Evolution",
+            "Genetics"
         ],
         "level": 3,
         "credits": 3,
@@ -316,8 +316,8 @@
             "Tutorials"
         ],
         "theme": [
-            "Ecology",
-            "Field"
+            "Physiology",
+            "Human"
         ],
         "level": 3,
         "credits": 3,
@@ -339,8 +339,8 @@
             "Lecture"
         ],
         "theme": [
-            "Plants",
-            "Vertebrate"
+            "Human",
+            "Biodiversity"
         ],
         "level": 3,
         "credits": 3,
@@ -363,7 +363,7 @@
             "Labs"
         ],
         "theme": [
-            "Ecology",
+            "Genomics",
             "History"
         ],
         "level": 3,
@@ -387,8 +387,8 @@
             "Labs"
         ],
         "theme": [
-            "Analysis",
-            "Human"
+            "Behaviour",
+            "Methods"
         ],
         "level": 3,
         "credits": 3,
@@ -412,8 +412,8 @@
             "Lecture"
         ],
         "theme": [
-            "Physiology",
-            "Morphology"
+            "Invertebrate",
+            "Experimental"
         ],
         "level": 3,
         "credits": 3,
@@ -436,8 +436,8 @@
             "Labs"
         ],
         "theme": [
-            "Physiology",
-            "Morphology"
+            "Ecology",
+            "Microbial"
         ],
         "level": 3,
         "credits": 4,
@@ -465,8 +465,8 @@
             "Labs"
         ],
         "theme": [
-            "Plants",
-            "Ecology"
+            "Invertebrate",
+            "Experimental"
         ],
         "level": 3,
         "credits": 3,
@@ -489,8 +489,8 @@
             "Labs"
         ],
         "theme": [
-            "Analysis",
-            "Human"
+            "Ecology",
+            "Evolution"
         ],
         "level": 3,
         "credits": 3,
@@ -519,8 +519,8 @@
             "Labs"
         ],
         "theme": [
-            "Restricted",
-            "Taken"
+            "Cell Biology",
+            "Development"
         ],
         "level": 3,
         "credits": 5,
@@ -543,8 +543,8 @@
             "Labs"
         ],
         "theme": [
-            "Ecology",
-            "Biological"
+            "Behaviour",
+            "Methods"
         ],
         "level": 3,
         "credits": 4,
@@ -569,8 +569,8 @@
             "Tutorials"
         ],
         "theme": [
-            "Ecology",
-            "Biological"
+            "Genetics",
+            "Ecology"
         ],
         "level": 3,
         "credits": 3,
@@ -596,7 +596,7 @@
         ],
         "theme": [
             "Genetics",
-            "Molecular Biology"
+            "Ecology"
         ],
         "level": 3,
         "credits": 3,
@@ -623,8 +623,8 @@
             "Labs"
         ],
         "theme": [
-            "Genetics",
-            "Physiology"
+            "Evolution",
+            "Genetics"
         ],
         "level": 3,
         "credits": 3,
@@ -649,8 +649,8 @@
             "Tutorials"
         ],
         "theme": [
-            "Restricted",
-            "Taken"
+            "Cell Biology",
+            "Development"
         ],
         "level": 3,
         "credits": 3,
@@ -672,7 +672,7 @@
             "Lecture"
         ],
         "theme": [
-            "Physiology",
+            "Genetics",
             "Ecology"
         ],
         "level": 3,
@@ -695,8 +695,8 @@
             "Lecture"
         ],
         "theme": [
-            "Genetics",
-            "Molecular Biology"
+            "Ecology",
+            "Microbial"
         ],
         "level": 3,
         "credits": 3,
@@ -718,8 +718,8 @@
             "Lecture"
         ],
         "theme": [
-            "Genetics",
-            "Molecular Biology"
+            "Ecology",
+            "Human"
         ],
         "level": 3,
         "credits": 3,
@@ -741,8 +741,8 @@
             "Lecture"
         ],
         "theme": [
-            "Physiology",
-            "Morphology"
+            "Evolution",
+            "Genetics"
         ],
         "level": 3,
         "credits": 3,
@@ -770,7 +770,7 @@
         ],
         "theme": [
             "Physiology",
-            "Ecology"
+            "Human"
         ],
         "level": 3,
         "credits": 3,
@@ -797,8 +797,8 @@
             "Lecture"
         ],
         "theme": [
-            "Analysis",
-            "Human"
+            "Evolution",
+            "Genetics"
         ],
         "level": 3,
         "credits": 3,
@@ -822,8 +822,8 @@
             "Labs"
         ],
         "theme": [
-            "Physiology",
-            "Ecology"
+            "Behaviour",
+            "Methods"
         ],
         "level": 3,
         "credits": 2,
@@ -848,8 +848,8 @@
             "Lecture"
         ],
         "theme": [
-            "Genetics",
-            "Physiology"
+            "Ecology",
+            "Microbial"
         ],
         "level": 3,
         "credits": 3,
@@ -874,8 +874,8 @@
             "Lecture"
         ],
         "theme": [
-            "Plants",
-            "Vertebrate"
+            "Cell Biology",
+            "Development"
         ],
         "level": 3,
         "credits": 3,
@@ -899,8 +899,8 @@
             "Lecture"
         ],
         "theme": [
-            "Physiology",
-            "Anatomy"
+            "Invertebrate",
+            "Experimental"
         ],
         "level": 3,
         "credits": 3,
@@ -922,8 +922,8 @@
             "Experiential"
         ],
         "theme": [
-            "Restricted",
-            "Taken"
+            "Experience Industrial",
+            "Education"
         ],
         "level": 3,
         "credits": 3,
@@ -945,8 +945,8 @@
             "Experiential"
         ],
         "theme": [
-            "Restricted",
-            "Taken"
+            "Experience Industrial",
+            "Education"
         ],
         "level": 3,
         "credits": 3,
@@ -970,8 +970,8 @@
             "Labs"
         ],
         "theme": [
-            "Plants",
-            "Vertebrate"
+            "Ecology",
+            "Microbial"
         ],
         "level": 4,
         "credits": 3,
@@ -998,8 +998,8 @@
             "Labs"
         ],
         "theme": [
-            "Analysis",
-            "Human"
+            "Behaviour",
+            "Methods"
         ],
         "level": 4,
         "credits": 3,
@@ -1024,8 +1024,8 @@
             "Labs"
         ],
         "theme": [
-            "Ecology",
-            "Field"
+            "Physiology",
+            "Research"
         ],
         "level": 4,
         "credits": 4,
@@ -1051,7 +1051,7 @@
         ],
         "theme": [
             "Ecology",
-            "Biological"
+            "Evolution"
         ],
         "level": 4,
         "credits": 3,
@@ -1076,8 +1076,8 @@
             "Tutorials"
         ],
         "theme": [
-            "Ecology",
-            "Biological"
+            "Physiology",
+            "Research"
         ],
         "level": 4,
         "credits": 3,
@@ -1100,8 +1100,8 @@
             "Tutorials"
         ],
         "theme": [
-            "Restricted",
-            "Taken"
+            "Behaviour",
+            "Methods"
         ],
         "level": 4,
         "credits": 3,
@@ -1124,8 +1124,8 @@
             "Labs"
         ],
         "theme": [
-            "Ecology",
-            "History"
+            "Analysis",
+            "Ecology"
         ],
         "level": 4,
         "credits": 3,
@@ -1147,8 +1147,8 @@
             "Lecture"
         ],
         "theme": [
-            "Genetics",
-            "Molecular Biology"
+            "Genomics",
+            "History"
         ],
         "level": 4,
         "credits": 3,
@@ -1170,8 +1170,8 @@
             "Lecture"
         ],
         "theme": [
-            "Analysis",
-            "Human"
+            "Ecology",
+            "Evolution"
         ],
         "level": 4,
         "credits": 3,
@@ -1194,7 +1194,7 @@
         ],
         "theme": [
             "Analysis",
-            "Human"
+            "Ecology"
         ],
         "level": 4,
         "credits": 3,
@@ -1220,8 +1220,8 @@
             "Lecture"
         ],
         "theme": [
-            "Physiology",
-            "Morphology"
+            "Human",
+            "Biodiversity"
         ],
         "level": 4,
         "credits": 3,
@@ -1243,8 +1243,8 @@
             "Lecture"
         ],
         "theme": [
-            "Fundamentals",
-            "Cell Biology"
+            "Human",
+            "Biodiversity"
         ],
         "level": 4,
         "credits": 3,
@@ -1267,8 +1267,8 @@
             "Tutorials"
         ],
         "theme": [
-            "Fundamentals",
-            "Cell Biology"
+            "Cell Biology",
+            "Development"
         ],
         "level": 4,
         "credits": 3,
@@ -1290,8 +1290,8 @@
             "Independent Study"
         ],
         "theme": [
-            "Ecology",
-            "Biological"
+            "Experience Industrial",
+            "Education"
         ],
         "level": 4,
         "credits": 3,
@@ -1319,8 +1319,8 @@
             "Lecture"
         ],
         "theme": [
-            "Restricted",
-            "Taken"
+            "Evolution",
+            "Genetics"
         ],
         "level": 4,
         "credits": 3,
@@ -1345,8 +1345,8 @@
             "Lecture"
         ],
         "theme": [
-            "Plants",
-            "Vertebrate"
+            "Physiology",
+            "Human"
         ],
         "level": 4,
         "credits": 3,
@@ -1369,8 +1369,8 @@
             "Labs"
         ],
         "theme": [
-            "Analysis",
-            "Human"
+            "Genetics",
+            "Ecology"
         ],
         "level": 4,
         "credits": 4,
@@ -1395,8 +1395,8 @@
             "Lecture"
         ],
         "theme": [
-            "Restricted",
-            "Taken"
+            "Ecology",
+            "Field"
         ],
         "level": 4,
         "credits": 3,
@@ -1418,8 +1418,8 @@
             "Lecture"
         ],
         "theme": [
-            "Restricted",
-            "Taken"
+            "Cell Biology",
+            "Development"
         ],
         "level": 4,
         "credits": 3,
@@ -1443,8 +1443,8 @@
             "Lecture"
         ],
         "theme": [
-            "Analysis",
-            "Human"
+            "Invertebrate",
+            "Experimental"
         ],
         "level": 4,
         "credits": 3,
@@ -1466,8 +1466,8 @@
             "Lecture"
         ],
         "theme": [
-            "Experimental",
-            "Development"
+            "Human",
+            "Biodiversity"
         ],
         "level": 4,
         "credits": 3,
@@ -1489,8 +1489,8 @@
             "Lecture"
         ],
         "theme": [
-            "Ecology",
-            "Field"
+            "Cell Biology",
+            "Development"
         ],
         "level": 4,
         "credits": 3,
@@ -1512,8 +1512,8 @@
             "Lecture"
         ],
         "theme": [
-            "Physiology",
-            "Anatomy"
+            "Human",
+            "Biodiversity"
         ],
         "level": 4,
         "credits": 3,
@@ -1535,8 +1535,8 @@
             "Experiential"
         ],
         "theme": [
-            "Restricted",
-            "Taken"
+            "Experience Industrial",
+            "Education"
         ],
         "level": 4,
         "credits": 3,
@@ -1558,8 +1558,8 @@
             "Experiential"
         ],
         "theme": [
-            "Restricted",
-            "Taken"
+            "Experience Industrial",
+            "Education"
         ],
         "level": 4,
         "credits": 3,
@@ -1585,7 +1585,7 @@
         ],
         "theme": [
             "Physiology",
-            "Anatomy"
+            "Human"
         ],
         "level": 1,
         "credits": 6,
@@ -1612,7 +1612,7 @@
         ],
         "theme": [
             "Ecology",
-            "Biological"
+            "Human"
         ],
         "level": 2,
         "credits": 4,
@@ -1638,7 +1638,7 @@
         ],
         "theme": [
             "Ecology",
-            "Field"
+            "Evolution"
         ],
         "level": 2,
         "credits": 4,
@@ -1663,8 +1663,8 @@
             "Labs"
         ],
         "theme": [
-            "Plants",
-            "Ecology"
+            "Ecology",
+            "Evolution"
         ],
         "level": 2,
         "credits": 4,
@@ -1690,8 +1690,8 @@
             "Tutorials"
         ],
         "theme": [
-            "Analysis",
-            "Human"
+            "Human",
+            "Biodiversity"
         ],
         "level": 3,
         "credits": 3,
@@ -1718,7 +1718,7 @@
         ],
         "theme": [
             "Ecology",
-            "Biological"
+            "Human"
         ],
         "level": 3,
         "credits": 3,
@@ -1746,8 +1746,8 @@
             "Labs"
         ],
         "theme": [
-            "Experimental",
-            "Development"
+            "Behaviour",
+            "Methods"
         ],
         "level": 3,
         "credits": 3,
@@ -1772,7 +1772,7 @@
         ],
         "theme": [
             "Physiology",
-            "Anatomy"
+            "Human"
         ],
         "level": 3,
         "credits": 3,
@@ -1795,8 +1795,8 @@
             "Labs"
         ],
         "theme": [
-            "Physiology",
-            "Morphology"
+            "Genomics",
+            "History"
         ],
         "level": 3,
         "credits": 3,
@@ -1818,7 +1818,7 @@
             "Lecture"
         ],
         "theme": [
-            "Plants",
+            "Analysis",
             "Ecology"
         ],
         "level": 3,
@@ -1842,8 +1842,8 @@
             "Labs"
         ],
         "theme": [
-            "Plants",
-            "Ecology"
+            "Ecology",
+            "Human"
         ],
         "level": 3,
         "credits": 3,
@@ -1865,8 +1865,8 @@
             "Lecture"
         ],
         "theme": [
-            "Plants",
-            "Ecology"
+            "Evolution",
+            "Genetics"
         ],
         "level": 3,
         "credits": 3,
@@ -1891,8 +1891,8 @@
             "Tutorials"
         ],
         "theme": [
-            "Experimental",
-            "Development"
+            "Human",
+            "Biodiversity"
         ],
         "level": 3,
         "credits": 4,
@@ -1917,8 +1917,8 @@
             "Tutorials"
         ],
         "theme": [
-            "Physiology",
-            "Morphology"
+            "Evolution",
+            "Genetics"
         ],
         "level": 3,
         "credits": 3,
@@ -1944,8 +1944,8 @@
             "Labs"
         ],
         "theme": [
-            "Plants",
-            "Ecology"
+            "Human",
+            "Biodiversity"
         ],
         "level": 3,
         "credits": 2,
@@ -1968,8 +1968,8 @@
             "Tutorials"
         ],
         "theme": [
-            "Ecology",
-            "History"
+            "Cell Biology",
+            "Development"
         ],
         "level": 3,
         "credits": 3,
@@ -1991,8 +1991,8 @@
             "Seminar"
         ],
         "theme": [
-            "Physiology",
-            "Anatomy"
+            "Human",
+            "Biodiversity"
         ],
         "level": 3,
         "credits": 3,
@@ -2018,8 +2018,8 @@
             "Labs"
         ],
         "theme": [
-            "Plants",
-            "Vertebrate"
+            "Invertebrate",
+            "Experimental"
         ],
         "level": 3,
         "credits": 4,
@@ -2046,7 +2046,7 @@
         ],
         "theme": [
             "Physiology",
-            "Morphology"
+            "Human"
         ],
         "level": 3,
         "credits": 3,
@@ -2074,7 +2074,7 @@
         ],
         "theme": [
             "Ecology",
-            "Biological"
+            "Field"
         ],
         "level": 4,
         "credits": 3,
@@ -2096,8 +2096,8 @@
             "Lecture"
         ],
         "theme": [
-            "Physiology",
-            "Ecology"
+            "Behaviour",
+            "Methods"
         ],
         "level": 4,
         "credits": 3,
@@ -2122,8 +2122,8 @@
             "Tutorials"
         ],
         "theme": [
-            "Experimental",
-            "Development"
+            "Invertebrate",
+            "Experimental"
         ],
         "level": 4,
         "credits": 3,
@@ -2149,8 +2149,8 @@
             "Tutorials"
         ],
         "theme": [
-            "Genetics",
-            "Molecular Biology"
+            "Behaviour",
+            "Methods"
         ],
         "level": 4,
         "credits": 3,
@@ -2179,7 +2179,7 @@
         ],
         "theme": [
             "Physiology",
-            "Ecology"
+            "Research"
         ],
         "level": 4,
         "credits": 3,
@@ -2202,8 +2202,8 @@
             "Labs"
         ],
         "theme": [
-            "Experimental",
-            "Development"
+            "Ecology",
+            "Field"
         ],
         "level": 4,
         "credits": 3,
@@ -2225,8 +2225,8 @@
             "Lecture"
         ],
         "theme": [
-            "Physiology",
-            "Ecology"
+            "Human",
+            "Biodiversity"
         ],
         "level": 4,
         "credits": 3,
@@ -2250,8 +2250,8 @@
             "Lecture"
         ],
         "theme": [
-            "Regulation",
-            "Eukaryotic"
+            "Cell Biology",
+            "Development"
         ],
         "level": 4,
         "credits": 3,
@@ -2273,8 +2273,8 @@
             "Lecture"
         ],
         "theme": [
-            "Restricted",
-            "Taken"
+            "Ecology",
+            "Field"
         ],
         "level": 4,
         "credits": 3,
@@ -2301,8 +2301,8 @@
             "Labs"
         ],
         "theme": [
-            "Ecology",
-            "Biological"
+            "Cell Biology",
+            "Development"
         ],
         "level": 4,
         "credits": 3,
@@ -2324,8 +2324,8 @@
             "Lecture"
         ],
         "theme": [
-            "Plants",
-            "Ecology"
+            "Evolution",
+            "Genetics"
         ],
         "level": 4,
         "credits": 3,
@@ -2353,8 +2353,8 @@
             "Lecture"
         ],
         "theme": [
-            "Plants",
-            "Vertebrate"
+            "Ecology",
+            "Evolution"
         ],
         "level": 4,
         "credits": 3,
@@ -2376,8 +2376,8 @@
             "Lecture"
         ],
         "theme": [
-            "Plants",
-            "Vertebrate"
+            "Physiology",
+            "Human"
         ],
         "level": 4,
         "credits": 3,
@@ -2399,8 +2399,8 @@
             "Thesis"
         ],
         "theme": [
-            "Plants",
-            "Ecology"
+            "Physiology",
+            "Research"
         ],
         "level": 4,
         "credits": 6,
@@ -2426,7 +2426,7 @@
         ],
         "theme": [
             "Physiology",
-            "Morphology"
+            "Research"
         ],
         "level": 4,
         "credits": 3,
@@ -2450,8 +2450,8 @@
             "Lecture"
         ],
         "theme": [
-            "Physiology",
-            "Morphology"
+            "Ecology",
+            "Field"
         ],
         "level": 4,
         "credits": 3,
@@ -2476,8 +2476,8 @@
             "Lecture"
         ],
         "theme": [
-            "Experimental",
-            "Development"
+            "Invertebrate",
+            "Experimental"
         ],
         "level": 4,
         "credits": 3,
@@ -2499,8 +2499,8 @@
             "Lecture"
         ],
         "theme": [
-            "Plants",
-            "Ecology"
+            "Evolution",
+            "Genetics"
         ],
         "level": 3,
         "credits": 3,
@@ -2525,8 +2525,8 @@
             "Lecture"
         ],
         "theme": [
-            "Physiology",
-            "Anatomy"
+            "Ecology",
+            "Evolution"
         ],
         "level": 4,
         "credits": 3,
@@ -2548,8 +2548,8 @@
             "Lecture"
         ],
         "theme": [
-            "Ecology",
-            "History"
+            "Analysis",
+            "Ecology"
         ],
         "level": 4,
         "credits": 3,
@@ -2571,8 +2571,8 @@
             "Lecture"
         ],
         "theme": [
-            "Physiology",
-            "Morphology"
+            "Ecology",
+            "Microbial"
         ],
         "level": 3,
         "credits": 3,
@@ -2594,8 +2594,8 @@
             "Lecture"
         ],
         "theme": [
-            "Genetics",
-            "Molecular Biology"
+            "Experience Industrial",
+            "Education"
         ],
         "level": 4,
         "credits": 3,

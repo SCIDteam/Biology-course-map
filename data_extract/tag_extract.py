@@ -84,10 +84,11 @@ if __name__ == "__main__":
     
     # 1. EXTEND SYSTEM STOP WORDS: Ban syllabus administrative vocabulary from the mathematical model
     academic_stop_words = {
-        'using', 'issues', 'work', 'operative', 'science', 'sciences', 
-        'introduction', 'processes','concepts', 'fundamental', 'understanding', 'topics', 'practical', 'approach',
-        'principles', 'aspects', 'applications', 'current', 'modern', 'historical',
-        'selected', 'issues', 'examine', 'examines', 'investigation', 'directed', 'Allies', 'Restricted', "Regulation"
+        'using', 'issues', 'work', 'operative','introduction', 'processes', 'concepts', 'fundamental', 'understanding', 
+        'topics', 'practical', 'approach', 'principles', 'aspects', 'applications', 
+        'current', 'historical', 'selected', 'examine', 'examines', 
+        'investigation', 'directed', 'allies', 'restricted', 'regulation', 
+        'placement', 'year', 'years', 'consult', 'faculty'
     }
     custom_stop_words = list(text.ENGLISH_STOP_WORDS.union(academic_stop_words))
     
@@ -102,7 +103,11 @@ if __name__ == "__main__":
     lda_output = lda_model.fit_transform(tf_matrix)
     
     # Explicitly specify the exact strings to filter out from themes
-    exclusion_list = {"Lists", "Credit", "Section", "Calendar", "Laboratory", "Lab", "Lab Selections", "Structure", "Function", "Systems", "Introduction", "Biology", "Animal", "Animals", "Tropical", "Plant", "Molecular", "Ecological", "Evolutionary", "Collections", "Cell", "Issues", "Operative", "Processes", "Sciences", "Techniques", "Using", "Work", "Genetic" }
+    exclusion_list = {
+        "Lists", "Credit", "Section", "Calendar", "Laboratory", "Lab", "Lab Selections", "Structure", "Function",
+        "Restricted", "Taken", "Systems", "Introduction", "Biology", "Animal", "Animals", "Tropical", "Plant", "Plants", "Science",
+        "Molecular", "Ecological", "Evolutionary", "Biological", "Developmental", "Collections", "Cell", "Issues", "Operative", "Processes", "Sciences", 
+        "Techniques", "Using", "Work", "Genetic", "Nervous" }
     
     # Automatically map vocabulary terms to discover names for each of our 15 clusters
     topic_to_keywords = {}

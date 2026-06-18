@@ -1,45 +1,36 @@
 import pandas as pd
 import re
-import json
-import os
 
-def load_excel_files():
-    # Get the absolute path of the current script
-    base_dir = os.path.abspath(os.path.dirname(__file__))
-
-    # Define absolute paths to the data files (relative to the script's directory)
-    file1_path = os.path.join(base_dir, "backend", "data", "Course_Section_Search_-_Central Term 1.xlsx")
-    file2_path = os.path.join(base_dir, "backend", "data", "Course_Section_Search_-_Central Term 2 and Summer 2025.xlsx")
-    themes_path = os.path.join(base_dir, "backend", "data", "course_themes.csv")
-
-    # Load the Excel files into pandas DataFrames
-    try:
-        file1 = pd.read_excel(file1_path, skiprows=1)
-        file2 = pd.read_excel(file2_path, skiprows=1)
-        themes = pd.read_csv(themes_path)
-        print("Files successfully loaded.")
-        return file1, file2, themes
-    except Exception as e:
-        print(f"An error occurred while loading the files: {e}")
-        return None, None, None
-    
 def clean_data(df1, df2):
-    combined_df = pd.concat([df1, df2], ignore_index=True)
-    combined_df = combined_df[combined_df['Course Subject']=='BIOL']
-    combined_df = combined_df[combined_df['Course Number'] < 500]
+    combined_df = pd.concat([df1, df2], ignore_index=True).copy()
+    combined_df = combined_df[
+        (combined_df['Course Subject'] == 'BIOL') &
+        (combined_df['Course Number'] < 500)
+    ].copy()
     combined_df.loc[:, 'Course Code'] = combined_df['Course Subject'] + " " + combined_df['Course Number'].astype(str)
     cleaned_df = combined_df.drop_duplicates(subset=['Course Code'], keep='first')
     return cleaned_df
 
+
 def clean_themes(themes):
-    themes.drop(columns=['Department', 'Notes'], inplace=True)
-    themes.iloc[:, 1:] = themes.iloc[:, 1:].notna()
-    themes['Course Code'] = themes['Course Code'].str.replace('_V', '', regex=False)
+    themes = themes.drop(columns=['Department', 'Notes'], errors='ignore').copy()
 
-    themes['themes'] = themes.iloc[:, 1:].apply(lambda x: list(themes.columns[1:][x]), axis=1)
-    cleaned_themes = themes[['Course Code', 'themes']]
+    themes.loc[:, 'Course Code'] = (
+        themes['Course Code']
+        .astype(str)
+        .str.replace('_V', '', regex=False)
+    )
 
-    return cleaned_themes
+    theme_cols = [col for col in themes.columns if col != 'Course Code']
+
+    theme_flags = themes.loc[:, theme_cols].notna()
+
+    themes.loc[:, 'themes'] = [
+        list(theme_flags.columns[row])
+        for row in theme_flags.to_numpy()
+    ]
+
+    return themes.loc[:, ['Course Code', 'themes']].copy()
 
 def extract_reqs_helper(text, keyword):
     if isinstance(text, str):
@@ -56,38 +47,44 @@ def standardize_courses(list):
     return standardized_list
 
 def extract_reqs(cleaned_df):
-    course_description = cleaned_df[['Course Code', 'Section Title', 'Description']].copy()
-    course_description.loc[:, 'reqs'] = course_description['Description'].str.extract(
-        r'((prerequisite|corequisite)[\s\S]*)', 
+    COURSE_PATTERN = re.compile(r'[A-Z]{4}\s?\d{3}')
+    RECOMMENDED_PATTERN = re.compile(r'\b[A-Z]{4}\s\d{3}\sis\srecommended\.', re.IGNORECASE)
+
+    df = cleaned_df.loc[:, ['Course Code', 'Section Title', 'Description']].copy()
+
+    df.loc[:, 'Course Code'] = (
+        df['Course Code']
+        .astype(str)
+        .str.replace('_V', '', regex=False)
+    )
+
+    df.loc[:, 'reqs'] = df['Description'].str.extract(
+        r'((prerequisite|corequisite)[\s\S]*)',
         flags=re.IGNORECASE
     )[0]
 
-    pattern = r'\b[A-Z]{4}\s\d{3}\sis\srecommended\.'
+    df.loc[:, 'reqs'] = df['reqs'].str.replace(RECOMMENDED_PATTERN, '', regex=True)
 
-    # Remove the sentence if present
-    course_description['reqs'] = course_description['reqs'].str.replace(pattern, '', regex=True)
-
-    # Create 'prereqs' and 'coreqs' columns
-    course_description['prereqs'] = course_description['reqs'].apply(lambda x: extract_reqs_helper(x, 'Prerequisite'))
-    course_description['coreqs'] = course_description['reqs'].apply(lambda x: extract_reqs_helper(x, 'Corequisite'))
-
-    course_description['prereq_courses'] = course_description['prereqs'].apply(
-        lambda x: re.findall(r'[A-Z]{4}\s?\d{3}', str(x)) if isinstance(x, str) else []
+    df.loc[:, 'prereqs'] = df['reqs'].apply(
+        lambda x: extract_reqs_helper(x, 'Prerequisite')
     )
-    course_description['coreq_courses'] = course_description['coreqs'].apply(
-        lambda x: re.findall(r'[A-Z]{4}\s?\d{3}', str(x)) if isinstance(x, str) else []
+    df.loc[:, 'coreqs'] = df['reqs'].apply(
+        lambda x: extract_reqs_helper(x, 'Corequisite')
     )
 
-    course_description.drop(columns=['prereqs', 'coreqs', 'reqs'], inplace=True)
+    df.loc[:, 'prereq_courses'] = df['prereqs'].apply(
+        lambda x: COURSE_PATTERN.findall(x) if isinstance(x, str) else []
+    )
+    df.loc[:, 'coreq_courses'] = df['coreqs'].apply(
+        lambda x: COURSE_PATTERN.findall(x) if isinstance(x, str) else []
+    )
 
-    course_description['prereq_courses'] = course_description['prereq_courses'].apply(standardize_courses)
-    course_description['coreq_courses'] = course_description['coreq_courses'].apply(standardize_courses)
+    df.loc[:, 'prereq_courses'] = df['prereq_courses'].apply(standardize_courses)
+    df.loc[:, 'coreq_courses'] = df['coreq_courses'].apply(standardize_courses)
 
-    course_description['Course Code'] = course_description['Course Code'].str.replace('_V', '', regex=False)
+    df = df.drop(columns=['prereqs', 'coreqs', 'reqs'])
 
-    courses_with_reqs = course_description.copy()
-
-    return courses_with_reqs
+    return df
 
 def create_courses_json(courses_with_themes):
     if courses_with_themes is None:
@@ -106,9 +103,8 @@ def create_courses_json(courses_with_themes):
         courses_json.append(course_entry)
     return courses_json
 
-if __name__ == "__main__":
+def extract_course_data(df1, df2, themes):
     # Test loading the files
-    df1, df2, themes = load_excel_files()
     cleaned_df = clean_data(df1, df2)
     cleaned_themes = clean_themes(themes)
 
@@ -130,9 +126,5 @@ if __name__ == "__main__":
     for course in courses_json:
         course['corequisites'] = [coreq for coreq in course['corequisites'] if coreq in valid_course_codes]
 
-    # Save the modified courses_json_str back to the JSON file
-    base_dir = os.path.abspath(os.path.dirname(__file__))
-    with open(os.path.join(base_dir, "backend", "output", 'all_courses_py.json'), 'w') as file:
-        json.dump(courses_json, file, indent=4)
-
     print("Prerequisites filtered successfully!")
+    return courses_json

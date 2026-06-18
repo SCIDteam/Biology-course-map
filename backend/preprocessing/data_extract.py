@@ -4,29 +4,33 @@ import re
 def clean_data(df1, df2):
     combined_df = pd.concat([df1, df2], ignore_index=True).copy()
     combined_df = combined_df[
-        (combined_df['Course Subject'] == 'BIOL') &
+        (combined_df['Course Subject'] == 'BIOL_V') &
         (combined_df['Course Number'] < 500)
     ].copy()
     combined_df.loc[:, 'Course Code'] = combined_df['Course Subject'] + " " + combined_df['Course Number'].astype(str)
     cleaned_df = combined_df.drop_duplicates(subset=['Course Code'], keep='first')
     return cleaned_df
 
-
 def clean_themes(themes):
+    # Drop extra columns safely
     themes = themes.drop(columns=['Department', 'Notes'], errors='ignore').copy()
 
+    # Clean Course Code
     themes.loc[:, 'Course Code'] = (
         themes['Course Code']
         .astype(str)
         .str.replace('_V', '', regex=False)
     )
 
-    theme_cols = [col for col in themes.columns if col != 'Course Code']
+    # Use positional logic (same as original, but safe)
+    theme_cols = themes.columns[1:]
 
+    # Convert to boolean flags
     theme_flags = themes.loc[:, theme_cols].notna()
 
+    # Build theme lists
     themes.loc[:, 'themes'] = [
-        list(theme_flags.columns[row])
+        list(theme_cols[row])
         for row in theme_flags.to_numpy()
     ]
 
@@ -110,7 +114,7 @@ def extract_course_data(df1, df2, themes):
 
     courses_with_reqs = extract_reqs(cleaned_df)
 
-    courses_with_themes = courses_with_reqs.merge(themes, on='Course Code', how='left')
+    courses_with_themes = courses_with_reqs.merge(cleaned_themes, on='Course Code', how='left')
     courses_with_themes.loc[courses_with_themes['Description'].isna(), 'Description'] = ""
 
     courses_json = create_courses_json(courses_with_themes)

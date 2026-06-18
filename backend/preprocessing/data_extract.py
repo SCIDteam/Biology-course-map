@@ -8,9 +8,9 @@ def load_excel_files():
     base_dir = os.path.abspath(os.path.dirname(__file__))
 
     # Define absolute paths to the data files (relative to the script's directory)
-    file1_path = os.path.join(base_dir, "data", "Course_Section_Search_-_Central Term 1.xlsx")
-    file2_path = os.path.join(base_dir, "data", "Course_Section_Search_-_Central Term 2 and Summer 2025.xlsx")
-    themes_path = os.path.join(base_dir, "data", "course_themes.csv")
+    file1_path = os.path.join(base_dir, "backend", "data", "Course_Section_Search_-_Central Term 1.xlsx")
+    file2_path = os.path.join(base_dir, "backend", "data", "Course_Section_Search_-_Central Term 2 and Summer 2025.xlsx")
+    themes_path = os.path.join(base_dir, "backend", "data", "course_themes.csv")
 
     # Load the Excel files into pandas DataFrames
     try:
@@ -89,6 +89,23 @@ def extract_reqs(cleaned_df):
 
     return courses_with_reqs
 
+def create_courses_json(courses_with_themes):
+    if courses_with_themes is None:
+        return []
+    
+    courses_json = []
+    for _, row in courses_with_themes.iterrows():
+        course_entry = {
+            "course_code": row['Course Code'],
+            "course_title": row['Section Title'],
+            "description": row['Description'],
+            "prerequisites": row['prereq_courses'],  # Directly using the list from the CSV
+            "corequisites": row['coreq_courses'],  # You can include other columns as needed
+            "themes": row['themes']
+        }
+        courses_json.append(course_entry)
+    return courses_json
+
 if __name__ == "__main__":
     # Test loading the files
     df1, df2, themes = load_excel_files()
@@ -100,18 +117,7 @@ if __name__ == "__main__":
     courses_with_themes = courses_with_reqs.merge(themes, on='Course Code', how='left')
     courses_with_themes.loc[courses_with_themes['Description'].isna(), 'Description'] = ""
 
-    courses_json = []
-
-    for _, row in courses_with_themes.iterrows():
-        course_entry = {
-            "course_code": row['Course Code'],
-            "course_title": row['Section Title'],
-            "description": row['Description'],
-            "prerequisites": row['prereq_courses'],  # Directly using the list from the CSV
-            "corequisites": row['coreq_courses'],  # You can include other columns as needed
-            "themes": row['themes']
-        }
-        courses_json.append(course_entry)
+    courses_json = create_courses_json(courses_with_themes)
 
     # Extract all valid course codes into a set for fast lookup
     valid_course_codes = {course['course_code'] for course in courses_json}
@@ -126,7 +132,7 @@ if __name__ == "__main__":
 
     # Save the modified courses_json_str back to the JSON file
     base_dir = os.path.abspath(os.path.dirname(__file__))
-    with open(os.path.join(base_dir, "data", 'all_courses_py.json'), 'w') as file:
+    with open(os.path.join(base_dir, "backend", "output", 'all_courses_py.json'), 'w') as file:
         json.dump(courses_json, file, indent=4)
 
     print("Prerequisites filtered successfully!")

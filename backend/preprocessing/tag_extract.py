@@ -39,7 +39,7 @@ def standardize_courses(course_list):
 
 if __name__ == "__main__":
     base_dir = os.path.abspath(os.path.dirname(__file__))
-    excel_path = os.path.join(base_dir, "data", "Updated-Biology-Courses.xlsx")
+    excel_path = os.path.join(base_dir, "backend", "data", "Updated-Biology-Courses.xlsx")
     
     print("Ingesting Data Sheets...")
     try:

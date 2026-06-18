@@ -78,7 +78,7 @@
     </style>
 
     <script>
-        fetch('data_extract/data/all_courses_py.json')
+        fetch('../data/all_courses_py.json')
         .then(response => response.json())
         .then(data => {
             window.coursesData = data; // Store coursesData globally

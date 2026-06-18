@@ -36,7 +36,7 @@ def main():
 
     t1_course_section_df = load_data(t1_course_section_path, skiprows=1)
     t2_course_section_df = load_data(t2_course_section_path, skiprows=1)
-    themes_df = load_data(themes_path, skiprows=1)
+    themes_df = load_data(themes_path)
 
     # Extract course data
     courses_json = extract_course_data(

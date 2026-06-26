@@ -57,7 +57,7 @@ d3.json('../data/bio_courses_tag.json').then(coursesData => {
         .style("filter", "url(#text-shadow)")
         .text("Filter Courses from the sidebar");
 
-    // ── Category filter (single-select, replaces the Subjects filter) ──────────
+    // ── Category filter ───────────────────────────────────────────────────────
     categories.forEach(category => {
         const label = document.createElement("label");
         const checkbox = document.createElement("input");
@@ -66,15 +66,12 @@ d3.json('../data/bio_courses_tag.json').then(coursesData => {
 
         checkbox.addEventListener('change', function() {
             if (this.checked) {
-                categoryDropdownContent.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-                    if (cb !== this) cb.checked = false;
-                });
-                selectedCategories = [this.value];
+                selectedCategories.push(this.value);
             } else {
-                selectedCategories = [];
+                selectedCategories = selectedCategories.filter(c => c !== this.value);
             }
             categoryDropdownButton.textContent = selectedCategories.length > 0
-                ? `Category: ${selectedCategories[0]}`
+                ? `Category: ${selectedCategories.length} selected`
                 : "Select Category";
             updateGraph(selectedCategories, selectedThemes, selectedLevel);
         });
@@ -93,15 +90,12 @@ d3.json('../data/bio_courses_tag.json').then(coursesData => {
 
         checkbox.addEventListener('change', function() {
             if (this.checked) {
-                themesDropdownContent.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-                    if (cb !== this) cb.checked = false;
-                });
-                selectedThemes = [this.value];
+                selectedThemes.push(this.value);
             } else {
-                selectedThemes = [];
+                selectedThemes = selectedThemes.filter(t => t !== this.value);
             }
             themesDropdownButton.textContent = selectedThemes.length > 0
-                ? `Selected Theme: ${selectedThemes[0]}`
+                ? `Theme: ${selectedThemes.length} selected`
                 : "Select Theme";
             updateGraph(selectedCategories, selectedThemes, selectedLevel);
         });
@@ -120,15 +114,12 @@ d3.json('../data/bio_courses_tag.json').then(coursesData => {
 
         checkbox.addEventListener('change', function() {
             if (this.checked) {
-                levelsDropdownContent.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-                    if (cb !== this) cb.checked = false;
-                });
-                selectedLevel = [this.value];
+                selectedLevel.push(this.value);
             } else {
-                selectedLevel = [];
+                selectedLevel = selectedLevel.filter(l => l !== this.value);
             }
             levelsDropdownButton.textContent = selectedLevel.length > 0
-                ? `Selected Level: ${selectedLevel[0]}`
+                ? `Level: ${selectedLevel.length} selected`
                 : "Select Course Level";
             updateGraph(selectedCategories, selectedThemes, selectedLevel);
         });

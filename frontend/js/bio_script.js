@@ -23,6 +23,14 @@ d3.json('../data/bio_courses_tag.json').then(coursesData => {
                     .sort((a, b) => a - b)
                     .map(l => `${l * 100} level`);
 
+    // Courses with no prerequisites, no corequisites, and not referenced by any other course
+    const referencedCodes = new Set(coursesData.flatMap(c => [...c.prerequisites, ...c.corequisites]));
+    const standaloneSet = new Set(
+        coursesData
+            .filter(c => c.prerequisites.length === 0 && c.corequisites.length === 0 && !referencedCodes.has(c.course_code))
+            .map(c => c.course_code)
+    );
+
     const categoryDropdownButton  = document.getElementById("dropdownButton");
     const categoryDropdownContent = document.getElementById("dropdownContent");
 
@@ -35,6 +43,7 @@ d3.json('../data/bio_courses_tag.json').then(coursesData => {
     let selectedCategories = [];
     let selectedThemes = [];
     let selectedLevel = [];
+    let showStandalone = false;
     let coreqEdgeIds = new Set();
     let frozenCourseId = null;
     let _unfreezeSelection = null;
@@ -42,20 +51,6 @@ d3.json('../data/bio_courses_tag.json').then(coursesData => {
     let _zoom = null;
 
     const svg = d3.select("svg");
-
-    const initialMessage = svg.append("text")
-        .attr("id", "initialMessage")
-        .attr("x", "50%")
-        .attr("y", "50%")
-        .attr("dy", ".35em")
-        .attr("text-anchor", "middle")
-        .style("font-size", "60px")
-        .style("fill", "#8B8378")
-        .style("pointer-events", "none")
-        .style("font-family", "Arial, sans-serif")
-        .style("font-weight", "bold")
-        .style("filter", "url(#text-shadow)")
-        .text("Filter Courses from the sidebar");
 
     // ── Category filter ───────────────────────────────────────────────────────
     categories.forEach(category => {
@@ -129,6 +124,13 @@ d3.json('../data/bio_courses_tag.json').then(coursesData => {
         levelsDropdownContent.appendChild(label);
     });
 
+    // Pre-select all levels on initial load
+    levelsDropdownContent.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.checked = true;
+        selectedLevel.push(cb.value);
+    });
+    levelsDropdownButton.textContent = `Level: ${selectedLevel.length} selected`;
+
     // ── Dropdown toggle / outside-click close ─────────────────────────────────
     categoryDropdownButton.addEventListener('click', function() {
         categoryDropdownContent.classList.toggle("show");
@@ -153,6 +155,13 @@ d3.json('../data/bio_courses_tag.json').then(coursesData => {
             levelsDropdownContent.classList.remove("show");
     });
 
+    document.getElementById("standaloneToggle").addEventListener('click', function() {
+        showStandalone = !showStandalone;
+        this.textContent = showStandalone ? "Hide Standalone Courses" : "Show Standalone Courses";
+        this.classList.toggle("active", showStandalone);
+        updateGraph(selectedCategories, selectedThemes, selectedLevel);
+    });
+
     // ── Graph setup ───────────────────────────────────────────────────────────
     var g = new dagreD3.graphlib.Graph().setGraph({
         rankdir: 'TB',
@@ -160,6 +169,9 @@ d3.json('../data/bio_courses_tag.json').then(coursesData => {
         edgesep: 0,
         ranksep: 200
     });
+
+    // Render full course map on initial load (all levels pre-selected)
+    updateGraph(selectedCategories, selectedThemes, selectedLevel);
 
     function renderGraph(filteredCourseIds) {
         d3.select("#initialMessage").style("display", "none");
@@ -184,14 +196,21 @@ d3.json('../data/bio_courses_tag.json').then(coursesData => {
 
         var render = new dagreD3.render();
         render(inner, g);
+        adjustSVGSize();
 
-        var initialScale = 0.6;
+        var initialScale = 0.35;
         var graphWidth  = g.graph().width  || 0;
         var graphHeight = g.graph().height || 0;
 
-        if (graphWidth > 0) {
+        var svgBounds = svg.node().getBoundingClientRect();
+        var svgWidth  = svgBounds.width;
+        var svgHeight = svgBounds.height;
+
+        if (graphWidth > 0 && graphHeight >0) {
+            var translateX = (svgWidth - graphWidth * initialScale) / 2;
+            var translateY = (svgHeight - graphHeight * initialScale) / 2;
             svg.call(zoom.transform, d3.zoomIdentity
-                .translate((svg.attr("width") - graphWidth * initialScale) / 2, 30)
+                .translate(translateX, translateY)
                 .scale(initialScale)
             );
         } else {
@@ -359,6 +378,7 @@ d3.json('../data/bio_courses_tag.json').then(coursesData => {
 
     function filterCourses(categories, themes, level) {
         return coursesData.filter(course =>
+            (showStandalone || !standaloneSet.has(course.course_code)) &&
             (categories.length === 0 || categories.some(cat => course.category.includes(cat))) &&
             (themes.length    === 0 || themes.some(theme => course.theme.includes(theme))) &&
             (level.length     === 0 || level.includes(`${course.level * 100} level`))
@@ -611,20 +631,29 @@ d3.json('../data/bio_courses_tag.json').then(coursesData => {
         selectedCategories = [];
         selectedThemes     = [];
         selectedLevel      = [];
+        showStandalone     = false;
 
         categoryDropdownButton.textContent = "Select Category";
         themesDropdownButton.textContent   = "Select Theme";
-        levelsDropdownButton.textContent   = "Select Course Level";
 
         categoryDropdownContent.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
         themesDropdownContent.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-        levelsDropdownContent.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+
+        // Re-select all levels (reset to default all-levels state)
+        levelsDropdownContent.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+            cb.checked = true;
+            selectedLevel.push(cb.value);
+        });
+        levelsDropdownButton.textContent = `Level: ${selectedLevel.length} selected`;
+
+        const standaloneToggle = document.getElementById("standaloneToggle");
+        standaloneToggle.textContent = "Show Standalone Courses";
+        standaloneToggle.classList.remove("active");
 
         document.getElementById("keywordInput").value = "";
         document.getElementById("dialog").style.display = "none";
 
         updateGraph(selectedCategories, selectedThemes, selectedLevel);
-        showInitialMessage();
     });
 
     document.getElementById("close-dialog").onclick = function() {

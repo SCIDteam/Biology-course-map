@@ -245,6 +245,35 @@ body {
   margin-right: 8px;
 }
 
+.toggle-btn {
+  padding: 10px;
+  background-color: #666;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.toggle-btn:hover {
+  background-color: #555;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-btn.active {
+  background-color: #4a90d9;
+}
+
+.toggle-btn.active:hover {
+  background-color: #357ab7;
+}
+
 #resetButton {
     padding: 10px 15px;
     font-size: 16px;

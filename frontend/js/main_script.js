@@ -17,7 +17,7 @@ window.onload = adjustSVGSize;
 // Adjust SVG size on window resize
 window.onresize = adjustSVGSize;
 
-d3.json('../data/all_courses_py.json').then(coursesData => {
+d3.json('frontend/data/all_courses_py.json').then(coursesData => {
 
     const subjects = [...new Set(coursesData.map(course => course.course_code.slice(0, 4)))];
     const themes = [...new Set(coursesData.flatMap(course => course.themes))];

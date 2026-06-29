@@ -345,9 +345,49 @@ body {
 }
 
 #main {
-  flex-grow: 1; /* Allow the main content area to take remaining space */
-  padding: 10px; /* Add some padding */
-  overflow: hidden; /* Prevent scrolling in the main area as well */
+  position: relative;
+  flex-grow: 1;
+  padding: 10px;
+  overflow: hidden;
+}
+
+#layout-switcher {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  z-index: 20;
+}
+
+.layout-btn {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  border-right: 1px solid #ddd;
+  background: transparent;
+  cursor: pointer;
+  color: #555;
+  font-family: inherit;
+  transition: background 0.2s, color 0.2s;
+}
+
+.layout-btn:last-child {
+  border-right: none;
+}
+
+.layout-btn:hover:not(.active) {
+  background: #f0f0f0;
+}
+
+.layout-btn.active {
+  background: #4a90d9;
+  color: white;
 }
 
 #legend {

@@ -49,6 +49,7 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
     let _unfreezeSelection = null;
     let _selectCourse = null;
     let _zoom = null;
+    let currentLayout = 'tree';
 
     const svg = d3.select("svg");
 
@@ -162,6 +163,23 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
         updateGraph(selectedCategories, selectedThemes, selectedLevel);
     });
 
+    // ── Layout switcher ───────────────────────────────────────────────────────
+    document.getElementById("layout-tree").addEventListener("click", function() {
+        if (currentLayout === 'tree') return;
+        currentLayout = 'tree';
+        this.classList.add("active");
+        document.getElementById("layout-bullseye").classList.remove("active");
+        updateGraph(selectedCategories, selectedThemes, selectedLevel);
+    });
+
+    document.getElementById("layout-bullseye").addEventListener("click", function() {
+        if (currentLayout === 'bullseye') return;
+        currentLayout = 'bullseye';
+        this.classList.add("active");
+        document.getElementById("layout-tree").classList.remove("active");
+        updateGraph(selectedCategories, selectedThemes, selectedLevel);
+    });
+
     // ── Graph setup ───────────────────────────────────────────────────────────
     var g = new dagreD3.graphlib.Graph().setGraph({
         rankdir: 'TB',
@@ -173,7 +191,17 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
     // Render full course map on initial load (all levels pre-selected)
     updateGraph(selectedCategories, selectedThemes, selectedLevel);
 
+    // ── Layout dispatcher ─────────────────────────────────────────────────────
     function renderGraph(filteredCourseIds) {
+        if (currentLayout === 'bullseye') {
+            renderBullsEyeLayout(filteredCourseIds);
+        } else {
+            renderTreeLayout(filteredCourseIds);
+        }
+    }
+
+    // ── Tree layout (dagreD3) ─────────────────────────────────────────────────
+    function renderTreeLayout(filteredCourseIds) {
         d3.select("#initialMessage").style("display", "none");
 
         g.nodes().forEach(function(v) {
@@ -206,7 +234,7 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
         var svgWidth  = svgBounds.width;
         var svgHeight = svgBounds.height;
 
-        if (graphWidth > 0 && graphHeight >0) {
+        if (graphWidth > 0 && graphHeight > 0) {
             var translateX = (svgWidth - graphWidth * initialScale) / 2;
             var translateY = (svgHeight - graphHeight * initialScale) / 2;
             svg.call(zoom.transform, d3.zoomIdentity
@@ -336,6 +364,222 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
             if (!course) return;
             frozenCourseId = courseCode;
             applyHighlight(courseCode);
+            showCourseInfoInSidebar(course, downstreamMap, filteredCourseIds);
+        };
+    }
+
+    // ── Bull's Eye layout (radial, no edge arrows) ────────────────────────────
+    function renderBullsEyeLayout(filteredCourseIds) {
+        d3.select("#initialMessage").style("display", "none");
+
+        // Map each node to its course level
+        const nodeData = g.nodes().map(id => {
+            const course = coursesData.find(c => c.course_code === id);
+            return { id, level: course ? course.level : 1 };
+        });
+
+        // Group by level
+        const byLevel = {};
+        nodeData.forEach(n => {
+            if (!byLevel[n.level]) byLevel[n.level] = [];
+            byLevel[n.level].push(n);
+        });
+        const ringLevels = Object.keys(byLevel).map(Number).sort((a, b) => a - b);
+
+        // Compute ring radii: each ring large enough to hold its nodes without crowding
+        const minArcSpacing = 110;
+        const minRingGap    = 130;
+        const radii = {};
+        let prevR = 80;
+        ringLevels.forEach(level => {
+            const n = byLevel[level].length;
+            const rByNodes = (n * minArcSpacing) / (2 * Math.PI);
+            radii[level] = Math.max(rByNodes, prevR + minRingGap);
+            prevR = radii[level];
+        });
+
+        // Compute (x, y) for each node, centered at origin
+        const positions = {};
+        ringLevels.forEach(level => {
+            const ring = byLevel[level];
+            const r = radii[level];
+            ring.forEach((node, i) => {
+                const angle = (2 * Math.PI * i / ring.length) - Math.PI / 2;
+                positions[node.id] = { x: r * Math.cos(angle), y: r * Math.sin(angle) };
+            });
+        });
+
+        const inner = svg.append("g");
+
+        // Ring guide circles + level labels
+        ringLevels.forEach(level => {
+            inner.append("circle")
+                .attr("cx", 0).attr("cy", 0)
+                .attr("r", radii[level])
+                .attr("fill", "none")
+                .attr("stroke", "#423e3e")
+                .attr("stroke-width", 3)
+                .attr("stroke-dasharray", "5,4");
+
+            inner.append("text")
+                .attr("x", 0).attr("y", -radii[level] - 8)
+                .attr("text-anchor", "middle")
+                .style("font-size", "12px")
+                .style("fill", "#bbb")
+                .style("pointer-events", "none")
+                .text(`${level * 100} Level`);
+        });
+
+        // Center dot
+        inner.append("circle")
+            .attr("cx", 0).attr("cy", 0)
+            .attr("r", 5)
+            .attr("fill", "#d0d0d0");
+
+        // Draw nodes as rounded rects matching the tree style
+        const nodeW = 90, nodeH = 28;
+
+        const nodeGroups = inner.selectAll("g.bulls-node")
+            .data(nodeData)
+            .enter()
+            .append("g")
+            .attr("class", "bulls-node")
+            .attr("id", d => d.id)
+            .attr("transform", d => {
+                const p = positions[d.id];
+                return `translate(${p.x},${p.y})`;
+            })
+            .style("cursor", "pointer");
+
+        nodeGroups.append("rect")
+            .attr("x", -nodeW / 2).attr("y", -nodeH / 2)
+            .attr("width", nodeW).attr("height", nodeH)
+            .attr("rx", 14).attr("ry", 14)
+            .attr("fill", d => filteredCourseIds.includes(d.id) ? "#EEDFCC" : "#fff")
+            .attr("stroke", "#272727").attr("stroke-width", 1);
+
+        nodeGroups.append("text")
+            .attr("text-anchor", "middle").attr("dy", "0.35em")
+            .style("font-size", "11px")
+            .style("pointer-events", "none")
+            .text(d => d.id);
+
+        // Zoom
+        const zoom = d3.zoom()
+            .scaleExtent([0.1, 3])
+            .on("zoom", function(event) {
+                inner.attr("transform", event.transform);
+                const slider = document.getElementById("zoomSlider");
+                const display = document.getElementById("zoomValue");
+                if (slider) slider.value = event.transform.k;
+                if (display) display.textContent = Math.round(event.transform.k * 100) + '%';
+            });
+        svg.call(zoom);
+        _zoom = zoom;
+
+        adjustSVGSize();
+        const svgBounds = svg.node().getBoundingClientRect();
+        const svgW = svgBounds.width;
+        const svgH = svgBounds.height;
+        const maxR = ringLevels.length > 0 ? radii[ringLevels[ringLevels.length - 1]] : 200;
+        const fitScale = Math.min(svgW, svgH) / (2 * maxR + 120) * 0.9;
+
+        svg.call(zoom.transform, d3.zoomIdentity
+            .translate(svgW / 2, svgH / 2)
+            .scale(fitScale)
+        );
+
+        const downstreamMap = buildDownstreamMap(coursesData);
+
+        var tooltip = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
+        function applyBullsEyeHighlight(courseCode) {
+            nodeGroups.style("opacity", 0.2);
+
+            inner.select(`g.bulls-node[id="${courseCode}"]`).style("opacity", 1);
+            inner.select(`g.bulls-node[id="${courseCode}"]`).select("rect")
+                .attr("fill", filteredCourseIds.includes(courseCode) ? "#EEDFCC" : "cyan");
+            inner.select(`g.bulls-node[id="${courseCode}"]`).select("text")
+                .style("font-weight", "bold");
+
+            collectUpstreamEdges(courseCode, coursesData).forEach(({ from, type }) => {
+                const color = type === 'corequisite' ? 'coral' : 'cyan';
+                inner.select(`g.bulls-node[id="${from}"]`).style("opacity", 1);
+                inner.select(`g.bulls-node[id="${from}"]`).select("rect").attr("fill", color);
+                inner.select(`g.bulls-node[id="${from}"]`).select("text").style("font-weight", "bold");
+            });
+
+            collectDownstreamEdges(courseCode, downstreamMap).forEach(({ to }) => {
+                inner.select(`g.bulls-node[id="${to}"]`).style("opacity", 1);
+                inner.select(`g.bulls-node[id="${to}"]`).select("rect").attr("fill", "#90EE90");
+                inner.select(`g.bulls-node[id="${to}"]`).select("text").style("font-weight", "bold");
+            });
+        }
+
+        function resetBullsEyeHighlight() {
+            nodeGroups.style("opacity", 1);
+            nodeGroups.select("rect")
+                .attr("fill", d => filteredCourseIds.includes(d.id) ? "#EEDFCC" : "#fff");
+            nodeGroups.select("text").style("font-weight", null);
+        }
+
+        nodeGroups.on("click", function(_event, d) {
+            const course = coursesData.find(c => c.course_code === d.id);
+            if (!course) return;
+            tooltip.transition().duration(10).style("opacity", 0);
+            if (frozenCourseId === d.id) {
+                frozenCourseId = null;
+                resetBullsEyeHighlight();
+                clearCourseInfoSidebar();
+            } else {
+                frozenCourseId = d.id;
+                applyBullsEyeHighlight(d.id);
+                showCourseInfoInSidebar(course, downstreamMap, filteredCourseIds);
+            }
+        });
+
+        nodeGroups.on("mouseover", function(_event, d) {
+            if (frozenCourseId !== null) return;
+            const course = coursesData.find(c => c.course_code === d.id);
+            if (!course) return;
+            tooltip.transition().duration(10).style("opacity", 1);
+            tooltip.html(`
+                <div class="title">${course.course_code}</div>
+                <div class="body"><p class='name'>${course['course title']}</p><p class='description'>${course.description}</p></div>
+            `);
+            applyBullsEyeHighlight(d.id);
+        })
+        .on("mousemove", function(event) {
+            if (frozenCourseId !== null) return;
+            const tooltipWidth  = tooltip.node().offsetWidth;
+            const tooltipHeight = tooltip.node().offsetHeight;
+            const x = event.clientX + 10;
+            const y = event.clientY + 10;
+            const xPos = x + tooltipWidth  > window.innerWidth  ? x - tooltipWidth  - 20 : x;
+            const yPos = y + tooltipHeight > window.innerHeight ? y - tooltipHeight - 20 : y;
+            tooltip.style("left", xPos + "px").style("top", yPos + "px");
+        })
+        .on("mouseout", function() {
+            if (frozenCourseId !== null) return;
+            tooltip.transition().duration(10).style("opacity", 0);
+            resetBullsEyeHighlight();
+        });
+
+        _unfreezeSelection = function() {
+            if (frozenCourseId !== null) {
+                frozenCourseId = null;
+                resetBullsEyeHighlight();
+                clearCourseInfoSidebar();
+            }
+        };
+
+        _selectCourse = function(courseCode) {
+            const course = coursesData.find(c => c.course_code === courseCode);
+            if (!course) return;
+            frozenCourseId = courseCode;
+            applyBullsEyeHighlight(courseCode);
             showCourseInfoInSidebar(course, downstreamMap, filteredCourseIds);
         };
     }

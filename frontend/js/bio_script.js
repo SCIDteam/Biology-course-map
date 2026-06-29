@@ -412,20 +412,23 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
         const inner = svg.append("g");
 
         // Ring guide circles + level labels
-        ringLevels.forEach(level => {
+        ringLevels.sort((a, b) => b - a).forEach((level, idx) => {
             inner.append("circle")
                 .attr("cx", 0).attr("cy", 0)
                 .attr("r", radii[level])
-                .attr("fill", "none")
+                .attr("fill", idx % 2 === 0 ? "#eef0f2" : "#ffffff")
                 .attr("stroke", "#423e3e")
                 .attr("stroke-width", 3)
                 .attr("stroke-dasharray", "5,4");
 
+        });
+        ringLevels.forEach(level => {
             inner.append("text")
-                .attr("x", 0).attr("y", -radii[level] - 8)
+                .attr("x", 0).attr("y", -radii[level] + 50)
                 .attr("text-anchor", "middle")
-                .style("font-size", "12px")
-                .style("fill", "#bbb")
+                .style("font-size", "22px")
+                .style("font-weight", "bold")
+                .style("fill", "#0e4bbd")
                 .style("pointer-events", "none")
                 .text(`${level * 100} Level`);
         });
@@ -486,7 +489,7 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
 
         svg.call(zoom.transform, d3.zoomIdentity
             .translate(svgW / 2, svgH / 2)
-            .scale(fitScale)
+            .scale(0.55)
         );
 
         const downstreamMap = buildDownstreamMap(coursesData);

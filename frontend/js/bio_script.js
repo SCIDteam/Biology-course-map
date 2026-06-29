@@ -12,7 +12,7 @@ function adjustSVGSize() {
 window.onload = adjustSVGSize;
 window.onresize = adjustSVGSize;
 
-d3.json('../data/bio_courses_tag.json').then(coursesData => {
+d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
 
     // Category uses the `category` array field (e.g. ["Introductory", "Fundamentals"])
     const categories = [...new Set(coursesData.flatMap(course => course.category))].sort();

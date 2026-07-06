@@ -25,29 +25,96 @@ body {
 }
 
 #sidebar {
-  width: 20vw;
+  width: 260px;
+  min-width: 260px;
   height: 100vh;
   background-color: #f4f4f4;
-  padding: 16px 15px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  overflow-y: auto; /* sidebar scrolls independently when content overflows */
   box-sizing: border-box;
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: width 0.3s ease, min-width 0.3s ease;
+}
+
+#sidebar.collapsed {
+  width: 48px;
+  min-width: 48px;
+}
+
+#sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 12px 10px;
+  border-bottom: 1px solid #ddd;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+#sidebar.collapsed #sidebar-header {
+  justify-content: center;
+  padding: 14px 8px;
+  gap: 0;
+}
+
+#sidebar-filters {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 15px 20px;
+  box-sizing: border-box;
+}
+
+#sidebar.collapsed #sidebar-filters {
+  display: none;
+}
+
+#sidebar-toggle {
+  flex-shrink: 0;
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  color: #555;
+  transition: background 0.2s;
+}
+
+#sidebar-toggle:hover {
+  background: #F97316;
 }
 
 /* Title styling */
 #sidebar h2 {
-  font-size: 1.5em;
-  color: #333; /* Dark gray text for good contrast */
-  margin-bottom: 15px;
-  padding-right: 10px;
+  font-size: 1.2em;
+  color: #333;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+
+#sidebar.collapsed h2 {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Remove top border from first filter section */
+#sidebar-filters .sidebar-section:first-child {
+  border-top: none;
+  padding-top: 12px;
 }
 
 /* Label styling */
 #sidebar label {
   display: block;
   font-size: 1em;
-  color: #555; /* Medium gray for label text */
+  color: #555; /* Medium gray for label text; originally #555 */
   margin-bottom: 8px;
 }
 
@@ -346,8 +413,9 @@ body {
 
 #main {
   position: relative;
-  flex-grow: 1;
-  padding: 10px;
+  flex: 1;
+  min-width: 0;
+  padding: 0;
   overflow: hidden;
 }
 
@@ -391,51 +459,36 @@ body {
 }
 
 #legend {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  left: auto;
-  transform: none;
-  background-color: rgba(255, 255, 255, 0.88);
-  border: 1px solid #ccc;
-  padding: 5px 14px;
-  border-radius: 20px;
-  font-family: Arial, sans-serif;
+  margin-top: 4px;
+  padding: 12px 0 8px;
+  border-top: 1px solid #ddd;
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 4px 14px;
-  max-width: calc(100% - 40px);
-  z-index: 10;
-  pointer-events: none;
+  flex-direction: column;
+  gap: 8px;
 }
 
 #legend h3 {
-  margin: 0 6px 0 0;
-  font-size: 12px;
+  margin: 0 0 4px 0;
+  font-size: 0.75em;
   font-weight: 700;
-  color: #888;
+  color: #4e4d4d;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  white-space: nowrap;
-  flex-shrink: 0;
+  letter-spacing: 0.09em;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  gap: 4px;
-  white-space: nowrap;
+  gap: 8px;
 }
 
 .legend-item svg {
-  margin-right: 0;
   flex-shrink: 0;
 }
 
 .legend-item span {
-  font-size: 12px;
+  font-size: 0.78em;
+  color: #555;
 }
 
 /* Tooltip Styling */
@@ -712,4 +765,42 @@ body {
 
 .dropdown-content-4 input[type="checkbox"] {
   margin-right: 8px;
+}
+
+/* ── Right panel: course information ─────────────────────────────────── */
+#right-panel {
+  width: 280px;
+  min-width: 280px;
+  height: 100vh;
+  background-color: #f9f9f9;
+  border-left: 1px solid #ddd;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#right-panel-header {
+  padding: 16px 15px 10px;
+  border-bottom: 1px solid #ddd;
+  flex-shrink: 0;
+}
+
+#right-panel-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 15px;
+  box-sizing: border-box;
+}
+
+#right-panel-content p {
+  font-size: 0.9em;
+  color: #aaa;
+  font-style: italic;
+  margin: 0;
+}
+
+#right-panel-content p.filled {
+  color: inherit;
+  font-style: normal;
 }

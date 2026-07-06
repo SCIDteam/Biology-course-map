@@ -11,61 +11,85 @@
     <link rel="stylesheet" href="frontend/css/style.css">
 </head>
 <body>
+    <!-- ── Left panel: filters + legend ─────────────────────────────────── -->
     <div id="sidebar">
-        <h2>Biology Course Map</h2>
+        <div id="sidebar-header">
+            <h2>Biology Course Map</h2>
+            <button id="sidebar-toggle" title="Toggle sidebar" aria-label="Toggle sidebar">&#9776;</button>
+        </div>
 
-        <section class="sidebar-section">
-            <h3 class="section-label">Filters</h3>
-            <label for="course-level">Filter for a course level:</label>
-            <div class="dropdown-3">
-                <button id="dropdownButton-3">Select Course Level</button>
-                <div id="dropdownContent-3" class="dropdown-content-3">
-                  <!-- Options will be generated dynamically here -->
+        <div id="sidebar-filters">
+            <section class="sidebar-section">
+                <h3 class="section-label">Filters</h3>
+                <label for="course-level">Filter for a course level:</label>
+                <div class="dropdown-3">
+                    <button id="dropdownButton-3">Select Course Level</button>
+                    <div id="dropdownContent-3" class="dropdown-content-3">
+                        <!-- Options will be generated dynamically here -->
+                    </div>
                 </div>
-            </div>
-            <label for="course-subject">Filter by category:</label>
-            <div class="dropdown">
-                <button id="dropdownButton">Select Category</button>
-                <div id="dropdownContent" class="dropdown-content">
-                  <!-- Options will be generated dynamically here -->
+                <label for="course-subject">Filter by category:</label>
+                <div class="dropdown">
+                    <button id="dropdownButton">Select Category</button>
+                    <div id="dropdownContent" class="dropdown-content">
+                        <!-- Options will be generated dynamically here -->
+                    </div>
                 </div>
-            </div>
-            <label for="course-theme">Filter for a theme:</label>
-            <div class="dropdown-2">
-                <button id="dropdownButton-2">Select Theme</button>
-                <div id="dropdownContent-2" class="dropdown-content-2">
-                  <!-- Options will be generated dynamically here -->
+                <label for="course-theme">Filter for a theme:</label>
+                <div class="dropdown-2">
+                    <button id="dropdownButton-2">Select Theme</button>
+                    <div id="dropdownContent-2" class="dropdown-content-2">
+                        <!-- Options will be generated dynamically here -->
+                    </div>
                 </div>
-            </div>
-            <label for="course-component">Filter by course component:</label>
-            <div class="dropdown-4">
-                <button id="dropdownButton-4">Select Component</button>
-                <div id="dropdownContent-4" class="dropdown-content-4">
-                    <!-- Options will be generated dynamically here -->
+                <label for="course-component">Filter by course component:</label>
+                <div class="dropdown-4">
+                    <button id="dropdownButton-4">Select Component</button>
+                    <div id="dropdownContent-4" class="dropdown-content-4">
+                        <!-- Options will be generated dynamically here -->
+                    </div>
                 </div>
-            </div>
-            <div class="input-container">
-                <label for="keywordInput">Filter by Search Term:</label>
-                <input type="text" id="keywordInput" placeholder="Enter keywords separated by commas" />
-                <button id="searchButton">Search</button>
-            </div>
-            <div class="zoom-control">
-                <label for="zoomSlider">Zoom: <span id="zoomValue">65%</span></label>
-                <input type="range" id="zoomSlider" min="0.1" max="3" step="0.01" value="0.65">
-            </div>
-        </section>
+                <div class="input-container">
+                    <label for="keywordInput">Filter by Search Term:</label>
+                    <input type="text" id="keywordInput" placeholder="Enter keywords separated by commas" />
+                    <button id="searchButton">Search</button>
+                </div>
+                <div class="zoom-control">
+                    <label for="zoomSlider">Zoom: <span id="zoomValue">65%</span></label>
+                    <input type="range" id="zoomSlider" min="0.1" max="3" step="0.01" value="0.65">
+                </div>
+            </section>
 
-        <section class="sidebar-section">
-            <button id="resetButton">Reset Graph</button>
-        </section>
+            <section class="sidebar-section">
+                <button id="resetButton">Reset Graph</button>
+            </section>
 
-        <section class="sidebar-section">
-            <h3 class="section-label">Course Information</h3>
-            <p id="course-info-placeholder">Click a course to view details.</p>
-        </section>
+            <!-- Legend embedded at bottom of filter panel, vertical -->
+            <div id="legend">
+                <h3>Legend</h3>
+                <div class="legend-item">
+                    <svg width="50" height="20"><rect x="0" y="4" width="30" height="10" fill="#EEDFCC" /></svg>
+                    <span>Filtered courses</span>
+                </div>
+                <div class="legend-item">
+                    <svg width="50" height="20"><rect x="0" y="4" width="30" height="10" fill="cyan" /></svg>
+                    <span>Prerequisites</span>
+                </div>
+                <div class="legend-item">
+                    <svg width="50" height="20"><rect x="0" y="4" width="30" height="10" fill="coral" /></svg>
+                    <span>Corequisites</span>
+                </div>
+                <div class="legend-item">
+                    <svg width="50" height="20"><rect x="0" y="4" width="30" height="10" fill="#90EE90" /></svg>
+                    <span>Dependent courses</span>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- ── Center panel: D3 SVG map ──────────────────────────────────────── -->
     <div id="main">
-<div id="dialog" style="display:none; position:fixed; background:white; border:1px solid black; padding:10px; z-index:1000;">
+        <div id="dialog" style="display:none; position:fixed; background:white; border:1px solid black; padding:10px; z-index:1000;">
             <h2 id="course-title"></h2>
             <p id="course-description"></p>
             <button id="close-dialog">Close</button>
@@ -84,41 +108,16 @@
                 </filter>
             </defs>
         </svg>
-        <div id="legend">
-            <h3>Legend</h3>
-            
-<!-- Cyan color for Course and Prerequisites -->
-            <div class="legend-item">
-                <svg width="50" height="20">
-                    <rect x="0" y="4" width="30" height="10" fill="#EEDFCC" />
-                </svg>
-                <span>Filtered courses</span>
-            </div>
-        
-            <!-- Cyan color for Course and Prerequisites -->
-            <div class="legend-item">
-                <svg width="50" height="20">
-                    <rect x="0" y="4" width="30" height="10" fill="cyan" />
-                </svg>
-                <span>Prerequisites</span>
-            </div>
-        
-            <!-- Coral color for Corequisites -->
-            <div class="legend-item">
-                <svg width="50" height="20">
-                    <rect x="0" y="4" width="30" height="10" fill="coral" />
-                </svg>
-                <span>Corequisites</span>
-            </div>
+    </div>
 
-            <!-- Light green for downstream dependent courses -->
-            <div class="legend-item">
-                <svg width="50" height="20">
-                    <rect x="0" y="4" width="30" height="10" fill="#90EE90" />
-                </svg>
-                <span>Dependent courses</span>
-            </div>
-        </div>                
+    <!-- ── Right panel: course information ──────────────────────────────── -->
+    <div id="right-panel">
+        <div id="right-panel-header">
+            <h3 class="section-label">Course Information</h3>
+        </div>
+        <div id="right-panel-content">
+            <p id="course-info-placeholder">Click a course to view details.</p>
+        </div>
     </div>
 
     <script src="frontend/js/bio_script.js"></script>

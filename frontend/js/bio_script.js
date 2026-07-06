@@ -9,8 +9,22 @@ function adjustSVGSize() {
     svg.setAttribute("height", mainHeight);
 }
 
+let _recenterMapFn = null;
+
 window.onload = adjustSVGSize;
-window.onresize = adjustSVGSize;
+window.onresize = function() {
+    adjustSVGSize();
+    if (_recenterMapFn) _recenterMapFn();
+};
+
+document.getElementById('sidebar-toggle').addEventListener('click', function() {
+    document.getElementById('sidebar').classList.toggle('collapsed');
+    // Wait for the CSS width transition (~300ms) then re-fit the map
+    setTimeout(function() {
+        adjustSVGSize();
+        if (_recenterMapFn) _recenterMapFn();
+    }, 320);
+});
 
 d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
 
@@ -41,11 +55,30 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
     let _unfreezeSelection = null;
     let _selectCourse = null;
     let _zoom = null;
+    let _lastMaxR = 200;
+
+    function recenterMap() {
+        if (!_zoom) return;
+        adjustSVGSize();
+        const svgEl = document.getElementById("mySVG");
+        const svgW  = svgEl.clientWidth;
+        const svgH  = svgEl.clientHeight;
+        const fitScale = Math.min(svgW, svgH) / (2 * _lastMaxR + 800) * 0.9;
+        d3.select("#mySVG").call(_zoom.transform, d3.zoomIdentity
+            .translate(svgW / 2, svgH / 2)
+            .scale(fitScale)
+        );
+        const slider  = document.getElementById("zoomSlider");
+        const display = document.getElementById("zoomValue");
+        if (slider)  slider.value = fitScale;
+        if (display) display.textContent = Math.round(fitScale * 100) + '%';
+    }
+    _recenterMapFn = recenterMap;
 
     const componentsDropdownButton  = document.getElementById("dropdownButton-4");
     const componentsDropdownContent = document.getElementById("dropdownContent-4");
 
-    const svg = d3.select("svg");
+    const svg = d3.select("#mySVG");
 
     // ── Category filter ───────────────────────────────────────────────────────
     categories.forEach(category => {
@@ -335,11 +368,12 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
         const svgW = svgBounds.width;
         const svgH = svgBounds.height;
         const maxR = ringLevels.length > 0 ? radii[ringLevels[ringLevels.length - 1]] : 200;
-        const fitScale = Math.min(svgW, svgH) / (2 * maxR + 120) * 0.9;
+        _lastMaxR  = maxR;
+        const fitScale = Math.min(svgW, svgH) / (2 * maxR + 800) * 0.9;
 
         svg.call(zoom.transform, d3.zoomIdentity
             .translate(svgW / 2, svgH / 2)
-            .scale(0.65) // Initial Zoom Scale for Bull's Eye Layout
+            .scale(fitScale)
         );
 
         const downstreamMap = buildDownstreamMap(coursesData);
@@ -464,7 +498,7 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
         g.nodes().forEach(node => g.removeNode(node));
         g.edges().forEach(edge => g.removeEdge(edge.v, edge.w));
         coreqEdgeIds.clear();
-        d3.select("svg g").remove();
+        d3.select("#mySVG g").remove();
         frozenCourseId = null;
         _selectCourse  = null;
         _zoom          = null;
@@ -702,12 +736,12 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
             });
         });
 
-        d3.select("svg g").remove();
+        d3.select("#mySVG g").remove();
         renderGraph(filteredCourses.map(c => c.course_code));
     });
 
     function showInitialMessage() {
-        const svg = d3.select("svg");
+        const svg = d3.select("#mySVG");
         const initialMessage = svg.select("#initialMessage");
         if (initialMessage.empty()) {
             svg.append("text")

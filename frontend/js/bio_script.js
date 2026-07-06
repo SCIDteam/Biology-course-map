@@ -302,7 +302,7 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
                 return `translate(${p.x},${p.y})`;
             })
             .style("cursor", "pointer")
-            .style("opacity", d => filteredCourseIds.includes(d.id) ? 1.0 : 0.15);
+            .style("opacity", d => filteredCourseIds.includes(d.id) ? 1.0 : 0.45);
 
         nodeGroups.append("rect")
             .attr("x", -nodeW / 2).attr("y", -nodeH / 2)
@@ -349,7 +349,7 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
             .style("opacity", 0);
 
         function applyBullsEyeHighlight(courseCode) {
-            nodeGroups.style("opacity", 0.2);
+            nodeGroups.style("opacity", 0.45);
 
             inner.select(`g.bulls-node[id="${courseCode}"]`).style("opacity", 1);
             inner.select(`g.bulls-node[id="${courseCode}"]`).select("rect")
@@ -372,7 +372,7 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
         }
 
         function resetBullsEyeHighlight() {
-            nodeGroups.style("opacity", d => filteredCourseIds.includes(d.id) ? 1.0 : 0.15);
+            nodeGroups.style("opacity", d => filteredCourseIds.includes(d.id) ? 1.0 : 0.45);
             nodeGroups.select("rect")
                 .attr("fill", d => filteredCourseIds.includes(d.id) ? "#EEDFCC" : "#fff");
             nodeGroups.select("text").style("font-weight", null);
@@ -450,7 +450,7 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
 
         // Always build from the full dataset so every node has a stable ring position.
         // filteredCourseIds controls opacity/coloring — active courses stay bright,
-        // courses that don't match the current filters fade to 0.15.
+        // courses that don't match the current filters fade to 0.45.
         buildGraph(coursesData);
         const activeCourses = filterCourses(selectedCategories, selectedThemes, selectedLevel);
         renderGraph(activeCourses.map(c => c.course_code));

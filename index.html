@@ -37,8 +37,13 @@
                   <!-- Options will be generated dynamically here -->
                 </div>
             </div>
-            <label for="standalone-toggle">Include standalone courses:</label>
-            <button id="standaloneToggle" class="toggle-btn">Show Standalone Courses</button>
+            <label for="course-component">Filter by course component:</label>
+            <div class="dropdown-4">
+                <button id="dropdownButton-4">Select Component</button>
+                <div id="dropdownContent-4" class="dropdown-content-4">
+                    <!-- Options will be generated dynamically here -->
+                </div>
+            </div>
             <div class="input-container">
                 <label for="keywordInput">Filter by keywords:</label>
                 <input type="text" id="keywordInput" placeholder="Enter keywords separated by commas" />
@@ -60,11 +65,7 @@
         </section>
     </div>
     <div id="main">
-        <div id="layout-switcher" role="group" aria-label="Layout mode">
-            <button id="layout-tree" class="layout-btn active" title="Hierarchical tree layout">Inverted Tree</button>
-            <button id="layout-bullseye" class="layout-btn" title="Concentric rings by course level">Bull's Eye</button>
-        </div>
-        <div id="dialog" style="display:none; position:fixed; background:white; border:1px solid black; padding:10px; z-index:1000;">
+<div id="dialog" style="display:none; position:fixed; background:white; border:1px solid black; padding:10px; z-index:1000;">
             <h2 id="course-title"></h2>
             <p id="course-description"></p>
             <button id="close-dialog">Close</button>
@@ -86,33 +87,7 @@
         <div id="legend">
             <h3>Legend</h3>
             
-            <!-- Prerequisite Chain -->
-            <div class="legend-item">
-                <svg width="50" height="20">
-                    <defs>
-                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
-                            <polygon points="0 0, 10 3.5, 0 7" fill="black" />
-                        </marker>
-                    </defs>
-                    <line x1="0" y1="10" x2="30" y2="10" stroke="black" stroke-width="2" marker-end="url(#arrowhead)" />
-                </svg>
-                <span>Prerequisite Chain</span>
-            </div>
-        
-            <!-- Corequisite Chain -->
-            <div class="legend-item">
-                <svg width="50" height="20">
-                    <defs>
-                        <marker id="arrowhead-full-outline" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
-                            <polygon points="0 0, 10 3.5, 0 7, 0 0" fill="coral" />
-                        </marker>
-                    </defs>
-                    <line x1="0" y1="10" x2="30" y2="10" stroke="coral" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead-full-outline)" />
-                </svg>
-                <span>Corequisite Chain</span>
-            </div>
-
-            <!-- Cyan color for Course and Prerequisites -->
+<!-- Cyan color for Course and Prerequisites -->
             <div class="legend-item">
                 <svg width="50" height="20">
                     <rect x="0" y="5" width="30" height="10" fill="#EEDFCC" />

@@ -23,14 +23,6 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
                     .sort((a, b) => a - b)
                     .map(l => `${l * 100} level`);
 
-    // Courses with no prerequisites, no corequisites, and not referenced by any other course
-    const referencedCodes = new Set(coursesData.flatMap(c => [...c.prerequisites, ...c.corequisites]));
-    const standaloneSet = new Set(
-        coursesData
-            .filter(c => c.prerequisites.length === 0 && c.corequisites.length === 0 && !referencedCodes.has(c.course_code))
-            .map(c => c.course_code)
-    );
-
     const categoryDropdownButton  = document.getElementById("dropdownButton");
     const categoryDropdownContent = document.getElementById("dropdownContent");
 
@@ -43,13 +35,15 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
     let selectedCategories = [];
     let selectedThemes = [];
     let selectedLevel = [];
-    let showStandalone = false;
+    let selectedComponents = [];
     let coreqEdgeIds = new Set();
     let frozenCourseId = null;
     let _unfreezeSelection = null;
     let _selectCourse = null;
     let _zoom = null;
-    let currentLayout = 'tree';
+
+    const componentsDropdownButton  = document.getElementById("dropdownButton-4");
+    const componentsDropdownContent = document.getElementById("dropdownContent-4");
 
     const svg = d3.select("svg");
 
@@ -156,28 +150,37 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
             levelsDropdownContent.classList.remove("show");
     });
 
-    document.getElementById("standaloneToggle").addEventListener('click', function() {
-        showStandalone = !showStandalone;
-        this.textContent = showStandalone ? "Hide Standalone Courses" : "Show Standalone Courses";
-        this.classList.toggle("active", showStandalone);
-        updateGraph(selectedCategories, selectedThemes, selectedLevel);
+    // ── Component filter ──────────────────────────────────────────────────────
+    ['Lecture', 'Labs', 'Tutorials'].forEach(component => {
+        const label = document.createElement("label");
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.value = component;
+
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                selectedComponents.push(this.value);
+            } else {
+                selectedComponents = selectedComponents.filter(c => c !== this.value);
+            }
+            componentsDropdownButton.textContent = selectedComponents.length > 0
+                ? `Component: ${selectedComponents.length} selected`
+                : "Select Component";
+            updateGraph(selectedCategories, selectedThemes, selectedLevel);
+        });
+
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(component));
+        componentsDropdownContent.appendChild(label);
     });
 
-    // ── Layout switcher ───────────────────────────────────────────────────────
-    document.getElementById("layout-tree").addEventListener("click", function() {
-        if (currentLayout === 'tree') return;
-        currentLayout = 'tree';
-        this.classList.add("active");
-        document.getElementById("layout-bullseye").classList.remove("active");
-        updateGraph(selectedCategories, selectedThemes, selectedLevel);
+    componentsDropdownButton.addEventListener('click', function() {
+        componentsDropdownContent.classList.toggle("show");
     });
 
-    document.getElementById("layout-bullseye").addEventListener("click", function() {
-        if (currentLayout === 'bullseye') return;
-        currentLayout = 'bullseye';
-        this.classList.add("active");
-        document.getElementById("layout-tree").classList.remove("active");
-        updateGraph(selectedCategories, selectedThemes, selectedLevel);
+    document.addEventListener('click', function(event) {
+        if (!componentsDropdownButton.contains(event.target) && !componentsDropdownContent.contains(event.target))
+            componentsDropdownContent.classList.remove("show");
     });
 
     // ── Graph setup ───────────────────────────────────────────────────────────
@@ -193,179 +196,7 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
 
     // ── Layout dispatcher ─────────────────────────────────────────────────────
     function renderGraph(filteredCourseIds) {
-        if (currentLayout === 'bullseye') {
-            renderBullsEyeLayout(filteredCourseIds);
-        } else {
-            renderTreeLayout(filteredCourseIds);
-        }
-    }
-
-    // ── Tree layout (dagreD3) ─────────────────────────────────────────────────
-    function renderTreeLayout(filteredCourseIds) {
-        d3.select("#initialMessage").style("display", "none");
-
-        g.nodes().forEach(function(v) {
-            var node = g.node(v);
-            node.rx = node.ry = 100;
-        });
-
-        var inner = svg.append("g");
-        var zoom = d3.zoom()
-            .scaleExtent([0.1, 3])
-            .on("zoom", function(event) {
-                inner.attr("transform", event.transform);
-                const slider = document.getElementById("zoomSlider");
-                const display = document.getElementById("zoomValue");
-                if (slider) slider.value = event.transform.k;
-                if (display) display.textContent = Math.round(event.transform.k * 100) + '%';
-            });
-        svg.call(zoom);
-        _zoom = zoom;
-
-        var render = new dagreD3.render();
-        render(inner, g);
-        adjustSVGSize();
-
-        var initialScale = 0.35;
-        var graphWidth  = g.graph().width  || 0;
-        var graphHeight = g.graph().height || 0;
-
-        var svgBounds = svg.node().getBoundingClientRect();
-        var svgWidth  = svgBounds.width;
-        var svgHeight = svgBounds.height;
-
-        if (graphWidth > 0 && graphHeight > 0) {
-            var translateX = (svgWidth - graphWidth * initialScale) / 2;
-            var translateY = (svgHeight - graphHeight * initialScale) / 2;
-            svg.call(zoom.transform, d3.zoomIdentity
-                .translate(translateX, translateY)
-                .scale(initialScale)
-            );
-        } else {
-            svg.call(zoom.transform, d3.zoomIdentity.scale(initialScale));
-        }
-
-        inner.selectAll("g.node").on("click", function(_event, d) {
-            const course = coursesData.find(c => c.course_code === d);
-            if (!course) return;
-            tooltip.transition().duration(10).style("opacity", 0);
-            if (frozenCourseId === d) {
-                frozenCourseId = null;
-                resetHighlight();
-                clearCourseInfoSidebar();
-            } else {
-                frozenCourseId = d;
-                applyHighlight(d);
-                showCourseInfoInSidebar(course, downstreamMap, filteredCourseIds);
-            }
-        });
-
-        inner.selectAll("g.node").select("rect")
-            .style("fill", function(d) {
-                return filteredCourseIds.includes(d) ? "#EEDFCC" : null;
-            });
-
-        var tooltip = d3.select("body").append("div")
-            .attr("class", "tooltip")
-            .style("opacity", 0);
-
-        var styleTooltip = function(name, description) {
-            return "<p class='name'>" + name + "</p><p class='description'>" + description + "</p>";
-        };
-
-        const downstreamMap = buildDownstreamMap(coursesData);
-
-        inner.selectAll("g.node").on("mouseover", function(_event, d) {
-            if (frozenCourseId !== null) return;
-            const course = coursesData.find(c => c.course_code === d);
-            tooltip.transition().duration(10).style("opacity", 1);
-            tooltip.html(`
-                <div class="title">${course.course_code}</div>
-                <div class="body">${styleTooltip(course['course title'], course.description)}</div>
-            `);
-            applyHighlight(d);
-        })
-        .on("mousemove", function(event) {
-            if (frozenCourseId !== null) return;
-            const tooltipWidth  = tooltip.node().offsetWidth;
-            const tooltipHeight = tooltip.node().offsetHeight;
-            const x = event.clientX + 10;
-            const y = event.clientY + 10;
-            const xPos = x + tooltipWidth  > window.innerWidth  ? x - tooltipWidth  - 20 : x;
-            const yPos = y + tooltipHeight > window.innerHeight ? y - tooltipHeight - 20 : y;
-            tooltip.style("left", xPos + "px").style("top", yPos + "px");
-        });
-
-        inner.selectAll("g.node").on("mouseout", function() {
-            if (frozenCourseId !== null) return;
-            tooltip.transition().duration(10).style("opacity", 0);
-            resetHighlight();
-        });
-
-        function applyHighlight(d) {
-            inner.select(`g.node[id="${d}"]`).select("rect").style("fill", filteredCourseIds.includes(d) ? "#EEDFCC" : "cyan");
-            inner.select(`g.node[id="${d}"]`).select("text").style("font-weight", "bold");
-            inner.select(`g.node[id="${d}"]`).style("opacity", 1);
-
-            inner.selectAll("g.node").filter(n => n !== d).style("opacity", 0.2);
-            inner.selectAll("g.edgePath").style("opacity", 0.2);
-
-            collectUpstreamEdges(d, coursesData).forEach(function({ from, to, type }) {
-                const nodeColor = type === 'corequisite' ? 'coral' : 'cyan';
-                inner.select(`g.node[id="${from}"]`).select("rect").style("fill", nodeColor);
-                inner.select(`g.node[id="${from}"]`).select("text").style("font-weight", "bold");
-                inner.select(`g.node[id="${from}"]`).style("opacity", 1);
-                inner.select(`g.edgePath[id*="${from}-${to}"]`).style("opacity", 1)
-                    .select("path")
-                    .style("stroke-width", "3px")
-                    .style("stroke", type === 'corequisite' ? 'coral' : 'black')
-                    .style("stroke-dasharray", type === 'corequisite' ? "5, 5" : null);
-            });
-
-            collectDownstreamEdges(d, downstreamMap).forEach(function({ from, to, type }) {
-                inner.select(`g.node[id="${to}"]`).select("rect").style("fill", "#90EE90");
-                inner.select(`g.node[id="${to}"]`).select("text").style("font-weight", "bold");
-                inner.select(`g.node[id="${to}"]`).style("opacity", 1);
-                inner.select(`g.edgePath[id*="${from}-${to}"]`).style("opacity", 1)
-                    .select("path")
-                    .style("stroke-width", "3px")
-                    .style("stroke", "#228B22")
-                    .style("stroke-dasharray", type === 'corequisite' ? "5, 5" : null);
-            });
-        }
-
-        function resetHighlight() {
-            inner.selectAll("g.node").each(function(nodeId) {
-                d3.select(this).select("rect").style("fill", filteredCourseIds.includes(nodeId) ? "#EEDFCC" : null);
-                d3.select(this).select("text").style("font-weight", null);
-                d3.select(this).style("opacity", 1);
-            });
-            inner.selectAll("g.edgePath").each(function() {
-                const svgId = d3.select(this).attr("id") || "";
-                const isCoreq = [...coreqEdgeIds].some(edgeId => svgId.includes(edgeId));
-                d3.select(this).style("opacity", 1)
-                    .select("path")
-                    .style("stroke-width", "1.5px")
-                    .style("stroke", isCoreq ? "coral" : "black")
-                    .style("stroke-dasharray", isCoreq ? "5, 5" : null);
-            });
-        }
-
-        _unfreezeSelection = function() {
-            if (frozenCourseId !== null) {
-                frozenCourseId = null;
-                resetHighlight();
-                clearCourseInfoSidebar();
-            }
-        };
-
-        _selectCourse = function(courseCode) {
-            const course = coursesData.find(c => c.course_code === courseCode);
-            if (!course) return;
-            frozenCourseId = courseCode;
-            applyHighlight(courseCode);
-            showCourseInfoInSidebar(course, downstreamMap, filteredCourseIds);
-        };
+        renderBullsEyeLayout(filteredCourseIds);
     }
 
     // ── Bull's Eye layout (radial, no edge arrows) ────────────────────────────
@@ -507,7 +338,7 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
 
         svg.call(zoom.transform, d3.zoomIdentity
             .translate(svgW / 2, svgH / 2)
-            .scale(0.65)
+            .scale(0.65) // Initial Zoom Scale for Bull's Eye Layout
         );
 
         const downstreamMap = buildDownstreamMap(coursesData);
@@ -642,12 +473,15 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
     }
 
     function filterCourses(categories, themes, level) {
-        return coursesData.filter(course =>
-            (showStandalone || !standaloneSet.has(course.course_code)) &&
-            (categories.length === 0 || categories.some(cat => course.category.includes(cat))) &&
-            (themes.length    === 0 || themes.some(theme => course.theme.includes(theme))) &&
-            (level.length     === 0 || level.includes(`${course.level * 100} level`))
-        );
+        return coursesData.filter(course => {
+            const courseComponents = Array.isArray(course.components)
+                ? course.components
+                : (course.components ? [course.components] : []);
+            return (categories.length === 0 || categories.some(cat => course.category.includes(cat))) &&
+                (themes.length    === 0 || themes.some(theme => course.theme.includes(theme))) &&
+                (level.length     === 0 || level.includes(`${course.level * 100} level`)) &&
+                (selectedComponents.length === 0 || selectedComponents.some(comp => courseComponents.includes(comp)));
+        });
     }
 
     function buildGraph(courses) {
@@ -896,13 +730,15 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
         selectedCategories = [];
         selectedThemes     = [];
         selectedLevel      = [];
-        showStandalone     = false;
+        selectedComponents = [];
 
-        categoryDropdownButton.textContent = "Select Category";
-        themesDropdownButton.textContent   = "Select Theme";
+        categoryDropdownButton.textContent  = "Select Category";
+        themesDropdownButton.textContent    = "Select Theme";
+        componentsDropdownButton.textContent = "Select Component";
 
         categoryDropdownContent.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
         themesDropdownContent.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+        componentsDropdownContent.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
 
         // Re-select all levels (reset to default all-levels state)
         levelsDropdownContent.querySelectorAll('input[type="checkbox"]').forEach(cb => {
@@ -910,10 +746,6 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
             selectedLevel.push(cb.value);
         });
         levelsDropdownButton.textContent = `Level: ${selectedLevel.length} selected`;
-
-        const standaloneToggle = document.getElementById("standaloneToggle");
-        standaloneToggle.textContent = "Show Standalone Courses";
-        standaloneToggle.classList.remove("active");
 
         document.getElementById("keywordInput").value = "";
         document.getElementById("dialog").style.display = "none";

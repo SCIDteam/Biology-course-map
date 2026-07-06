@@ -301,7 +301,8 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
                 const p = positions[d.id];
                 return `translate(${p.x},${p.y})`;
             })
-            .style("cursor", "pointer");
+            .style("cursor", "pointer")
+            .style("opacity", d => filteredCourseIds.includes(d.id) ? 1.0 : 0.15);
 
         nodeGroups.append("rect")
             .attr("x", -nodeW / 2).attr("y", -nodeH / 2)
@@ -371,7 +372,7 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
         }
 
         function resetBullsEyeHighlight() {
-            nodeGroups.style("opacity", 1);
+            nodeGroups.style("opacity", d => filteredCourseIds.includes(d.id) ? 1.0 : 0.15);
             nodeGroups.select("rect")
                 .attr("fill", d => filteredCourseIds.includes(d.id) ? "#EEDFCC" : "#fff");
             nodeGroups.select("text").style("font-weight", null);
@@ -398,8 +399,7 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
             if (!course) return;
             tooltip.transition().duration(10).style("opacity", 1);
             tooltip.html(`
-                <div class="title">${course.course_code}</div>
-                <div class="body"><p class='name'>${course['course title']}</p><p class='description'>${course.description}</p></div>
+                <div class="title">${course.course_code}: ${course['course title']}</div>
             `);
             applyBullsEyeHighlight(d.id);
         })
@@ -448,9 +448,12 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
             return;
         }
 
-        const filteredCourses = filterCourses(selectedCategories, selectedThemes, selectedLevel);
-        buildGraph(filteredCourses);
-        renderGraph(filteredCourses.map(course => course.course_code));
+        // Always build from the full dataset so every node has a stable ring position.
+        // filteredCourseIds controls opacity/coloring — active courses stay bright,
+        // courses that don't match the current filters fade to 0.15.
+        buildGraph(coursesData);
+        const activeCourses = filterCourses(selectedCategories, selectedThemes, selectedLevel);
+        renderGraph(activeCourses.map(c => c.course_code));
     }
 
     function ensureArray(input) {

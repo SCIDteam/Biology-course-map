@@ -49,6 +49,7 @@ body {
   justify-content: space-between;
   padding: 14px 12px 10px;
   border-bottom: 1px solid #ddd;
+  background-color: #0055B7;
   flex-shrink: 0;
   overflow: hidden;
 }
@@ -72,7 +73,7 @@ body {
 
 #sidebar-toggle {
   flex-shrink: 0;
-  background: none;
+  background: #cf5e0e;
   border: 1px solid #ccc;
   border-radius: 6px;
   padding: 4px 8px;
@@ -90,7 +91,7 @@ body {
 /* Title styling */
 #sidebar h2 {
   font-size: 1.2em;
-  color: #333;
+  color: #FFFFFF;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -344,7 +345,7 @@ body {
 #resetButton {
     padding: 10px 15px;
     font-size: 16px;
-    background-color: #007BFF;
+    background-color: #0077C8; /* Blue background  */
     color: white;
     border: none;
     border-radius: 5px;
@@ -354,7 +355,7 @@ body {
 }
 
 #resetButton:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+    background-color: #0055B7; /* Darker shade on hover */
     transform: translateY(-1px); /* Slight scale effect on hover */
 }
 
@@ -390,7 +391,7 @@ body {
 /* Style for the search button */
 #searchButton {
   padding: 10px 20px; /* Add padding */
-  background-color: #007bff; /* Bootstrap primary color */
+  background-color: #0077C8; /* Bootstrap primary color */
   color: white; /* Text color */
   border: none; /* Remove default border */
   border-radius: 4px; /* Rounded corners */
@@ -401,7 +402,7 @@ body {
 
 /* Change button background color on hover */
 #searchButton:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #0055B7; /* Darker blue on hover */
   transform: translateY(-1px); /* Slight lift effect */
 }
 
@@ -523,12 +524,24 @@ body {
 }
 
 .section-label {
-  font-size: 0.75em;
   font-weight: 700;
-  color: #999;
   text-transform: uppercase;
   letter-spacing: 0.07em;
   margin: 0 0 12px 0;
+}
+/* 2. ISOLATE THE TITLES INSIDE THE BLUE HEADERS (White Text) */
+#right-panel-header .section-label,
+#sidebar-header h2 {
+  font-size: 1.0em;
+  color: #FFFFFF; 
+}
+
+/* 3. ISOLATE THE TITLES INSIDE THE CONTENT LIGHT SECTIONS (Dark Text) */
+#sidebar-filters .section-label,
+#legend h3 {
+  font-size: 0.85em;
+  color: #333; 
+  margin-top: 4px;
 }
 
 #course-info-placeholder {
@@ -782,6 +795,7 @@ body {
 
 #right-panel-header {
   padding: 16px 15px 10px;
+  background-color: #0055B7;
   border-bottom: 1px solid #ddd;
   flex-shrink: 0;
 }

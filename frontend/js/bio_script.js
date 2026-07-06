@@ -386,8 +386,23 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
         });
         const ringLevels = Object.keys(byLevel).map(Number).sort((a, b) => a - b);
 
+        // ── Bulls-eye layout tuning constants ──────────────────────────────────
+        const BE_FONT_SIZE     = 14;   // px — node label font size
+        const BE_PAD_X         = 8;    // px per side — horizontal pill padding
+        const BE_PAD_Y         = 4;    // px per side — vertical pill padding
+        const BE_NODE_GAP      = 14;   // px — minimum gap between adjacent pills on a ring
+        const BE_SUBBAND_DELTA = 20;   // px — radial ± offset when splitting into sub-bands
+        const BE_CHAR_WIDTH    = 7.8;  // px — approximate char width at BE_FONT_SIZE (sans-serif)
+        const BE_MIN_PILL_W    = 72;   // px — floor for computed pill width
+        // ────────────────────────────────────────────────────────────────────
+
+        // Pill dimensions derived from constants and actual label lengths
+        const maxLabelLen = Math.max(...nodeData.map(n => n.id.length), 0);
+        const nodeW = Math.max(maxLabelLen * BE_CHAR_WIDTH + 2 * BE_PAD_X, BE_MIN_PILL_W);
+        const nodeH = BE_FONT_SIZE + 2 * BE_PAD_Y;
+
         // Compute ring radii: each ring large enough to hold its nodes without crowding
-        const minArcSpacing = 110;
+        const minArcSpacing = 72;
         const minRingGap    = 130;
         const radii = {};
         let prevR = 80;
@@ -398,14 +413,19 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
             prevR = radii[level];
         });
 
-        // Compute (x, y) for each node, centered at origin
+        // Compute (x, y) for each node — split into two sub-bands when pills
+        // would crowd at the computed radius, otherwise keep a single band.
         const positions = {};
         ringLevels.forEach(level => {
             const ring = byLevel[level];
-            const r = radii[level];
+            const r    = radii[level];
+            const needsSplit = ring.length * (nodeW + BE_NODE_GAP) > 2 * Math.PI * r;
             ring.forEach((node, i) => {
                 const angle = (2 * Math.PI * i / ring.length) - Math.PI / 2;
-                positions[node.id] = { x: r * Math.cos(angle), y: r * Math.sin(angle) };
+                const nodeR = needsSplit
+                    ? (i % 2 === 0 ? r + BE_SUBBAND_DELTA : r - BE_SUBBAND_DELTA)
+                    : r;
+                positions[node.id] = { x: nodeR * Math.cos(angle), y: nodeR * Math.sin(angle) };
             });
         });
 
@@ -439,9 +459,7 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
             .attr("r", 5)
             .attr("fill", "#d0d0d0");
 
-        // Draw nodes as rounded rects matching the tree style
-        const nodeW = 90, nodeH = 28;
-
+        // Draw nodes as rounded rects — nodeW and nodeH computed from BE_* constants above
         const nodeGroups = inner.selectAll("g.bulls-node")
             .data(nodeData)
             .enter()
@@ -457,13 +475,13 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
         nodeGroups.append("rect")
             .attr("x", -nodeW / 2).attr("y", -nodeH / 2)
             .attr("width", nodeW).attr("height", nodeH)
-            .attr("rx", 14).attr("ry", 14)
+            .attr("rx", nodeH / 2).attr("ry", nodeH / 2)
             .attr("fill", d => filteredCourseIds.includes(d.id) ? "#EEDFCC" : "#fff")
             .attr("stroke", "#272727").attr("stroke-width", 1);
 
         nodeGroups.append("text")
             .attr("text-anchor", "middle").attr("dy", "0.35em")
-            .style("font-size", "11px")
+            .style("font-size", BE_FONT_SIZE + "px")
             .style("pointer-events", "none")
             .text(d => d.id);
 
@@ -489,7 +507,7 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
 
         svg.call(zoom.transform, d3.zoomIdentity
             .translate(svgW / 2, svgH / 2)
-            .scale(0.55)
+            .scale(0.65)
         );
 
         const downstreamMap = buildDownstreamMap(coursesData);

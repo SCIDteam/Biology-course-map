@@ -57,13 +57,22 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
     let _zoom = null;
     let _lastMaxR = 200;
 
+    // Layout pipeline config — layoutMode: "themeClustered" (default) or "levelOnly".
+    // Exposed as window.setBullsEyeLayoutMode(mode) so the two configurations can be
+    // compared during testing without touching the sidebar UI.
+    const bullsEyeConfig = Object.assign({}, BullsEyeLayout.DEFAULT_CONFIG);
+    window.setBullsEyeLayoutMode = function(mode) {
+        bullsEyeConfig.layoutMode = mode === "levelOnly" ? "levelOnly" : "themeClustered";
+        updateGraph(selectedCategories, selectedThemes, selectedLevel);
+    };
+
     function recenterMap() {
         if (!_zoom) return;
         adjustSVGSize();
         const svgEl = document.getElementById("mySVG");
         const svgW  = svgEl.clientWidth;
         const svgH  = svgEl.clientHeight;
-        const fitScale = Math.min(svgW, svgH) / (2 * _lastMaxR + 800) * 0.9;
+        const fitScale = Math.min(svgW, svgH) / (2 * _lastMaxR + 70) * 0.9;
         d3.select("#mySVG").call(_zoom.transform, d3.zoomIdentity
             .translate(svgW / 2, svgH / 2)
             .scale(fitScale)
@@ -233,88 +242,59 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
     }
 
     // ── Bull's Eye layout (radial, no edge arrows) ────────────────────────────
+    // Stage A+B+C (normalize → group → compute positions) run entirely inside
+    // BullsEyeLayout.computeBullsEyeLayout. This function is Stage D: it only
+    // draws boundary lines, optional track fills, labels, and wires interactions.
     function renderBullsEyeLayout(filteredCourseIds) {
         d3.select("#initialMessage").style("display", "none");
 
-        // Map each node to its course level
-        const nodeData = g.nodes().map(id => {
-            const course = coursesData.find(c => c.course_code === id);
-            return { id, level: course ? course.level : 1 };
-        });
+        const cfg = bullsEyeConfig;
 
-        // Group by level
-        const byLevel = {};
-        nodeData.forEach(n => {
-            if (!byLevel[n.level]) byLevel[n.level] = [];
-            byLevel[n.level].push(n);
-        });
-        const ringLevels = Object.keys(byLevel).map(Number).sort((a, b) => a - b);
+        // Only lay out courses that are actually present as nodes in the graph
+        const nodeIds = new Set(g.nodes());
+        const coursesForLayout = coursesData.filter(c => nodeIds.has(c.course_code));
 
-        // ── Bulls-eye layout tuning constants ──────────────────────────────────
-        const BE_FONT_SIZE     = 14;   // px — node label font size
-        const BE_PAD_X         = 8;    // px per side — horizontal pill padding
-        const BE_PAD_Y         = 4;    // px per side — vertical pill padding
-        const BE_NODE_GAP      = 14;   // px — minimum gap between adjacent pills on a ring
-        const BE_SUBBAND_DELTA = 20;   // px — radial ± offset when splitting into sub-bands
-        const BE_CHAR_WIDTH    = 7.8;  // px — approximate char width at BE_FONT_SIZE (sans-serif)
-        const BE_MIN_PILL_W    = 72;   // px — floor for computed pill width
-        // ────────────────────────────────────────────────────────────────────
+        const normalizedNodes = BullsEyeLayout.normalizeCourses(coursesForLayout);
+        const layout = BullsEyeLayout.computeBullsEyeLayout(normalizedNodes, cfg);
+        const bands  = layout.bands;
 
-        // Pill dimensions derived from constants and actual label lengths
-        const maxLabelLen = Math.max(...nodeData.map(n => n.id.length), 0);
-        const nodeW = Math.max(maxLabelLen * BE_CHAR_WIDTH + 2 * BE_PAD_X, BE_MIN_PILL_W);
-        const nodeH = BE_FONT_SIZE + 2 * BE_PAD_Y;
-
-        // Compute ring radii: each ring large enough to hold its nodes without crowding
-        const minArcSpacing = 72;
-        const minRingGap    = 130;
-        const radii = {};
-        let prevR = 80;
-        ringLevels.forEach(level => {
-            const n = byLevel[level].length;
-            const rByNodes = (n * minArcSpacing) / (2 * Math.PI);
-            radii[level] = Math.max(rByNodes, prevR + minRingGap);
-            prevR = radii[level];
-        });
-
-        // Compute (x, y) for each node — split into two sub-bands when pills
-        // would crowd at the computed radius, otherwise keep a single band.
-        const positions = {};
-        ringLevels.forEach(level => {
-            const ring = byLevel[level];
-            const r    = radii[level];
-            const needsSplit = ring.length * (nodeW + BE_NODE_GAP) > 2 * Math.PI * r;
-            ring.forEach((node, i) => {
-                const angle = (2 * Math.PI * i / ring.length) - Math.PI / 2;
-                const nodeR = needsSplit
-                    ? (i % 2 === 0 ? r + BE_SUBBAND_DELTA : r - BE_SUBBAND_DELTA)
-                    : r;
-                positions[node.id] = { x: nodeR * Math.cos(angle), y: nodeR * Math.sin(angle) };
-            });
-        });
+        const nodeData = layout; // { id, x, y, level, primaryTheme, laneIndex, angle, radius }
 
         const inner = svg.append("g");
 
-        // Ring guide circles + level labels
-        ringLevels.sort((a, b) => b - a).forEach((level, idx) => {
+        // ── Boundary lines + optional light track fills ────────────────────────
+        // Painted outermost-first so each band's fill only covers its own annulus.
+        bands.slice().reverse().forEach((band, idx) => {
             inner.append("circle")
                 .attr("cx", 0).attr("cy", 0)
-                .attr("r", radii[level])
+                .attr("r", band.outerRadius)
                 .attr("fill", idx % 2 === 0 ? "#eef0f2" : "#ffffff")
                 .attr("stroke", "#423e3e")
                 .attr("stroke-width", 3)
                 .attr("stroke-dasharray", "5,4");
-
         });
-        ringLevels.forEach(level => {
+        // Explicit boundary for the innermost band's inner edge (the true center hole)
+        if (bands.length > 0) {
+            inner.append("circle")
+                .attr("cx", 0).attr("cy", 0)
+                .attr("r", bands[0].innerRadius)
+                .attr("fill", "none")
+                .attr("stroke", "#423e3e")
+                .attr("stroke-width", 3)
+                .attr("stroke-dasharray", "5,4");
+        }
+
+        // Level labels
+        bands.forEach(band => {
+            const labelText = band.level === "Unassigned" ? "Unassigned" : `${band.level * 100} Level`;
             inner.append("text")
-                .attr("x", 0).attr("y", -radii[level] + 50)
+                .attr("x", 0).attr("y", -band.outerRadius + 23)
                 .attr("text-anchor", "middle")
                 .style("font-size", "22px")
                 .style("font-weight", "bold")
                 .style("fill", "#0e4bbd")
                 .style("pointer-events", "none")
-                .text(`${level * 100} Level`);
+                .text(labelText);
         });
 
         // Center dot
@@ -323,30 +303,28 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
             .attr("r", 5)
             .attr("fill", "#d0d0d0");
 
-        // Draw nodes as rounded rects — nodeW and nodeH computed from BE_* constants above
+        // Draw nodes as rounded rects — pure rendering, positions come from the layout array
         const nodeGroups = inner.selectAll("g.bulls-node")
             .data(nodeData)
             .enter()
             .append("g")
             .attr("class", "bulls-node")
             .attr("id", d => d.id)
-            .attr("transform", d => {
-                const p = positions[d.id];
-                return `translate(${p.x},${p.y})`;
-            })
+            .attr("transform", d => `translate(${d.x},${d.y})`)
             .style("cursor", "pointer")
             .style("opacity", d => filteredCourseIds.includes(d.id) ? 1.0 : 0.45);
 
         nodeGroups.append("rect")
-            .attr("x", -nodeW / 2).attr("y", -nodeH / 2)
-            .attr("width", nodeW).attr("height", nodeH)
-            .attr("rx", nodeH / 2).attr("ry", nodeH / 2)
+            .attr("x", -cfg.nodeW / 2).attr("y", -cfg.nodeH / 2)
+            .attr("width", cfg.nodeW).attr("height", cfg.nodeH)
+            .attr("rx", cfg.rx).attr("ry", cfg.ry)
             .attr("fill", d => filteredCourseIds.includes(d.id) ? "#EEDFCC" : "#fff")
             .attr("stroke", "#272727").attr("stroke-width", 1);
 
         nodeGroups.append("text")
             .attr("text-anchor", "middle").attr("dy", "0.35em")
-            .style("font-size", BE_FONT_SIZE + "px")
+            .style("font-size", cfg.fontSize + "px")
+            .style("font-weight", cfg.fontWeight)
             .style("pointer-events", "none")
             .text(d => d.id);
 
@@ -367,9 +345,9 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
         const svgBounds = svg.node().getBoundingClientRect();
         const svgW = svgBounds.width;
         const svgH = svgBounds.height;
-        const maxR = ringLevels.length > 0 ? radii[ringLevels[ringLevels.length - 1]] : 200;
+        const maxR = bands.length > 0 ? bands[bands.length - 1].outerRadius : 200;
         _lastMaxR  = maxR;
-        const fitScale = Math.min(svgW, svgH) / (2 * maxR + 800) * 0.9;
+        const fitScale = Math.min(svgW, svgH) / (2 * maxR + 70) * 0.9;
 
         svg.call(zoom.transform, d3.zoomIdentity
             .translate(svgW / 2, svgH / 2)

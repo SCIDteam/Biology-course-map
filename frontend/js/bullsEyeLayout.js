@@ -11,12 +11,12 @@
     ];
 
     const DEFAULT_CONFIG = {
-        nodeW: 85,
+        nodeW: 80,
         nodeH: 32,
-        fontSize: 14,
+        fontSize: 15,
         fontWeight: 650,
-        rx: 16,
-        ry: 16,
+        rx: 18,
+        ry: 18,
         laneGap: 8,
         bandPadding: 10,
         interBandGap: 12,
@@ -25,6 +25,16 @@
         baseInnerRadius: 50,
         minNodeArcGap: 14,
         maxLanesPerLevel: 4,
+        collisionPadding: 4,
+        collisionPasses: 12,
+        collisionShiftDeg: 1.2,
+        collisionMaxShiftDeg: 8,
+        levelBandExtra: {
+            1: 0,
+            2: 22,
+            3: 40,
+            4: 50
+        },
         priorityThemes: PRIORITY_THEMES
     };
 
@@ -125,6 +135,81 @@
     // then positions every node. Returns an array of coordinates; per-level band
     // metadata is attached as a non-enumerable-contract-breaking `.bands` prop
     // so Stage D can draw boundary lines without recomputing any geometry.
+    function nodeRect(node, cfg) {
+        const pad = cfg.collisionPadding || 0;
+
+        return {
+            left: node.x - cfg.nodeW / 2 - pad,
+            right: node.x + cfg.nodeW / 2 + pad,
+            top: node.y - cfg.nodeH / 2 - pad,
+            bottom: node.y + cfg.nodeH / 2 + pad
+        };
+    }
+
+    function boxesOverlap(a, b) {
+        return (
+            a.left < b.right &&
+            a.right > b.left &&
+            a.top < b.bottom &&
+            a.bottom > b.top
+        );
+    }
+
+    function applyAngleShift(node, shiftDeg) {
+        const shiftRad = shiftDeg * Math.PI / 180;
+
+        node.angle += shiftRad;
+        node.x = node.radius * Math.cos(node.angle);
+        node.y = node.radius * Math.sin(node.angle);
+    }
+
+    function resolveSmallOverlaps(nodes, cfg) {
+        const originalAngles = new Map();
+
+        nodes.forEach(node => {
+            originalAngles.set(node.id, node.angle);
+        });
+
+        for (let pass = 0; pass < cfg.collisionPasses; pass++) {
+            let moved = false;
+
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const a = nodes[i];
+                    const b = nodes[j];
+
+                    const rectA = nodeRect(a, cfg);
+                    const rectB = nodeRect(b, cfg);
+
+                    if (!boxesOverlap(rectA, rectB)) continue;
+
+                    const aOriginal = originalAngles.get(a.id);
+                    const bOriginal = originalAngles.get(b.id);
+
+                    const aCurrentShift = (a.angle - aOriginal) * 180 / Math.PI;
+                    const bCurrentShift = (b.angle - bOriginal) * 180 / Math.PI;
+
+                    const direction = a.angle <= b.angle ? 1 : -1;
+
+                    if (Math.abs(aCurrentShift) < cfg.collisionMaxShiftDeg) {
+                        applyAngleShift(a, -direction * cfg.collisionShiftDeg);
+                        moved = true;
+                    }
+
+                    if (Math.abs(bCurrentShift) < cfg.collisionMaxShiftDeg) {
+                        applyAngleShift(b, direction * cfg.collisionShiftDeg);
+                        moved = true;
+                    }
+                }
+            }
+
+            if (!moved) break;
+        }
+
+        return nodes;
+    }
+
+
     function computeBullsEyeLayout(courses, config) {
         const cfg = Object.assign({}, DEFAULT_CONFIG, config || {});
         const levelGroups = groupCoursesByLevelAndTheme(courses);
@@ -159,7 +244,11 @@
             const angularStepDeg = availableDeg / totalNodes;
 
             const bandInner = runningRadius;
-            const { laneCount, bandOuter } = chooseLaneLayout(totalNodes, availableDeg, bandInner, cfg);
+            const laneLayout = chooseLaneLayout(totalNodes, availableDeg, bandInner, cfg);
+
+            const laneCount = laneLayout.laneCount;
+            const extraBandWidth = cfg.levelBandExtra[String(level)] || 0;
+            const bandOuter = laneLayout.bandOuter + extraBandWidth;
 
             let cursorDeg = -90; // start at top, sweep clockwise
             let globalIndex = 0; // runs across cluster boundaries so lanes stay evenly balanced
@@ -187,6 +276,7 @@
             bands.push({ level, innerRadius: bandInner, outerRadius: bandOuter, laneCount });
             runningRadius = bandOuter + cfg.interBandGap;
         });
+        resolveSmallOverlaps(results, cfg);
 
         results.bands = bands;
         return results;

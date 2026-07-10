@@ -347,7 +347,7 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
         const svgH = svgBounds.height;
         const maxR = bands.length > 0 ? bands[bands.length - 1].outerRadius : 200;
         _lastMaxR  = maxR;
-        const fitScale = Math.min(svgW, svgH) / (2 * maxR + 20) * 0.9;
+        const fitScale = Math.min(svgW, svgH) / (2 * maxR + 10) * 0.9;
 
         svg.call(zoom.transform, d3.zoomIdentity
             .translate(svgW / 2, svgH / 2)

@@ -11,12 +11,12 @@
     ];
 
     const DEFAULT_CONFIG = {
-        nodeW: 80,
-        nodeH: 32,
-        fontSize: 15,
-        fontWeight: 650,
-        rx: 18,
-        ry: 18,
+        nodeW: 78,
+        nodeH: 30,
+        fontSize: 14,
+        fontWeight: 600,
+        rx: 20,
+        ry: 20,
         laneGap: 8,
         bandPadding: 10,
         interBandGap: 12,

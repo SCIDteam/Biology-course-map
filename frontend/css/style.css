@@ -30,8 +30,7 @@ body {
 }
 
 /* Titles inside the content light sections (dark text) */
-#sidebar-filters .section-label,
-#legend h3 {
+#sidebar-filters .section-label {
   font-size: 0.85em;
   color: #333;
   margin-top: 4px;
@@ -43,10 +42,10 @@ body {
 
 #sidebar-toggle {
   flex-shrink: 0;
-  background: #cf5e0e;
-  border: 1px solid #ccc;
+  background: #F97316;
+  border: 2px solid #ccc;
   border-radius: 6px;
-  padding: 3px 7px;
+  padding: 5px 7px;
   cursor: pointer;
   font-size: 16px;
   line-height: 1;
@@ -55,7 +54,7 @@ body {
 }
 
 #sidebar-toggle:hover {
-  background: #F97316;
+  background: #cf5e0e; 
 }
 
 /* Integrated search box: solid pill wrapper around the text input and
@@ -331,40 +330,6 @@ body {
   border-radius: 2px;
 }
 
-/* ── Legend ─────── */
-#legend {
-  margin-top: 4px;
-  padding: 12px 0 8px;
-  border-top: 1px solid #ddd;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-#legend h3 {
-  margin: 0 0 4px 0;
-  font-size: 0.75em;
-  font-weight: 700;
-  color: #4e4d4d;
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.legend-item svg {
-  flex-shrink: 0;
-}
-
-.legend-item span {
-  font-size: 0.78em;
-  color: #555;
-}
-
 /* ============================================================
    SECTION 4: CENTER CANVAS PANEL (MAIN MAP VIEWPORT & TOOLTIPS)
    ============================================================ */
@@ -393,6 +358,79 @@ body {
 .tooltip .title {
   font-weight: bold;
   font-size: 14px;
+}
+
+/* Floating legend overlay, upper-right corner of the map panel */
+#floating-legend {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+  min-width: 160px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+#legend-toggle-btn {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 10px 12px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.legend-title {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #64748b;
+}
+
+.legend-chevron {
+  font-size: 10px;
+  color: #64748b;
+}
+
+.legend-content-wrapper {
+  max-height: 200px;
+  transition: max-height 0.25s ease-in-out;
+  overflow: hidden;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+#floating-legend.collapsed .legend-content-wrapper {
+  max-height: 0px;
+}
+
+.legend-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.legend-item svg {
+  flex-shrink: 0;
+}
+
+.legend-item span {
+  font-size: 0.78em;
+  color: #555;
 }
 
 /* ============================================================

@@ -53,7 +53,7 @@
                     <label for="keywordInput">Filter by Search Term:</label>
                     <div class="search-box-wrapper">
                         <input type="text" id="keywordInput" placeholder=" Search..." />
-                        <button id="searchIconButton" title="Search" aria-label="Search">&#128269;</button>
+                        <button id="searchIconButton" title="Search" aria-label="Search">&#128269;&#65038;</button>
                     </div>
                     <div id="searchWarning" class="search-warning"></div>
                 </div>
@@ -66,27 +66,6 @@
             <section class="sidebar-section">
                 <button id="resetButton">Reset Graph</button>
             </section>
-
-            <!-- Legend embedded at bottom of filter panel, vertical -->
-            <div id="legend">
-                <h3>Legend</h3>
-                <div class="legend-item">
-                    <svg width="50" height="20"><rect x="0" y="4" width="30" height="10" fill="#EEDFCC" /></svg>
-                    <span>Filtered courses</span>
-                </div>
-                <div class="legend-item">
-                    <svg width="50" height="20"><rect x="0" y="4" width="30" height="10" fill="cyan" /></svg>
-                    <span>Prerequisites</span>
-                </div>
-                <div class="legend-item">
-                    <svg width="50" height="20"><rect x="0" y="4" width="30" height="10" fill="coral" /></svg>
-                    <span>Corequisites</span>
-                </div>
-                <div class="legend-item">
-                    <svg width="50" height="20"><rect x="0" y="4" width="30" height="10" fill="#90EE90" /></svg>
-                    <span>Dependent courses</span>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -111,6 +90,34 @@
                 </filter>
             </defs>
         </svg>
+
+        <!-- Floating legend overlay, upper-right corner of the map panel -->
+        <div id="floating-legend" class="expanded">
+            <button id="legend-toggle-btn">
+                <span class="legend-title">Legend</span>
+                <span class="legend-chevron">▲</span>
+            </button>
+            <div class="legend-content-wrapper">
+                <div class="legend-content">
+                    <div class="legend-item">
+                        <svg width="50" height="20"><rect x="0" y="4" width="30" height="10" fill="#EEDFCC" /></svg>
+                        <span>Filtered courses</span>
+                    </div>
+                    <div class="legend-item">
+                        <svg width="50" height="20"><rect x="0" y="4" width="30" height="10" fill="cyan" /></svg>
+                        <span>Prerequisites</span>
+                    </div>
+                    <div class="legend-item">
+                        <svg width="50" height="20"><rect x="0" y="4" width="30" height="10" fill="coral" /></svg>
+                        <span>Corequisites</span>
+                    </div>
+                    <div class="legend-item">
+                        <svg width="50" height="20"><rect x="0" y="4" width="30" height="10" fill="#90EE90" /></svg>
+                        <span>Dependent courses</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- ── Right panel: course information ──────────────────────────────── -->

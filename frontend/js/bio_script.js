@@ -844,4 +844,23 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
         svg.call(_zoom.transform, d3.zoomIdentity.translate(current.x, current.y).scale(k));
     });
 
+    // ── Floating legend toggle & auto-collapse ─────────────────────────────────
+    let userInteractedWithLegend = false;
+
+    document.getElementById("legend-toggle-btn").addEventListener('click', function() {
+        userInteractedWithLegend = true;
+        const legend = document.getElementById("floating-legend");
+        legend.classList.toggle("collapsed");
+        const chevron = legend.querySelector(".legend-chevron");
+        chevron.textContent = legend.classList.contains("collapsed") ? "▼" : "▲";
+    });
+
+    setTimeout(() => {
+        if (!userInteractedWithLegend) {
+            const legend = document.getElementById("floating-legend");
+            legend.classList.add("collapsed");
+            legend.querySelector(".legend-chevron").textContent = "▼";
+        }
+    }, 4000);
+
 }).catch(error => console.error('Error loading the JSON:', error));

@@ -410,9 +410,9 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
             const course = coursesData.find(c => c.course_code === d.id);
             if (!course) return;
             tooltip.transition().duration(10).style("opacity", 0);
+            resetBullsEyeHighlight();
             if (frozenCourseId === d.id) {
                 frozenCourseId = null;
-                resetBullsEyeHighlight();
                 clearCourseInfoSidebar();
             } else {
                 frozenCourseId = d.id;
@@ -458,6 +458,7 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
         _selectCourse = function(courseCode) {
             const course = coursesData.find(c => c.course_code === courseCode);
             if (!course) return;
+            resetBullsEyeHighlight();
             frozenCourseId = courseCode;
             applyBullsEyeHighlight(courseCode);
             showCourseInfoInSidebar(course, downstreamMap, filteredCourseIds);

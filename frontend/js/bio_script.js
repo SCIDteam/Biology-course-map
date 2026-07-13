@@ -9,6 +9,17 @@ function adjustSVGSize() {
     svg.setAttribute("height", mainHeight);
 }
 
+function getLevenshteinDistance(a, b) {
+    const matrix = Array.from({ length: a.length + 1 }, (_, i) => [i]);
+    for (let j = 1; j <= b.length; j++) matrix[0][j] = j;
+    for (let i = 1; i <= a.length; i++) {
+        for (let j = 1; j <= b.length; j++) {
+            matrix[i][j] = a[i-1] === b[j-1] ? matrix[i-1][j-1] : Math.min(matrix[i-1][j-1] + 1, matrix[i][j-1] + 1, matrix[i-1][j] + 1);
+        }
+    }
+    return matrix[a.length][b.length];
+}
+
 let _recenterMapFn = null;
 
 window.onload = adjustSVGSize;
@@ -36,6 +47,11 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
     const levels = [...new Set(coursesData.map(course => course.level))]
                     .sort((a, b) => a - b)
                     .map(l => `${l * 100} level`);
+    // Fuzzy-search vocabulary, built once from every course title + description
+    // so the Levenshtein fallback match doesn't rebuild it on each search.
+    const searchVocabulary = [...new Set(coursesData.flatMap(course =>
+        (((course['course title'] || '') + ' ' + (course.description || '')).toLowerCase().match(/\w+/g) || [])
+    ))];
 
     const categoryDropdownButton  = document.getElementById("dropdownButton");
     const categoryDropdownContent = document.getElementById("dropdownContent");
@@ -682,21 +698,87 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
     // ── Keyword search ────────────────────────────────────────────────────────
     function filterCoursesByKeywords(keywords) {
         if (!keywords) return [];
-        const keywordArray = keywords.split(',').map(k => k.trim().toLowerCase());
+        const keywordArray = keywords.split(',').map(k => k.trim().toLowerCase()).filter(Boolean);
         return coursesData.filter(course =>
             keywordArray.some(keyword => course.description.toLowerCase().includes(keyword))
         );
     }
 
-    document.getElementById("searchButton").addEventListener('click', function() {
-        const keywords = document.getElementById("keywordInput").value.trim();
-        if (!keywords) return;
+    // Falls back to the closest Levenshtein-distance match against the
+    // pre-built search vocabulary, when the full phrase matches nothing.
+    function findFallbackMatch(term) {
+        const searchWords = term.split(/\s+/).map(w => w.trim().toLowerCase()).filter(Boolean);
 
-        const filteredCourses = filterCoursesByKeywords(keywords);
+        let bestWord = null;
+        let bestDistance = Infinity;
 
+        searchWords.forEach(searchWord => {
+            searchVocabulary.forEach(vocabWord => {
+                const distance = getLevenshteinDistance(searchWord, vocabWord);
+                const threshold = Math.max(2, Math.floor(vocabWord.length * 0.3));
+                if (distance <= threshold && distance < bestDistance) {
+                    bestDistance = distance;
+                    bestWord = vocabWord;
+                }
+            });
+        });
+
+        if (!bestWord) return null;
+
+        const matches = coursesData.filter(course =>
+            (course['course title'] && course['course title'].toLowerCase().includes(bestWord)) ||
+            (course.description && course.description.toLowerCase().includes(bestWord))
+        );
+
+        return matches.length > 0 ? { word: bestWord, matches } : null;
+    }
+
+    function clearSearchMessages() {
+        const warning = document.getElementById("searchWarning");
+        if (warning) warning.textContent = "";
+    }
+
+    function runKeywordSearch(term) {
+        const filteredCourses = filterCoursesByKeywords(term);
         clearGraph();
         buildGraph(coursesData);
         renderGraph(filteredCourses.map(c => c.course_code));
+        return filteredCourses;
+    }
+
+    function executeSearch() {
+        const keywords = document.getElementById("keywordInput").value.trim();
+        clearSearchMessages();
+        if (!keywords) return;
+
+        const filteredCourses = filterCoursesByKeywords(keywords);
+        if (filteredCourses.length > 0) {
+            runKeywordSearch(keywords);
+            return;
+        }
+
+        const fallback = findFallbackMatch(keywords);
+        if (fallback) {
+            runKeywordSearch(fallback.word);
+            const warning = document.getElementById("searchWarning");
+            if (warning) warning.textContent = `Original term not found. Showing results for ${fallback.word}.`;
+        } else {
+            const warning = document.getElementById("searchWarning");
+            if (warning) warning.textContent = "Search term not found";
+        }
+    }
+
+    document.getElementById("searchIconButton").addEventListener('click', executeSearch);
+
+    document.getElementById("keywordInput").addEventListener('keydown', function(e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            executeSearch();
+        }
+    });
+
+    document.getElementById("keywordInput").addEventListener('input', function() {
+        if (!this.value.trim()) clearSearchMessages();
     });
 
     function showInitialMessage() {
@@ -745,6 +827,7 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
 
         document.getElementById("keywordInput").value = "";
         document.getElementById("dialog").style.display = "none";
+        clearSearchMessages();
 
         updateGraph(selectedCategories, selectedThemes, selectedLevel);
     });

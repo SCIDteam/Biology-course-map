@@ -58,28 +58,46 @@ body {
   background: #F97316;
 }
 
-/* Style for the search button */
-#searchButton {
-  padding: 10px 15px; 
-  background-color: #0077C8; 
-  color: white; /* Text color */
+/* Integrated search box: solid pill wrapper around the text input and
+   the magnifying-glass icon button block on the right */
+.search-box-wrapper {
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  border: 1px solid #CCCCCC;
+  border-radius: 9px; /* Creates the uniform pill wrapper shell */
+  overflow: hidden;
+  width: 100%;
+  height: 36px;
+  box-sizing: border-box;
+}
+
+#keywordInput {
+  flex: 1;
+  border: none !important;
+  background: transparent;
+  padding: 8px 8px;
+  font-size: 14px;
+  outline: none;
+  box-shadow: none !important;
+}
+
+#searchIconButton {
+  background-color: #0077C8; /* Solid block color on the right side */
+  color: #FFFFFF;
   border: none;
-  border-radius: 7px;
-  font-size: 14px; 
-  cursor: pointer; /* Change cursor to pointer */
-  transition: background-color 0.3s, transform 0.3s;
+  padding: 14px 8px;
+  cursor: pointer;
+  font-size: 15px;
+  height: 110%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
 }
 
-/* Change button background color on hover */
-#searchButton:hover {
+#searchIconButton:hover {
   background-color: #0055B7;
-  transform: translateY(-1px);
-}
-
-/* Change button background color on active */
-#searchButton:active {
-  background-color: #004494; 
-  transform: translateY(0);
 }
 
 #resetButton {
@@ -271,22 +289,18 @@ body {
   margin-top: 10px;
 }
 
-/* Style for the input box */
+/* Spacing below the search pill; border/background/padding/box-shadow
+   are owned by the .search-box-wrapper pill rules in SECTION 2. */
 #keywordInput {
-  width: 90%; 
-  padding: 10px; 
-  border: 1px solid #ccc; /* Light gray border */
-  border-radius: 4px; /* Rounded corners */
-  font-size: 14px; 
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); 
-  transition: border-color 0.3s; 
-  margin-bottom: 10px;
+  margin-bottom: 4px;
 }
 
-/* Change border color on focus */
-#keywordInput:focus {
-  border-color: #007bff; 
-  outline: none; 
+/* Fallback-match warning shown under the search field */
+.search-warning {
+  font-size: 0.78em;
+  color: #b45309;
+  margin-top: 4px;
+  margin-bottom: 8px;
 }
 
 /* Zoom slider control */

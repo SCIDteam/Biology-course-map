@@ -51,8 +51,11 @@
                 </div>
                 <div class="input-container">
                     <label for="keywordInput">Filter by Search Term:</label>
-                    <input type="text" id="keywordInput" placeholder="Enter keywords separated by commas" />
-                    <button id="searchButton">Search</button>
+                    <div class="search-box-wrapper">
+                        <input type="text" id="keywordInput" placeholder=" Search..." />
+                        <button id="searchIconButton" title="Search" aria-label="Search">&#128269;</button>
+                    </div>
+                    <div id="searchWarning" class="search-warning"></div>
                 </div>
                 <div class="zoom-control">
                     <label for="zoomSlider">Zoom: <span id="zoomValue">65%</span></label>

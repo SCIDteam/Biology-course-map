@@ -694,27 +694,8 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
 
         const filteredCourses = filterCoursesByKeywords(keywords);
 
-        g.nodes().forEach(node => g.removeNode(node));
-        g.edges().forEach(edge => g.removeEdge(edge.v, edge.w));
-
-        filteredCourses.forEach(function(course) {
-            g.setNode(course.course_code, { label: course.course_code, id: course.course_code });
-        });
-
-        filteredCourses.forEach(function(course) {
-            course.prerequisites.forEach(function(prereq) {
-                if (filteredCourses.some(c => c.course_code === prereq)) {
-                    g.setEdge(prereq, course.course_code, { label: "", curve: d3.curveBasis, arrowheadStyle: "fill: #000" });
-                }
-            });
-            course.corequisites.forEach(function(coreq) {
-                if (filteredCourses.some(c => c.course_code === coreq)) {
-                    g.setEdge(coreq, course.course_code, { label: "", style: "stroke: coral; stroke-dasharray: 5, 5;", curve: d3.curveBasis, arrowheadStyle: "fill: coral" });
-                }
-            });
-        });
-
-        d3.select("#mySVG g").remove();
+        clearGraph();
+        buildGraph(coursesData);
         renderGraph(filteredCourses.map(c => c.course_code));
     });
 

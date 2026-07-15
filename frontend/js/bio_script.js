@@ -289,7 +289,7 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
             inner.append("circle")
                 .attr("cx", 0).attr("cy", 0)
                 .attr("r", band.outerRadius)
-                .attr("fill", idx % 2 === 0 ? "#F0F9FF" : "#ffffff")
+                .attr("fill", idx % 2 === 0 ? "#F0F9FF" : "#ffffff") /*light blue fill on alternate tracks*/
                 .attr("stroke", "#423e3e")
                 .attr("stroke-width", 3)
                 .attr("stroke-dasharray", "5,4");

@@ -202,6 +202,7 @@ body {
   position: relative;
   display: inline-block;
   width: 100%;
+  margin-bottom: 10px;
 }
 
 .dropdown-toggle {
@@ -221,7 +222,6 @@ body {
   text-align: left;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
   transition: background-color var(--transition-medium), box-shadow var(--transition-medium);
-  margin-bottom: 10px;
 }
 
 .dropdown-toggle::after {
@@ -251,39 +251,70 @@ body {
 .dropdown-panel {
   display: none;
   position: absolute;
+  left: 0;
   background-color: #FFFFFF;
-  border-radius: 8px;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;     /* Softer rounded corners */
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 
+              0 8px 10px -6px rgba(0, 0, 0, 0.1);
   padding: 8px;
-  z-index: 10;
+  z-index: 1000;
   max-height: 200px;
+  max-width: 100%;
+  width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
   border: 1px solid var(--color-sidebar-border);
-  width: 90%;
-  transition: max-height var(--transition-medium), opacity var(--transition-medium);
+  box-sizing: border-box;
   opacity: 0;
+  transform: translateY(4px);
+  transition: transform var(--transition-medium), opacity var(--transition-medium);
 }
 
 .dropdown-panel.show {
   display: block;
   opacity: 1;
+  transform: translateY(0px);
 }
 
 .dropdown-panel label {
-  color: #333333 !important;
-  display: block;
-  padding: 8px 12px;
+  display: flex !important;
+  align-items: center !important;
+  padding: 8px 10px !important;
+  margin-bottom: 2px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #334155 !important;           /* Deep readable slate */
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color var(--transition-base);
+  user-select: none;
+  transition: all 0.15s ease;
 }
 
 .dropdown-panel label:hover {
-  background-color: #f1f1f1;
+  background-color: #F0F9FF !important; /* Soft, luminous ice-blue hover state */
+  color: #0369A1 !important;
 }
 
 .dropdown-panel input[type="checkbox"] {
   margin-right: 8px;
+}
+
+/* 3. Sleek Scrollbar Styling */
+.dropdown-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dropdown-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dropdown-panel::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 10px;
+}
+
+.dropdown-panel::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
 }
 
 /* Integrated Pill Search Field */
@@ -460,9 +491,10 @@ body {
 .legend-chevron {
   font-size: 10px;
   color: inherit;
-  display: inline-block;                                
+  display: inline-block;
   transition: transform var(--transition-medium);
-  transform: rotate(180deg); /* Default state: pointing upwards */
+  transform: rotate(180deg);
+  /* Default state: pointing upwards */
 }
 
 .legend-content-wrapper {
@@ -476,8 +508,10 @@ body {
   max-height: 0;
   border-top-color: transparent;
 }
+
 #floating-legend.collapsed .legend-chevron {
-  transform: rotate(0deg); /* Rotates the chevron back to point DOWN when collapsed */
+  transform: rotate(0deg);
+  /* Rotates the chevron back to point DOWN when collapsed */
 }
 
 .legend-content {

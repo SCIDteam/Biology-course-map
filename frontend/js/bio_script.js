@@ -289,7 +289,7 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
             inner.append("circle")
                 .attr("cx", 0).attr("cy", 0)
                 .attr("r", band.outerRadius)
-                .attr("fill", idx % 2 === 0 ? "#eef0f2" : "#ffffff")
+                .attr("fill", idx % 2 === 0 ? "#F0F9FF" : "#ffffff")
                 .attr("stroke", "#423e3e")
                 .attr("stroke-width", 3)
                 .attr("stroke-dasharray", "5,4");
@@ -391,7 +391,7 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
                 .style("font-weight", "bold");
 
             collectUpstreamEdges(courseCode, coursesData).forEach(({ from, type }) => {
-                const color = type === 'corequisite' ? 'coral' : 'cyan';
+                const color = type === 'corequisite' ? '#FFAB00' : 'cyan';
                 inner.select(`g.bulls-node[id="${from}"]`).style("opacity", 1);
                 inner.select(`g.bulls-node[id="${from}"]`).select("rect").attr("fill", color);
                 inner.select(`g.bulls-node[id="${from}"]`).select("text").style("font-weight", "bold");

@@ -182,7 +182,7 @@ body {
 /* Sidebar Hamburger Toggle Accent */
 #sidebar-toggle {
   flex-shrink: 0;
-  background: #fcb900;
+  background: #FFAB00;
   border: 2px solid var(--color-sidebar-border);
   border-radius: 6px;
   padding: 5px 7px;
@@ -656,7 +656,7 @@ body {
 
 .ci-course-card:hover {
   background: #ebebeb;
-  border-left-width: 8px;
+  border-left-width: 7px;
 }
 
 .ci-card-prereq {

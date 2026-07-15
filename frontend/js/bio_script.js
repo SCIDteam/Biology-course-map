@@ -184,30 +184,6 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
     });
     levelsDropdownButton.textContent = `Level: ${selectedLevel.length} selected`;
 
-    // ── Dropdown toggle / outside-click close ─────────────────────────────────
-    categoryDropdownButton.addEventListener('click', function() {
-        categoryDropdownContent.classList.toggle("show");
-    });
-    themesDropdownButton.addEventListener('click', function() {
-        themesDropdownContent.classList.toggle("show");
-    });
-    levelsDropdownButton.addEventListener('click', function() {
-        levelsDropdownContent.classList.toggle("show");
-    });
-
-    document.addEventListener('click', function(event) {
-        if (!categoryDropdownButton.contains(event.target) && !categoryDropdownContent.contains(event.target))
-            categoryDropdownContent.classList.remove("show");
-    });
-    document.addEventListener('click', function(event) {
-        if (!themesDropdownButton.contains(event.target) && !themesDropdownContent.contains(event.target))
-            themesDropdownContent.classList.remove("show");
-    });
-    document.addEventListener('click', function(event) {
-        if (!levelsDropdownButton.contains(event.target) && !levelsDropdownContent.contains(event.target))
-            levelsDropdownContent.classList.remove("show");
-    });
-
     // ── Component filter ──────────────────────────────────────────────────────
     ['Lecture', 'Labs', 'Tutorials'].forEach(component => {
         const label = document.createElement("label");
@@ -232,14 +208,43 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
         componentsDropdownContent.appendChild(label);
     });
 
+    // ── Dropdown toggle / outside-click close with active chevron states ──────
+    categoryDropdownButton.addEventListener('click', function() {
+        const isOpen = categoryDropdownContent.classList.toggle("show");
+        categoryDropdownButton.classList.toggle("active", isOpen);
+    });
+    themesDropdownButton.addEventListener('click', function() {
+        const isOpen = themesDropdownContent.classList.toggle("show");
+        themesDropdownButton.classList.toggle("active", isOpen);
+    });
+    levelsDropdownButton.addEventListener('click', function() {
+        const isOpen = levelsDropdownContent.classList.toggle("show");
+        levelsDropdownButton.classList.toggle("active", isOpen);
+    });
     componentsDropdownButton.addEventListener('click', function() {
-        componentsDropdownContent.classList.toggle("show");
+        const isOpen = componentsDropdownContent.classList.toggle("show");
+        componentsDropdownButton.classList.toggle("active", isOpen);
     });
 
     document.addEventListener('click', function(event) {
-        if (!componentsDropdownButton.contains(event.target) && !componentsDropdownContent.contains(event.target))
+        if (!categoryDropdownButton.contains(event.target) && !categoryDropdownContent.contains(event.target)) {
+            categoryDropdownContent.classList.remove("show");
+            categoryDropdownButton.classList.remove("active");
+        }
+        if (!themesDropdownButton.contains(event.target) && !themesDropdownContent.contains(event.target)) {
+            themesDropdownContent.classList.remove("show");
+            themesDropdownButton.classList.remove("active");
+        }
+        if (!levelsDropdownButton.contains(event.target) && !levelsDropdownContent.contains(event.target)) {
+            levelsDropdownContent.classList.remove("show");
+            levelsDropdownButton.classList.remove("active");
+        }
+        if (!componentsDropdownButton.contains(event.target) && !componentsDropdownContent.contains(event.target)) {
             componentsDropdownContent.classList.remove("show");
+            componentsDropdownButton.classList.remove("active");
+        }
     });
+
 
     // ── Graph setup ───────────────────────────────────────────────────────────
     var g = new dagreD3.graphlib.Graph().setGraph({
@@ -852,15 +857,12 @@ d3.json('frontend/data/bio_courses_tag.json').then(coursesData => {
         userInteractedWithLegend = true;
         const legend = document.getElementById("floating-legend");
         legend.classList.toggle("collapsed");
-        const chevron = legend.querySelector(".legend-chevron");
-        chevron.textContent = legend.classList.contains("collapsed") ? "▼" : "▲";
     });
 
     setTimeout(() => {
         if (!userInteractedWithLegend) {
             const legend = document.getElementById("floating-legend");
             legend.classList.add("collapsed");
-            legend.querySelector(".legend-chevron").textContent = "▼";
         }
     }, 4000);
 

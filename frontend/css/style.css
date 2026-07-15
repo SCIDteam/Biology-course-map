@@ -6,15 +6,22 @@
   --color-header-bg: #0055B7;
 
   /* Left Panel (Midnight Theme) */
-  --color-sidebar-bg: #0A2540;          /* Deep midnight navy */
-  --color-sidebar-text: #F8FAFC;        /* Off-white for readability */
-  --color-sidebar-muted: #edf0f4;       /* Steel slate-gray for labels #94A3B8*/
-  --color-sidebar-border: #1E293B;      /* Dark navy-slate borders */
+  --color-sidebar-bg: #0A2540;
+  /* Deep midnight navy */
+  --color-sidebar-text: #F8FAFC;
+  /* Off-white for readability */
+  --color-sidebar-muted: #edf0f4;
+  /* Steel slate-gray for labels #94A3B8*/
+  --color-sidebar-border: #1E293B;
+  /* Dark navy-slate borders */
 
   /* Lighter Pale Blue Accents (For Left Panel Buttons & Inputs) */
-  --color-accent-pale: #E0F2FE;         /* Beautiful soft sky-blue */
-  --color-accent-text: #0369A1;         /* Deep blue text for the pale sky buttons */
-  --color-accent-hover: #bae6fd;        /* Hover transition state */
+  --color-accent-pale: #E0F2FE;
+  /* Beautiful soft sky-blue */
+  --color-accent-text: #0369A1;
+  /* Deep blue text for the pale sky buttons */
+  --color-accent-hover: #bae6fd;
+  /* Hover transition state */
 
   /* Right Panel (Neutral Light Theme) */
   --color-right-panel-bg: #F9F9F9;
@@ -28,7 +35,7 @@
   /* Transitions */
   --transition-fast: 0.15s ease;
   --transition-base: 0.2s ease;
-  --transition-medium: 0.3s ease;
+  --transition-medium: 0.4s ease;
   --transition-panel-collapse: width var(--transition-medium), min-width var(--transition-medium);
 }
 
@@ -67,12 +74,14 @@ body {
 /* UNIFIED BLUE HEADERS */
 #sidebar-header,
 #right-panel-header {
-  height: 52px;                 
-  padding: 0 16px;  /* Matching horizontal inner padding */
+  height: 52px;
+  padding: 0 16px;
+  /* Matching horizontal inner padding */
   background-color: var(--color-header-bg);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
-  align-items: center;      /* Perfect vertical alignment */
+  align-items: center;
+  /* Perfect vertical alignment */
   justify-content: space-between;
   box-sizing: border-box;
   flex-shrink: 0;
@@ -84,7 +93,8 @@ body {
   font-size: 1.1em !important;
   font-weight: 700;
   color: #FFFFFF !important;
-  margin: 0 !important;                 /* Strips extra bottom margins */
+  margin: 0 !important;
+  /* Strips extra bottom margins */
   text-transform: uppercase;
   letter-spacing: 0.07em;
   white-space: nowrap;
@@ -139,14 +149,16 @@ body {
 /* Scoped Typography inside Left Panel filters */
 #sidebar-filters .section-label {
   font-size: 0.85em;
-  color: #FFFFFF !important;            /* Pure white headings against deep navy */
+  color: #FFFFFF !important;
+  /* Pure white headings against deep navy */
   margin-top: 4px;
 }
 
 #sidebar label {
   display: block;
   font-size: 0.95em;
-  color: var(--color-sidebar-muted);    /* Soft steel slate for labels */
+  color: var(--color-sidebar-muted);
+  /* Soft steel slate for labels */
   margin-bottom: 8px;
 }
 
@@ -170,7 +182,7 @@ body {
 /* Sidebar Hamburger Toggle Accent */
 #sidebar-toggle {
   flex-shrink: 0;
-  background: #F97316;
+  background: #fcb900;
   border: 2px solid var(--color-sidebar-border);
   border-radius: 6px;
   padding: 5px 7px;
@@ -193,9 +205,13 @@ body {
 }
 
 .dropdown-toggle {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
   padding: 10px 12px;
   background-color: var(--color-accent-pale);
-  color: var(--color-accent-text);     /* Deep blue text on light background */
+  color: var(--color-accent-text);
+  /* Deep blue text on light background */
   border: none;
   border-radius: 8px;
   font-size: 14px;
@@ -206,6 +222,25 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
   transition: background-color var(--transition-medium), box-shadow var(--transition-medium);
   margin-bottom: 10px;
+}
+
+.dropdown-toggle::after {
+  content: "▼";
+  /* Modern, clean downward arrow icon */
+  font-size: 10px;
+  color: inherit;
+  transition: transform var(--transition-medium);
+  /* Smooth transition speed */
+  transform: rotate(0deg);
+  display: inline-block;
+  pointer-events: none;
+  /* Click pass-through */
+  margin-left: 8px;
+}
+
+.dropdown-toggle.active::after {
+  transform: rotate(180deg);
+  /* Rotates arrow cleanly pointing upwards */
 }
 
 .dropdown-toggle:hover {
@@ -236,7 +271,8 @@ body {
 }
 
 .dropdown-panel label {
-  color: #333333 !important;            /* Force dark text inside dropdown overlay list */
+  color: #333333 !important;
+  /* Force dark text inside dropdown overlay list */
   display: block;
   padding: 8px 12px;
   cursor: pointer;
@@ -257,7 +293,8 @@ body {
   align-items: stretch;
   background: var(--color-accent-pale);
   border: 1px solid var(--color-sidebar-border);
-  border-radius: 24px;                  /* Clean pill design */
+  border-radius: 24px;
+  /* Clean pill design */
   overflow: hidden;
   width: 100%;
   height: 38px;
@@ -270,7 +307,8 @@ body {
   background: transparent;
   padding: 0 14px;
   font-size: 14px;
-  color: var(--color-accent-text);      /* Match color scheme inside inputs */
+  color: var(--color-accent-text);
+  /* Match color scheme inside inputs */
   outline: none;
   box-shadow: none !important;
   margin-bottom: 0 !important;
@@ -282,18 +320,21 @@ body {
 }
 
 #searchIconButton {
-  background-color: #0055B7;            /* Solid dark blue search block */
+  background-color: #0055B7;
+  /* Solid dark blue search block */
   color: #FFFFFF;
   border: none !important;
   margin: 0 !important;
-  padding: 0 8px;  /* Adjusted padding for visual balance */
+  padding: 0 8px;
+  /* Adjusted padding for visual balance */
   cursor: pointer;
   font-size: 15px;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 0 24px 24px 0;                  /* Rounded right edge for pill design */
+  border-radius: 0 24px 24px 0;
+  /* Rounded right edge for pill design */
   box-sizing: border-box;
   transition: background-color var(--transition-base);
 }
@@ -304,7 +345,8 @@ body {
 
 .search-warning {
   font-size: 0.78em;
-  color: #f43f5e;                       /* Soft rose warning text visible against dark background */
+  color: #f43f5e;
+  /* Soft rose warning text visible against dark background */
   margin-top: 4px;
   margin-bottom: 8px;
 }
@@ -391,7 +433,7 @@ body {
   backdrop-filter: blur(8px);
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   min-width: 160px;
   overflow: hidden;
   transition: all var(--transition-medium);
@@ -419,17 +461,24 @@ body {
 .legend-chevron {
   font-size: 10px;
   color: #64748b;
+  display: inline-block;                                
+  transition: transform var(--transition-medium);
+  transform: rotate(180deg); /* Default state: pointing upwards */
 }
 
 .legend-content-wrapper {
   max-height: 200px;
-  transition: max-height var(--transition-medium);
+  transition: max-height var(--transition-medium), border-top-color var(--transition-medium);
   overflow: hidden;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 #floating-legend.collapsed .legend-content-wrapper {
-  max-height: 0px;
+  max-height: 0;
+  border-top-color: transparent;
+}
+#floating-legend.collapsed .legend-chevron {
+  transform: rotate(0deg); /* Rotates the chevron back to point DOWN when collapsed */
 }
 
 .legend-content {
@@ -451,7 +500,8 @@ body {
 
 .legend-item span {
   font-size: 0.78em;
-  color: #475569 !important;             /* Keep dark gray readable text for the canvas float */
+  color: #475569 !important;
+  /* Keep dark gray readable text for the canvas float */
 }
 
 /* ==========================================================================
@@ -598,9 +648,17 @@ body {
   border-left-width: 4px;
 }
 
-.ci-card-prereq { border-left-color: #4a90d9; }
-.ci-card-coreq  { border-left-color: #e8803a; }
-.ci-card-dep    { border-left-color: #4caf50; }
+.ci-card-prereq {
+  border-left-color: #4a90d9;
+}
+
+.ci-card-coreq {
+  border-left-color: #e8803a;
+}
+
+.ci-card-dep {
+  border-left-color: #4caf50;
+}
 
 .ci-card-code {
   font-weight: 700;
